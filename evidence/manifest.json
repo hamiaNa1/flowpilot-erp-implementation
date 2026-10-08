@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-08T17:20:37.306171+08:00",
+  "generated_at": "2026-10-08T17:31:35.473104+08:00",
   "algorithm": "SHA-256",
   "scope": "Published redacted evidence only; manifest excludes itself, runtime and backups",
   "files": [
@@ -66,7 +66,7 @@
     {
       "file": "evidence/delivery-verification.json",
       "bytes": 4365,
-      "sha256": "59567c8c21d67e98250c866b61fa02215e0d2a8b15f007fe612d7e34f027724e"
+      "sha256": "349919763c184e885e6b4933d3874e1c71287d6fb4b00fcc1db7099ba4b1454f"
     },
     {
       "file": "evidence/deployment-health.json",
@@ -92,6 +92,11 @@
       "file": "evidence/frontend-build.log",
       "bytes": 27508,
       "sha256": "21f6b24f7b88b1314ba687bcf6a4c3f2f3bee058f3d1683a7af9cc4a9234941c"
+    },
+    {
+      "file": "evidence/github-publication.json",
+      "bytes": 858,
+      "sha256": "bb547b66dccfbc6e27257ff16626942381ba3062672c97d6e402cccc044fe5b6"
     },
     {
       "file": "evidence/github-repository-preparation.json",
@@ -355,8 +360,8 @@
     },
     {
       "file": "evidence/release-audit.json",
-      "bytes": 656,
-      "sha256": "550129d9176ead783d78635c931f28692ba8cdfa2a341aa82c7fabdc25db0553"
+      "bytes": 744,
+      "sha256": "0539b3c75c06674701ec72109477619464e5a9b68732b806c65ba6538fcb60e4"
     },
     {
       "file": "evidence/restore-command.log",

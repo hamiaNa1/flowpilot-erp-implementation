@@ -1,16 +1,17 @@
 {
-  "time": "2026-10-08T17:20:37.160573+08:00",
+  "time": "2026-10-08T17:31:35.330438+08:00",
   "verdict": "可以上传",
   "findings": [],
-  "candidate_files": 166,
-  "total_bytes": 4434551,
+  "candidate_files": 168,
+  "total_bytes": 4446509,
   "large_files_over_10mb": [],
   "ignored_private_paths_verified": true,
   "upstream_modified_files": [
     "jshERP-boot/src/main/java/com/jsh/erp/utils/ExcelUtils.java"
   ],
-  "history_commits": 0,
-  "history_scope": "New implementation repository. No imported upstream or private runtime history.",
+  "history_commits": 3,
+  "history_unique_blobs_scanned": 162,
+  "history_scope": "All locally reachable implementation and own GitHub bootstrap commits scanned. No upstream or private runtime history imported.",
   "limitations": [
     "Docker/Linux and clean-machine full deployment unverified",
     "Two UAT failures remain",

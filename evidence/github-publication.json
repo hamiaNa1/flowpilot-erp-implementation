@@ -1,0 +1,17 @@
+{
+  "time": "2026-10-08T17:30:22.106485+08:00",
+  "repository": "https://github.com/hamiaNa1/flowpilot-erp-implementation",
+  "verified_delivery_commit": "a5bd5d4a9b831962799203f5b143ec3a99d385a1",
+  "remote_main_matches_local": true,
+  "anonymous_repository_http_status": 200,
+  "anonymous_page_http_status": 200,
+  "public": true,
+  "readme_blob_matches_local": true,
+  "delivery_documents": 13,
+  "published_files": 166,
+  "private_runtime_paths_absent": true,
+  "force_push_used": false,
+  "credential_in_remote_url": false,
+  "transport": "Git Database API: identical local blobs/tree/commit; ref advanced without force. Git HTTPS pushes failed twice with connection reset.",
+  "note": "This records the verified delivery commit before the follow-up evidence commit; final branch equality is rechecked after the follow-up ref advance."
+}

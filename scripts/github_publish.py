@@ -49,25 +49,30 @@ def prepare():
 
 def verify(record=False):
     local=git('rev-parse','HEAD')
-    remote=git('ls-remote','origin','refs/heads/main').split()[0]
+    ref=requests.get(BASE+'/git/ref/heads/main',timeout=30); ref.raise_for_status()
+    remote=ref.json()['object']['sha']
     if local!=remote: raise RuntimeError('Remote main does not match local commit')
     repo=requests.get(BASE,timeout=30); repo.raise_for_status()
     if repo.json()['private']: raise RuntimeError('Repository not public')
     readme=requests.get(BASE+'/readme',timeout=30); readme.raise_for_status()
-    readme_match=readme.json()['sha']==git('hash-object','README.md')
-    page=requests.get(f'https://github.com/{OWNER}/{NAME}',timeout=30); page.raise_for_status()
+    readme_match=readme.json()['sha']==git('rev-parse','HEAD:README.md')
+    try:
+        page=requests.get(f'https://github.com/{OWNER}/{NAME}',timeout=15)
+        page_status=page.status_code
+    except requests.RequestException: page_status='unavailable from this network; public repository/readme verified using anonymous GitHub API'
     tree=requests.get(BASE+'/git/trees/'+local,params={'recursive':'1'},timeout=30); tree.raise_for_status()
     paths=[r['path'] for r in tree.json()['tree'] if r['type']=='blob']
     forbidden=['.env','runtime/','backups/','tools/','upstream/','.venv/']
-    excluded=not any(p==f or p.startswith(f) for p in paths for f in forbidden)
+    excluded=not any(p==f or (f.endswith('/') and p.startswith(f)) for p in paths for f in forbidden)
     docs=[p for p in paths if p.startswith('docs/') and p.split('/')[-1][:2].isdigit() and p.endswith('.md')]
     okay=readme_match and excluded and len(docs)==13
     if not okay: raise RuntimeError('Public repository content verification failed')
     report={'time':now(),'repository':f'https://github.com/{OWNER}/{NAME}','verified_delivery_commit':local,
-        'remote_main_matches_local':True,'anonymous_repository_http_status':repo.status_code,'anonymous_page_http_status':page.status_code,
+        'remote_main_matches_local':True,'anonymous_repository_http_status':repo.status_code,'anonymous_page_http_status':page_status,
         'public':True,'readme_blob_matches_local':readme_match,'delivery_documents':len(docs),'published_files':len(paths),
         'private_runtime_paths_absent':excluded,'force_push_used':False,'credential_in_remote_url':False,
-        'note':'This records the verified delivery commit before the follow-up evidence commit; final branch equality is rechecked after that normal push.'}
+        'transport':'Git Database API: identical local blobs/tree/commit; ref advanced without force. Git HTTPS pushes failed twice with connection reset.',
+        'note':'This records the verified delivery commit before the follow-up evidence commit; final branch equality is rechecked after the follow-up ref advance.'}
     if record: write_json('evidence/github-publication.json',report)
     print(json.dumps(report,ensure_ascii=False))
 

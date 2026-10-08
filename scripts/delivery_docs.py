@@ -367,6 +367,7 @@ save('09-问题排查与解决记录.md','''
 |GUI-01|GUI验收定位失败|history路由及Ant图标影响accessible name，审核匹配到反审核|按真实DOM与源码定位按钮文本，页面反审核/审核实测完成|测试脚本已修正|
 |DEF-01|销售出库-1件API接受草稿|后端保存接口未有效拒绝该数量；未修改业务代码|SQL/截图复现，原生软删除本测试草稿，库存保持140|未修复，UAT失败|
 |DEF-02|fp_sales直接创建采购订单成功|菜单过滤未提供等价的后端写入授权隔离|SQL查creator149，管理员页面截图；原生删除测试草稿|未修复，UAT失败|
+|PUB-01|Git HTTPS推送连续两次连接重置|Git传输路径不可用；GitHub认证、网页及REST API可访问|通过GitHub官方Git Database API上传相同blob/tree/commit；保留初始化历史，非强制更新main|公开上传已核验|
 
 ## DEF-01 复现
 
@@ -559,6 +560,10 @@ save('13-项目验收与证据清单.md','''
 |Docker/Linux|未执行，缺Docker/可用Linux|compose-execution-attempt.log|
 
 完整文件、字节数与SHA-256见 [证据清单](../evidence/manifest.json)。发布检查见 [发布审计](../evidence/release-audit.json)，内容完整性检查见 [交付验证](../evidence/delivery-verification.json)。清单为最终脱敏证据生成，不包含清单自身、运行日志原件和私有备份。
+
+## GitHub 公开发布核验
+
+仓库为 [hamiaNa1/flowpilot-erp-implementation](https://github.com/hamiaNa1/flowpilot-erp-implementation)。匿名仓库API和网页均返回HTTP200；README blob、13份文档、远端提交与本地对应，.env、runtime、backups、tools等私有路径不存在。证据：[实际发布核验](../evidence/github-publication.json)。Git HTTPS两次连接重置后采用官方Git数据库API传输相同Git对象；保留本地交付与远端初始化历史，未force更新。
 
 ## 交付边界
 

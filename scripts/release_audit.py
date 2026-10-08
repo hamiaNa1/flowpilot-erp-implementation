@@ -37,12 +37,24 @@ def main():
     diff=subprocess.run(['git','-C','upstream','diff','--name-only'],cwd=ROOT,capture_output=True,check=True).stdout.decode().splitlines()
     expected=['jshERP-boot/src/main/java/com/jsh/erp/utils/ExcelUtils.java']
     if diff!=expected: findings.append({'file':'upstream','category':'unexpected ERP source modification'})
-    count=subprocess.run(['git','rev-list','--count','HEAD'],cwd=ROOT,capture_output=True)
-    history_count=int(count.stdout) if count.returncode==0 else 0
+    listed=subprocess.run(['git','rev-list','--all'],cwd=ROOT,capture_output=True)
+    commits=listed.stdout.decode().splitlines() if listed.returncode==0 else []
+    history_blobs=set()
+    for commit in commits:
+        tree=subprocess.check_output(['git','ls-tree','-r','-z',commit],cwd=ROOT)
+        for raw in tree.split(b'\0'):
+            if not raw: continue
+            metadata,path=raw.split(b'\t',1); name=path.decode('utf-8'); sha=metadata.decode().split()[2]
+            if any(part in forbidden for part in Path(name).parts): findings.append({'file':name,'category':'private path in Git history'})
+            if sha in history_blobs: continue
+            history_blobs.add(sha); data=subprocess.check_output(['git','cat-file','blob',sha],cwd=ROOT)
+            if any(v.encode('utf-8') in data for v in values): findings.append({'file':name,'category':'actual credential in Git history'})
+            if any(re.search(p,data.decode('utf-8',errors='replace')) for p in token_patterns): findings.append({'file':name,'category':'token/private-key pattern in Git history'})
+    history_count=len(commits)
     report={'time':datetime.now(timezone(timedelta(hours=8))).isoformat(),'verdict':'可以上传' if not findings else '暂时不要上传',
         'findings':findings,'candidate_files':len(files),'total_bytes':sum((ROOT/f).stat().st_size for f in files),
         'large_files_over_10mb':large,'ignored_private_paths_verified':True,'upstream_modified_files':diff,
-        'history_commits':history_count,'history_scope':'New implementation repository. No imported upstream or private runtime history.',
+        'history_commits':history_count,'history_unique_blobs_scanned':len(history_blobs),'history_scope':'All locally reachable implementation and own GitHub bootstrap commits scanned. No upstream or private runtime history imported.',
         'limitations':['Docker/Linux and clean-machine full deployment unverified','Two UAT failures remain','No claim of exhaustive security or production-readiness audit']}
     (ROOT/'evidence/release-audit.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     print(json.dumps({'verdict':report['verdict'],'files':len(files),'bytes':report['total_bytes'],'findings':findings},ensure_ascii=False))
