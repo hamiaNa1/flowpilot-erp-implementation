@@ -1,0 +1,12 @@
+{
+  "pages": 1,
+  "page_points": [
+    595.2755737304688,
+    841.8897705078125
+  ],
+  "format": "A4",
+  "embedded_chinese_fonts": true,
+  "text_extraction_checked": true,
+  "visual_review": "passed: inspected rendered PNG; Chinese text readable, no clipping or overlaps",
+  "source": "docs/项目经历-实施岗.md"
+}

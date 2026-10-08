@@ -1,0 +1,596 @@
+{
+  "functions": [
+    {
+      "id": 1,
+      "name": "系统管理",
+      "url": "/system",
+      "number": "0001",
+      "parent_number": "0",
+      "push_btn": ""
+    },
+    {
+      "id": 13,
+      "name": "角色管理",
+      "url": "/system/role",
+      "number": "000102",
+      "parent_number": "0001",
+      "push_btn": "1"
+    },
+    {
+      "id": 14,
+      "name": "用户管理",
+      "url": "/system/user",
+      "number": "000103",
+      "parent_number": "0001",
+      "push_btn": "1"
+    },
+    {
+      "id": 15,
+      "name": "日志管理",
+      "url": "/system/log",
+      "number": "000104",
+      "parent_number": "0001",
+      "push_btn": ""
+    },
+    {
+      "id": 16,
+      "name": "功能管理",
+      "url": "/system/function",
+      "number": "000105",
+      "parent_number": "0001",
+      "push_btn": "1"
+    },
+    {
+      "id": 18,
+      "name": "租户管理",
+      "url": "/system/tenant",
+      "number": "000109",
+      "parent_number": "0001",
+      "push_btn": "1"
+    },
+    {
+      "id": 21,
+      "name": "商品管理",
+      "url": "/material",
+      "number": "0101",
+      "parent_number": "0",
+      "push_btn": null
+    },
+    {
+      "id": 22,
+      "name": "商品类别",
+      "url": "/material/material_category",
+      "number": "010101",
+      "parent_number": "0101",
+      "push_btn": "1"
+    },
+    {
+      "id": 23,
+      "name": "商品信息",
+      "url": "/material/material",
+      "number": "010102",
+      "parent_number": "0101",
+      "push_btn": "1,3"
+    },
+    {
+      "id": 24,
+      "name": "基础资料",
+      "url": "/systemA",
+      "number": "0102",
+      "parent_number": "0",
+      "push_btn": null
+    },
+    {
+      "id": 25,
+      "name": "供应商信息",
+      "url": "/system/vendor",
+      "number": "01020101",
+      "parent_number": "0102",
+      "push_btn": "1,3"
+    },
+    {
+      "id": 26,
+      "name": "仓库信息",
+      "url": "/system/depot",
+      "number": "010202",
+      "parent_number": "0102",
+      "push_btn": "1"
+    },
+    {
+      "id": 31,
+      "name": "经手人管理",
+      "url": "/system/person",
+      "number": "010206",
+      "parent_number": "0102",
+      "push_btn": "1"
+    },
+    {
+      "id": 32,
+      "name": "采购管理",
+      "url": "/bill",
+      "number": "0502",
+      "parent_number": "0",
+      "push_btn": ""
+    },
+    {
+      "id": 33,
+      "name": "采购入库",
+      "url": "/bill/purchase_in",
+      "number": "050201",
+      "parent_number": "0502",
+      "push_btn": "1,2,3,7"
+    },
+    {
+      "id": 38,
+      "name": "销售管理",
+      "url": "/billB",
+      "number": "0603",
+      "parent_number": "0",
+      "push_btn": ""
+    },
+    {
+      "id": 40,
+      "name": "调拨出库",
+      "url": "/bill/allocation_out",
+      "number": "080107",
+      "parent_number": "0801",
+      "push_btn": "1,2,3,7"
+    },
+    {
+      "id": 41,
+      "name": "销售出库",
+      "url": "/bill/sale_out",
+      "number": "060303",
+      "parent_number": "0603",
+      "push_btn": "1,2,3,7"
+    },
+    {
+      "id": 44,
+      "name": "财务管理",
+      "url": "/financial",
+      "number": "0704",
+      "parent_number": "0",
+      "push_btn": ""
+    },
+    {
+      "id": 59,
+      "name": "进销存统计",
+      "url": "/report/in_out_stock_report",
+      "number": "030101",
+      "parent_number": "0301",
+      "push_btn": ""
+    },
+    {
+      "id": 194,
+      "name": "收支项目",
+      "url": "/system/in_out_item",
+      "number": "010204",
+      "parent_number": "0102",
+      "push_btn": "1"
+    },
+    {
+      "id": 195,
+      "name": "结算账户",
+      "url": "/system/account",
+      "number": "010205",
+      "parent_number": "0102",
+      "push_btn": "1"
+    },
+    {
+      "id": 197,
+      "name": "收入单",
+      "url": "/financial/item_in",
+      "number": "070402",
+      "parent_number": "0704",
+      "push_btn": "1,2,3,7"
+    },
+    {
+      "id": 198,
+      "name": "报表查询",
+      "url": "/report",
+      "number": "0301",
+      "parent_number": "0",
+      "push_btn": null
+    },
+    {
+      "id": 199,
+      "name": "采购退货",
+      "url": "/bill/purchase_back",
+      "number": "050204",
+      "parent_number": "0502",
+      "push_btn": "1,2,3,7"
+    },
+    {
+      "id": 200,
+      "name": "销售退货",
+      "url": "/bill/sale_back",
+      "number": "060305",
+      "parent_number": "0603",
+      "push_btn": "1,2,3,7"
+    },
+    {
+      "id": 201,
+      "name": "其它入库",
+      "url": "/bill/other_in",
+      "number": "080103",
+      "parent_number": "0801",
+      "push_btn": "1,2,3,7"
+    },
+    {
+      "id": 202,
+      "name": "其它出库",
+      "url": "/bill/other_out",
+      "number": "080105",
+      "parent_number": "0801",
+      "push_btn": "1,2,3,7"
+    },
+    {
+      "id": 203,
+      "name": "支出单",
+      "url": "/financial/item_out",
+      "number": "070403",
+      "parent_number": "0704",
+      "push_btn": "1,2,3,7"
+    },
+    {
+      "id": 204,
+      "name": "收款单",
+      "url": "/financial/money_in",
+      "number": "070404",
+      "parent_number": "0704",
+      "push_btn": "1,2,3,7"
+    },
+    {
+      "id": 205,
+      "name": "付款单",
+      "url": "/financial/money_out",
+      "number": "070405",
+      "parent_number": "0704",
+      "push_btn": "1,2,3,7"
+    },
+    {
+      "id": 206,
+      "name": "转账单",
+      "url": "/financial/giro",
+      "number": "070406",
+      "parent_number": "0704",
+      "push_btn": "1,2,3,7"
+    },
+    {
+      "id": 207,
+      "name": "账户统计",
+      "url": "/report/account_report",
+      "number": "030102",
+      "parent_number": "0301",
+      "push_btn": ""
+    },
+    {
+      "id": 208,
+      "name": "采购统计",
+      "url": "/report/buy_in_report",
+      "number": "030103",
+      "parent_number": "0301",
+      "push_btn": ""
+    },
+    {
+      "id": 209,
+      "name": "销售统计",
+      "url": "/report/sale_out_report",
+      "number": "030104",
+      "parent_number": "0301",
+      "push_btn": ""
+    },
+    {
+      "id": 210,
+      "name": "零售出库",
+      "url": "/bill/retail_out",
+      "number": "040102",
+      "parent_number": "0401",
+      "push_btn": "1,2,3,7"
+    },
+    {
+      "id": 211,
+      "name": "零售退货",
+      "url": "/bill/retail_back",
+      "number": "040104",
+      "parent_number": "0401",
+      "push_btn": "1,2,3,7"
+    },
+    {
+      "id": 212,
+      "name": "收预付款",
+      "url": "/financial/advance_in",
+      "number": "070407",
+      "parent_number": "0704",
+      "push_btn": "1,2,3,7"
+    },
+    {
+      "id": 217,
+      "name": "客户信息",
+      "url": "/system/customer",
+      "number": "01020102",
+      "parent_number": "0102",
+      "push_btn": "1,3"
+    },
+    {
+      "id": 218,
+      "name": "会员信息",
+      "url": "/system/member",
+      "number": "01020103",
+      "parent_number": "0102",
+      "push_btn": "1,3"
+    },
+    {
+      "id": 220,
+      "name": "多单位",
+      "url": "/system/unit",
+      "number": "010103",
+      "parent_number": "0101",
+      "push_btn": "1"
+    },
+    {
+      "id": 225,
+      "name": "零售管理",
+      "url": "/billC",
+      "number": "0401",
+      "parent_number": "0",
+      "push_btn": ""
+    },
+    {
+      "id": 226,
+      "name": "入库明细",
+      "url": "/report/in_detail",
+      "number": "030106",
+      "parent_number": "0301",
+      "push_btn": ""
+    },
+    {
+      "id": 227,
+      "name": "出库明细",
+      "url": "/report/out_detail",
+      "number": "030107",
+      "parent_number": "0301",
+      "push_btn": ""
+    },
+    {
+      "id": 228,
+      "name": "入库汇总",
+      "url": "/report/in_material_count",
+      "number": "030108",
+      "parent_number": "0301",
+      "push_btn": ""
+    },
+    {
+      "id": 229,
+      "name": "出库汇总",
+      "url": "/report/out_material_count",
+      "number": "030109",
+      "parent_number": "0301",
+      "push_btn": ""
+    },
+    {
+      "id": 232,
+      "name": "组装单",
+      "url": "/bill/assemble",
+      "number": "080109",
+      "parent_number": "0801",
+      "push_btn": "1,2,3,7"
+    },
+    {
+      "id": 233,
+      "name": "拆卸单",
+      "url": "/bill/disassemble",
+      "number": "080111",
+      "parent_number": "0801",
+      "push_btn": "1,2,3,7"
+    },
+    {
+      "id": 234,
+      "name": "系统配置",
+      "url": "/system/system_config",
+      "number": "000105",
+      "parent_number": "0001",
+      "push_btn": "1"
+    },
+    {
+      "id": 235,
+      "name": "客户对账",
+      "url": "/report/customer_account",
+      "number": "030110",
+      "parent_number": "0301",
+      "push_btn": ""
+    },
+    {
+      "id": 236,
+      "name": "商品属性",
+      "url": "/material/material_property",
+      "number": "000106",
+      "parent_number": "0001",
+      "push_btn": "1"
+    },
+    {
+      "id": 237,
+      "name": "供应商对账",
+      "url": "/report/vendor_account",
+      "number": "030111",
+      "parent_number": "0301",
+      "push_btn": ""
+    },
+    {
+      "id": 239,
+      "name": "仓库管理",
+      "url": "/billD",
+      "number": "0801",
+      "parent_number": "0",
+      "push_btn": ""
+    },
+    {
+      "id": 241,
+      "name": "采购订单",
+      "url": "/bill/purchase_order",
+      "number": "050202",
+      "parent_number": "0502",
+      "push_btn": "1,2,3,7"
+    },
+    {
+      "id": 242,
+      "name": "销售订单",
+      "url": "/bill/sale_order",
+      "number": "060301",
+      "parent_number": "0603",
+      "push_btn": "1,2,3,7"
+    },
+    {
+      "id": 243,
+      "name": "机构管理",
+      "url": "/system/organization",
+      "number": "000108",
+      "parent_number": "0001",
+      "push_btn": "1"
+    },
+    {
+      "id": 244,
+      "name": "库存预警",
+      "url": "/report/stock_warning_report",
+      "number": "030112",
+      "parent_number": "0301",
+      "push_btn": ""
+    },
+    {
+      "id": 245,
+      "name": "插件管理",
+      "url": "/system/plugin",
+      "number": "000107",
+      "parent_number": "0001",
+      "push_btn": "1"
+    },
+    {
+      "id": 246,
+      "name": "商品库存",
+      "url": "/report/material_stock",
+      "number": "030113",
+      "parent_number": "0301",
+      "push_btn": ""
+    },
+    {
+      "id": 247,
+      "name": "多属性",
+      "url": "/material/material_attribute",
+      "number": "010105",
+      "parent_number": "0101",
+      "push_btn": "1"
+    },
+    {
+      "id": 248,
+      "name": "调拨明细",
+      "url": "/report/allocation_detail",
+      "number": "030150",
+      "parent_number": "0301",
+      "push_btn": ""
+    },
+    {
+      "id": 258,
+      "name": "平台配置",
+      "url": "/system/platform_config",
+      "number": "000112",
+      "parent_number": "0001",
+      "push_btn": ""
+    },
+    {
+      "id": 259,
+      "name": "零售统计",
+      "url": "/report/retail_out_report",
+      "number": "030105",
+      "parent_number": "0301",
+      "push_btn": ""
+    },
+    {
+      "id": 261,
+      "name": "请购单",
+      "url": "/bill/purchase_apply",
+      "number": "050203",
+      "parent_number": "0502",
+      "push_btn": "1,2,3,7"
+    }
+  ],
+  "config": [
+    {
+      "id": 11,
+      "company_name": "FlowPilot汽车零部件有限公司（虚构演示企业）",
+      "company_contacts": "小李",
+      "company_address": "地址1",
+      "company_tel": "12345678",
+      "company_fax": null,
+      "company_post_code": null,
+      "sale_agreement": "注：本单为我公司与客户约定账期内结款的依据，由客户或其单位员工签字生效，并承担法律责任。",
+      "depot_flag": "0",
+      "customer_flag": "0",
+      "minus_stock_flag": "0",
+      "purchase_by_sale_flag": "0",
+      "multi_level_approval_flag": "0",
+      "multi_bill_type": "",
+      "force_approval_flag": "1",
+      "update_unit_price_flag": "1",
+      "over_link_bill_flag": "0",
+      "in_out_manage_flag": "0",
+      "multi_account_flag": "0",
+      "move_avg_price_flag": "0",
+      "audit_print_flag": "0",
+      "zero_change_amount_flag": "0",
+      "customer_static_price_flag": "0",
+      "tenant_id": 63,
+      "delete_flag": "0"
+    }
+  ],
+  "stocks": [
+    {
+      "bar_code": "FP-MAT-001",
+      "name": "FlowPilot制动支架",
+      "depot": "FlowPilot原料仓",
+      "current_number": "50.000000"
+    },
+    {
+      "bar_code": "FP-MAT-001",
+      "name": "FlowPilot制动支架",
+      "depot": "FlowPilot成品仓",
+      "current_number": "10.000000"
+    },
+    {
+      "bar_code": "FP-MAT-002",
+      "name": "FlowPilot轮毂轴套",
+      "depot": "FlowPilot原料仓",
+      "current_number": "80.000000"
+    },
+    {
+      "bar_code": "FP-MAT-003",
+      "name": "FlowPilot紧固螺栓M10",
+      "depot": "FlowPilot原料仓",
+      "current_number": "1000.000000"
+    },
+    {
+      "bar_code": "FP-MAT-004",
+      "name": "FlowPilot密封垫圈",
+      "depot": "FlowPilot原料仓",
+      "current_number": "200.000000"
+    },
+    {
+      "bar_code": "FP-MAT-005",
+      "name": "FlowPilot冷轧钢板",
+      "depot": "FlowPilot原料仓",
+      "current_number": "500.000000"
+    },
+    {
+      "bar_code": "FP-MAT-006",
+      "name": "FlowPilot成品包装箱",
+      "depot": "FlowPilot原料仓",
+      "current_number": "100.000000"
+    }
+  ],
+  "db": [
+    {
+      "version": "8.0.44",
+      "charset": "utf8mb4",
+      "collation": "utf8mb4_unicode_ci"
+    }
+  ]
+}

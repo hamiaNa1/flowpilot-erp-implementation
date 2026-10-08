@@ -1,0 +1,50 @@
+[
+  {
+    "number": "FP-UAT-20261008-PO",
+    "type": "其它",
+    "sub_type": "采购订单",
+    "status": "2",
+    "creator": 147,
+    "link_number": "",
+    "oper_number": "120.000000",
+    "basic_number": "120.000000",
+    "depot_id": null,
+    "link_id": null
+  },
+  {
+    "number": "FP-UAT-20261008-PI",
+    "type": "入库",
+    "sub_type": "采购",
+    "status": "1",
+    "creator": 147,
+    "link_number": "FP-UAT-20261008-PO",
+    "oper_number": "120.000000",
+    "basic_number": "120.000000",
+    "depot_id": 19,
+    "link_id": 334
+  },
+  {
+    "number": "FP-UAT-20261008-SO",
+    "type": "其它",
+    "sub_type": "销售订单",
+    "status": "2",
+    "creator": 149,
+    "link_number": "",
+    "oper_number": "30.000000",
+    "basic_number": "30.000000",
+    "depot_id": null,
+    "link_id": null
+  },
+  {
+    "number": "FP-UAT-20261008-SI",
+    "type": "出库",
+    "sub_type": "销售",
+    "status": "1",
+    "creator": 149,
+    "link_number": "FP-UAT-20261008-SO",
+    "oper_number": "30.000000",
+    "basic_number": "30.000000",
+    "depot_id": 19,
+    "link_id": 336
+  }
+]

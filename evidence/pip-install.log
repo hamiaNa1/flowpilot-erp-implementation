@@ -1,0 +1,40 @@
+Collecting pymysql==1.1.2
+  Downloading pymysql-1.1.2-py3-none-any.whl (45 kB)
+     ---------------------------------------- 45.3/45.3 kB ? eta 0:00:00
+Collecting requests==2.32.5
+  Downloading requests-2.32.5-py3-none-any.whl (64 kB)
+     ---------------------------------------- 64.7/64.7 kB 3.6 MB/s eta 0:00:00
+Collecting xlwt==1.3.0
+  Downloading xlwt-1.3.0-py2.py3-none-any.whl (99 kB)
+     ---------------------------------------- 100.0/100.0 kB ? eta 0:00:00
+Collecting xlrd==2.0.2
+  Downloading xlrd-2.0.2-py2.py3-none-any.whl (96 kB)
+     ---------------------------------------- 96.6/96.6 kB 5.4 MB/s eta 0:00:00
+Collecting playwright==1.55.0
+  Downloading playwright-1.55.0-py3-none-win_amd64.whl (35.5 MB)
+     ---------------------------------------- 35.5/35.5 MB 7.9 MB/s eta 0:00:00
+Collecting idna<4,>=2.5
+  Downloading idna-3.20-py3-none-any.whl (69 kB)
+     ---------------------------------------- 69.6/69.6 kB ? eta 0:00:00
+Collecting urllib3<3,>=1.21.1
+  Downloading urllib3-2.8.0-py3-none-any.whl (135 kB)
+     ---------------------------------------- 135.7/135.7 kB ? eta 0:00:00
+Collecting certifi>=2017.4.17
+  Downloading certifi-2026.7.22-py3-none-any.whl (136 kB)
+     ---------------------------------------- 137.0/137.0 kB ? eta 0:00:00
+Collecting charset_normalizer<4,>=2
+  Downloading charset_normalizer-3.5.2-cp310-cp310-win_amd64.whl (215 kB)
+     ------------------------------------ 215.4/215.4 kB 205.2 kB/s eta 0:00:00
+Collecting greenlet<4.0.0,>=3.1.1
+  Downloading greenlet-3.5.6-cp310-cp310-win_amd64.whl (322 kB)
+     ------------------------------------- 322.9/322.9 kB 19.5 MB/s eta 0:00:00
+Collecting pyee<14,>=13
+  Downloading pyee-13.0.1-py3-none-any.whl (15 kB)
+Collecting typing-extensions
+  Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+     ---------------------------------------- 45.6/45.6 kB 2.2 MB/s eta 0:00:00
+Installing collected packages: xlwt, xlrd, urllib3, typing-extensions, pymysql, idna, greenlet, charset_normalizer, certifi, requests, pyee, playwright
+Successfully installed certifi-2026.7.22 charset_normalizer-3.5.2 greenlet-3.5.6 idna-3.20 playwright-1.55.0 pyee-13.0.1 pymysql-1.1.2 requests-2.32.5 typing-extensions-4.16.0 urllib3-2.8.0 xlrd-2.0.2 xlwt-1.3.0
+
+[notice] A new release of pip is available: 23.0.1 -> 26.2.1
+[notice] To update, run: D:\7800\flowpilot-erp\.venv\Scripts\python.exe -m pip install --upgrade pip

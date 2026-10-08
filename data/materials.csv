@@ -1,0 +1,7 @@
+﻿barcode,name,specification,unit,purchase_price,sale_price,raw_stock,finished_stock,effective_date
+FP-MAT-001,FlowPilot制动支架,BRK-01,件,68,95,50,10,2026-10-01
+FP-MAT-002,FlowPilot轮毂轴套,HUB-02,件,35,52,80,0,2026-10-01
+FP-MAT-003,FlowPilot紧固螺栓M10,M10x30,个,1.2,2,1000,0,2026-10-01
+FP-MAT-004,FlowPilot密封垫圈,SEAL-04,个,2.5,4,200,0,2026-10-01
+FP-MAT-005,FlowPilot冷轧钢板,SPCC-2mm,千克,6,8,500,0,2026-10-01
+FP-MAT-006,FlowPilot成品包装箱,BOX-06,个,3,5,100,0,2026-10-01

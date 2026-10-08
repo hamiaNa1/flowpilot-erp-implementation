@@ -1,0 +1,86 @@
+name: flowpilot-erp
+services:
+  mysql:
+    image: mysql:8.0.44
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?set .env}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-jsh_erp}
+      MYSQL_USER: ${MYSQL_USER:-flowpilot}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?set .env}
+      ERP_ADMIN_PASSWORD: ${ERP_ADMIN_PASSWORD:?set .env}
+      ERP_TENANT_PASSWORD: ${ERP_TENANT_PASSWORD:?set .env}
+      TZ: Asia/Shanghai
+    command: ["--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci", "--default-time-zone=+08:00"]
+    ports: ["127.0.0.1:${MYSQL_PORT:-3308}:3306"]
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./upstream/jshERP-boot/docs/jsh_erp.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+      - ./deployment/mysql/02-security.sh:/docker-entrypoint-initdb.d/02-security.sh:ro
+    healthcheck:
+      test: ["CMD-SHELL", "MYSQL_PWD=$$MYSQL_ROOT_PASSWORD mysql -uroot \"$$MYSQL_DATABASE\" -N -e 'SELECT COUNT(*) FROM jsh_user' >/dev/null"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+    restart: unless-stopped
+  redis:
+    image: redis:6.2.16-alpine
+    environment:
+      REDIS_PASSWORD: ${REDIS_PASSWORD:?set .env}
+    command: ["sh", "-c", "exec redis-server --appendonly yes --requirepass \"$$REDIS_PASSWORD\""]
+    ports: ["127.0.0.1:${REDIS_PORT:-6388}:6379"]
+    volumes: ["redis_data:/data"]
+    healthcheck:
+      test: ["CMD-SHELL", "REDISCLI_AUTH=$$REDIS_PASSWORD redis-cli ping | grep -q PONG"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+    restart: unless-stopped
+  backend:
+    build:
+      context: .
+      dockerfile: deployment/backend.Dockerfile
+    environment:
+      SERVER_ADDRESS: 0.0.0.0
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/${MYSQL_DATABASE:-jsh_erp}?useUnicode=true&characterEncoding=utf8&useCursorFetch=true&defaultFetchSize=500&allowMultiQueries=true&rewriteBatchedStatements=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai
+      SPRING_DATASOURCE_USERNAME: ${MYSQL_USER:-flowpilot}
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD:?set .env}
+      SPRING_REDIS_HOST: redis
+      SPRING_REDIS_PORT: 6379
+      SPRING_REDIS_PASSWORD: ${REDIS_PASSWORD:?set .env}
+      FILE_PATH: /app/upload
+      SERVER_TOMCAT_BASEDIR: /app/tmp
+      LOGGING_LEVEL_COM_JSH: INFO
+      TZ: Asia/Shanghai
+    volumes:
+      - uploads:/app/upload
+      - app_logs:/app/logs
+      - plugins:/app/plugins
+    depends_on:
+      mysql: {condition: service_healthy}
+      redis: {condition: service_healthy}
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://127.0.0.1:9999/jshERP-boot/platformConfig/getPlatform/name >/dev/null"]
+      interval: 15s
+      timeout: 5s
+      start_period: 45s
+      retries: 10
+    restart: unless-stopped
+  nginx:
+    build:
+      context: .
+      dockerfile: deployment/frontend.Dockerfile
+    ports: ["127.0.0.1:${HTTP_PORT:-8088}:80"]
+    depends_on:
+      backend: {condition: service_healthy}
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "-", "http://127.0.0.1/healthz"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+volumes:
+  mysql_data:
+  redis_data:
+  uploads:
+  app_logs:
+  plugins:

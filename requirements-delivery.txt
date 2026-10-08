@@ -1,0 +1,4 @@
+# Optional: regenerate and render the A4 resume artifact
+reportlab==4.4.4
+PyMuPDF==1.26.5
+PyYAML==6.0.3

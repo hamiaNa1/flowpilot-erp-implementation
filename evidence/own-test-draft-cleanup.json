@@ -1,0 +1,16 @@
+{
+  "recovered_previous_test_draft": [
+    {
+      "id": 284,
+      "number": "FP-UAT-20261008-ROLE-CROSS",
+      "type": "其它",
+      "sub_type": "采购订单",
+      "status": "0",
+      "purchase_status": "0",
+      "creator": 149,
+      "link_number": "",
+      "total_price": "-68.000000"
+    }
+  ],
+  "removed_from_active_docs": true
+}

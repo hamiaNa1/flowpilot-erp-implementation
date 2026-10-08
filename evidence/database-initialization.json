@@ -1,0 +1,9 @@
+{
+  "time": "2026-10-08T16:09:31.207235+08:00",
+  "schema": "jsh_erp",
+  "tables": 30,
+  "source_sql": "upstream/jshERP-boot/docs/jsh_erp.sql",
+  "default_passwords_rotated": true,
+  "sample_user_disabled": true,
+  "port": "3308"
+}

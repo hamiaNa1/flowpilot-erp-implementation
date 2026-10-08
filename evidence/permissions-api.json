@@ -1,0 +1,1040 @@
+[
+  {
+    "time": "2026-10-08T16:43:10.647004+08:00",
+    "method": "POST",
+    "path": "/user/login",
+    "request": {
+      "json": {
+        "loginName": "fp_manager",
+        "password": "[MD5 REDACTED]",
+        "code": "[REDACTED]",
+        "uuid": "[REDACTED]"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "pwdSimple": false,
+        "user": {
+          "id": 146,
+          "username": "FlowPilot实施管理员",
+          "loginName": "fp_manager",
+          "password": "[REDACTED]",
+          "leaderFlag": "0",
+          "position": "FlowPilot实施管理员",
+          "department": null,
+          "email": null,
+          "phonenum": null,
+          "ismanager": 1,
+          "isystem": 0,
+          "status": 0,
+          "description": null,
+          "remark": null,
+          "weixinOpenId": null,
+          "tenantId": 63,
+          "deleteFlag": "0"
+        },
+        "msgTip": "user can login",
+        "token": "[REDACTED]"
+      }
+    },
+    "authenticated_user_before": null
+  },
+  {
+    "time": "2026-10-08T16:43:12.517064+08:00",
+    "method": "POST",
+    "path": "/function/findMenuByPNumber",
+    "request": {
+      "json": {
+        "pNumber": "0",
+        "userId": "146"
+      }
+    },
+    "http_status": 200,
+    "response": [
+      {
+        "component": "/layouts/TabLayout",
+        "icon": "home",
+        "id": 0,
+        "text": "首页",
+        "url": "/dashboard/analysis"
+      },
+      {
+        "component": "/layouts/TabLayout",
+        "children": [
+          {
+            "component": "/bill/RetailOutList",
+            "icon": "profile",
+            "id": 210,
+            "text": "零售出库",
+            "url": "/bill/retail_out"
+          },
+          {
+            "component": "/bill/RetailBackList",
+            "icon": "profile",
+            "id": 211,
+            "text": "零售退货",
+            "url": "/bill/retail_back"
+          }
+        ],
+        "icon": "gift",
+        "id": 225,
+        "text": "零售管理",
+        "url": "/billC"
+      },
+      {
+        "component": "/layouts/TabLayout",
+        "children": [
+          {
+            "component": "/bill/PurchaseApplyList",
+            "icon": "profile",
+            "id": 261,
+            "text": "请购单",
+            "url": "/bill/purchase_apply"
+          },
+          {
+            "component": "/bill/PurchaseOrderList",
+            "icon": "profile",
+            "id": 241,
+            "text": "采购订单",
+            "url": "/bill/purchase_order"
+          },
+          {
+            "component": "/bill/PurchaseInList",
+            "icon": "profile",
+            "id": 33,
+            "text": "采购入库",
+            "url": "/bill/purchase_in"
+          },
+          {
+            "component": "/bill/PurchaseBackList",
+            "icon": "profile",
+            "id": 199,
+            "text": "采购退货",
+            "url": "/bill/purchase_back"
+          }
+        ],
+        "icon": "retweet",
+        "id": 32,
+        "text": "采购管理",
+        "url": "/bill"
+      },
+      {
+        "component": "/layouts/TabLayout",
+        "children": [
+          {
+            "component": "/bill/SaleOrderList",
+            "icon": "profile",
+            "id": 242,
+            "text": "销售订单",
+            "url": "/bill/sale_order"
+          },
+          {
+            "component": "/bill/SaleOutList",
+            "icon": "profile",
+            "id": 41,
+            "text": "销售出库",
+            "url": "/bill/sale_out"
+          },
+          {
+            "component": "/bill/SaleBackList",
+            "icon": "profile",
+            "id": 200,
+            "text": "销售退货",
+            "url": "/bill/sale_back"
+          }
+        ],
+        "icon": "shopping-cart",
+        "id": 38,
+        "text": "销售管理",
+        "url": "/billB"
+      },
+      {
+        "component": "/layouts/TabLayout",
+        "children": [
+          {
+            "component": "/bill/OtherInList",
+            "icon": "profile",
+            "id": 201,
+            "text": "其它入库",
+            "url": "/bill/other_in"
+          },
+          {
+            "component": "/bill/OtherOutList",
+            "icon": "profile",
+            "id": 202,
+            "text": "其它出库",
+            "url": "/bill/other_out"
+          },
+          {
+            "component": "/bill/AllocationOutList",
+            "icon": "profile",
+            "id": 40,
+            "text": "调拨出库",
+            "url": "/bill/allocation_out"
+          },
+          {
+            "component": "/bill/AssembleList",
+            "icon": "profile",
+            "id": 232,
+            "text": "组装单",
+            "url": "/bill/assemble"
+          },
+          {
+            "component": "/bill/DisassembleList",
+            "icon": "profile",
+            "id": 233,
+            "text": "拆卸单",
+            "url": "/bill/disassemble"
+          }
+        ],
+        "icon": "hdd",
+        "id": 239,
+        "text": "仓库管理",
+        "url": "/billD"
+      },
+      {
+        "component": "/layouts/TabLayout",
+        "children": [
+          {
+            "component": "/financial/ItemInList",
+            "icon": "profile",
+            "id": 197,
+            "text": "收入单",
+            "url": "/financial/item_in"
+          },
+          {
+            "component": "/financial/ItemOutList",
+            "icon": "profile",
+            "id": 203,
+            "text": "支出单",
+            "url": "/financial/item_out"
+          },
+          {
+            "component": "/financial/MoneyInList",
+            "icon": "profile",
+            "id": 204,
+            "text": "收款单",
+            "url": "/financial/money_in"
+          },
+          {
+            "component": "/financial/MoneyOutList",
+            "icon": "profile",
+            "id": 205,
+            "text": "付款单",
+            "url": "/financial/money_out"
+          },
+          {
+            "component": "/financial/GiroList",
+            "icon": "profile",
+            "id": 206,
+            "text": "转账单",
+            "url": "/financial/giro"
+          },
+          {
+            "component": "/financial/AdvanceInList",
+            "icon": "profile",
+            "id": 212,
+            "text": "收预付款",
+            "url": "/financial/advance_in"
+          }
+        ],
+        "icon": "money-collect",
+        "id": 44,
+        "text": "财务管理",
+        "url": "/financial"
+      },
+      {
+        "component": "/layouts/TabLayout",
+        "children": [
+          {
+            "component": "/report/MaterialStock",
+            "icon": "profile",
+            "id": 246,
+            "text": "商品库存",
+            "url": "/report/material_stock"
+          },
+          {
+            "component": "/report/AccountReport",
+            "icon": "profile",
+            "id": 207,
+            "text": "账户统计",
+            "url": "/report/account_report"
+          },
+          {
+            "component": "/report/RetailOutReport",
+            "icon": "profile",
+            "id": 259,
+            "text": "零售统计",
+            "url": "/report/retail_out_report"
+          },
+          {
+            "component": "/report/BuyInReport",
+            "icon": "profile",
+            "id": 208,
+            "text": "采购统计",
+            "url": "/report/buy_in_report"
+          },
+          {
+            "component": "/report/SaleOutReport",
+            "icon": "profile",
+            "id": 209,
+            "text": "销售统计",
+            "url": "/report/sale_out_report"
+          },
+          {
+            "component": "/report/InDetail",
+            "icon": "profile",
+            "id": 226,
+            "text": "入库明细",
+            "url": "/report/in_detail"
+          },
+          {
+            "component": "/report/OutDetail",
+            "icon": "profile",
+            "id": 227,
+            "text": "出库明细",
+            "url": "/report/out_detail"
+          },
+          {
+            "component": "/report/AllocationDetail",
+            "icon": "profile",
+            "id": 248,
+            "text": "调拨明细",
+            "url": "/report/allocation_detail"
+          },
+          {
+            "component": "/report/InMaterialCount",
+            "icon": "profile",
+            "id": 228,
+            "text": "入库汇总",
+            "url": "/report/in_material_count"
+          },
+          {
+            "component": "/report/OutMaterialCount",
+            "icon": "profile",
+            "id": 229,
+            "text": "出库汇总",
+            "url": "/report/out_material_count"
+          },
+          {
+            "component": "/report/InOutStockReport",
+            "icon": "profile",
+            "id": 59,
+            "text": "进销存统计",
+            "url": "/report/in_out_stock_report"
+          },
+          {
+            "component": "/report/CustomerAccount",
+            "icon": "profile",
+            "id": 235,
+            "text": "客户对账",
+            "url": "/report/customer_account"
+          },
+          {
+            "component": "/report/VendorAccount",
+            "icon": "profile",
+            "id": 237,
+            "text": "供应商对账",
+            "url": "/report/vendor_account"
+          },
+          {
+            "component": "/report/StockWarningReport",
+            "icon": "profile",
+            "id": 244,
+            "text": "库存预警",
+            "url": "/report/stock_warning_report"
+          }
+        ],
+        "icon": "pie-chart",
+        "id": 198,
+        "text": "报表查询",
+        "url": "/report"
+      },
+      {
+        "component": "/layouts/TabLayout",
+        "children": [
+          {
+            "component": "/material/MaterialCategoryList",
+            "icon": "profile",
+            "id": 22,
+            "text": "商品类别",
+            "url": "/material/material_category"
+          },
+          {
+            "component": "/material/MaterialList",
+            "icon": "profile",
+            "id": 23,
+            "text": "商品信息",
+            "url": "/material/material"
+          },
+          {
+            "component": "/system/UnitList",
+            "icon": "profile",
+            "id": 220,
+            "text": "多单位",
+            "url": "/system/unit"
+          },
+          {
+            "component": "/material/MaterialAttributeList",
+            "icon": "profile",
+            "id": 247,
+            "text": "多属性",
+            "url": "/material/material_attribute"
+          }
+        ],
+        "icon": "shopping",
+        "id": 21,
+        "text": "商品管理",
+        "url": "/material"
+      },
+      {
+        "component": "/layouts/TabLayout",
+        "children": [
+          {
+            "component": "/system/VendorList",
+            "icon": "profile",
+            "id": 25,
+            "text": "供应商信息",
+            "url": "/system/vendor"
+          },
+          {
+            "component": "/system/CustomerList",
+            "icon": "profile",
+            "id": 217,
+            "text": "客户信息",
+            "url": "/system/customer"
+          },
+          {
+            "component": "/system/MemberList",
+            "icon": "profile",
+            "id": 218,
+            "text": "会员信息",
+            "url": "/system/member"
+          },
+          {
+            "component": "/system/DepotList",
+            "icon": "profile",
+            "id": 26,
+            "text": "仓库信息",
+            "url": "/system/depot"
+          },
+          {
+            "component": "/system/InOutItemList",
+            "icon": "profile",
+            "id": 194,
+            "text": "收支项目",
+            "url": "/system/in_out_item"
+          },
+          {
+            "component": "/system/AccountList",
+            "icon": "profile",
+            "id": 195,
+            "text": "结算账户",
+            "url": "/system/account"
+          },
+          {
+            "component": "/system/PersonList",
+            "icon": "profile",
+            "id": 31,
+            "text": "经手人管理",
+            "url": "/system/person"
+          }
+        ],
+        "icon": "appstore",
+        "id": 24,
+        "text": "基础资料",
+        "url": "/systemA"
+      }
+    ],
+    "authenticated_user_before": "146"
+  },
+  {
+    "time": "2026-10-08T16:43:14.571479+08:00",
+    "method": "POST",
+    "path": "/user/login",
+    "request": {
+      "json": {
+        "loginName": "fp_purchase",
+        "password": "[MD5 REDACTED]",
+        "code": "[REDACTED]",
+        "uuid": "[REDACTED]"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "pwdSimple": false,
+        "user": {
+          "id": 147,
+          "username": "FlowPilot采购员",
+          "loginName": "fp_purchase",
+          "password": "[REDACTED]",
+          "leaderFlag": "0",
+          "position": "FlowPilot采购员",
+          "department": null,
+          "email": null,
+          "phonenum": null,
+          "ismanager": 1,
+          "isystem": 0,
+          "status": 0,
+          "description": null,
+          "remark": null,
+          "weixinOpenId": null,
+          "tenantId": 63,
+          "deleteFlag": "0"
+        },
+        "msgTip": "user can login",
+        "token": "[REDACTED]"
+      }
+    },
+    "authenticated_user_before": null
+  },
+  {
+    "time": "2026-10-08T16:43:16.351034+08:00",
+    "method": "POST",
+    "path": "/function/findMenuByPNumber",
+    "request": {
+      "json": {
+        "pNumber": "0",
+        "userId": "147"
+      }
+    },
+    "http_status": 200,
+    "response": [
+      {
+        "component": "/layouts/TabLayout",
+        "icon": "home",
+        "id": 0,
+        "text": "首页",
+        "url": "/dashboard/analysis"
+      },
+      {
+        "component": "/layouts/TabLayout",
+        "children": [
+          {
+            "component": "/bill/PurchaseOrderList",
+            "icon": "profile",
+            "id": 241,
+            "text": "采购订单",
+            "url": "/bill/purchase_order"
+          },
+          {
+            "component": "/bill/PurchaseInList",
+            "icon": "profile",
+            "id": 33,
+            "text": "采购入库",
+            "url": "/bill/purchase_in"
+          }
+        ],
+        "icon": "retweet",
+        "id": 32,
+        "text": "采购管理",
+        "url": "/bill"
+      },
+      {
+        "component": "/layouts/TabLayout",
+        "children": [
+          {
+            "component": "/report/MaterialStock",
+            "icon": "profile",
+            "id": 246,
+            "text": "商品库存",
+            "url": "/report/material_stock"
+          }
+        ],
+        "icon": "pie-chart",
+        "id": 198,
+        "text": "报表查询",
+        "url": "/report"
+      },
+      {
+        "component": "/layouts/TabLayout",
+        "children": [
+          {
+            "component": "/material/MaterialList",
+            "icon": "profile",
+            "id": 23,
+            "text": "商品信息",
+            "url": "/material/material"
+          }
+        ],
+        "icon": "shopping",
+        "id": 21,
+        "text": "商品管理",
+        "url": "/material"
+      },
+      {
+        "component": "/layouts/TabLayout",
+        "children": [
+          {
+            "component": "/system/VendorList",
+            "icon": "profile",
+            "id": 25,
+            "text": "供应商信息",
+            "url": "/system/vendor"
+          }
+        ],
+        "icon": "appstore",
+        "id": 24,
+        "text": "基础资料",
+        "url": "/systemA"
+      }
+    ],
+    "authenticated_user_before": "147"
+  },
+  {
+    "time": "2026-10-08T16:43:18.316688+08:00",
+    "method": "POST",
+    "path": "/user/login",
+    "request": {
+      "json": {
+        "loginName": "fp_warehouse",
+        "password": "[MD5 REDACTED]",
+        "code": "[REDACTED]",
+        "uuid": "[REDACTED]"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "pwdSimple": false,
+        "user": {
+          "id": 148,
+          "username": "FlowPilot仓库员",
+          "loginName": "fp_warehouse",
+          "password": "[REDACTED]",
+          "leaderFlag": "0",
+          "position": "FlowPilot仓库员",
+          "department": null,
+          "email": null,
+          "phonenum": null,
+          "ismanager": 1,
+          "isystem": 0,
+          "status": 0,
+          "description": null,
+          "remark": null,
+          "weixinOpenId": null,
+          "tenantId": 63,
+          "deleteFlag": "0"
+        },
+        "msgTip": "user can login",
+        "token": "[REDACTED]"
+      }
+    },
+    "authenticated_user_before": null
+  },
+  {
+    "time": "2026-10-08T16:43:20.118777+08:00",
+    "method": "POST",
+    "path": "/function/findMenuByPNumber",
+    "request": {
+      "json": {
+        "pNumber": "0",
+        "userId": "148"
+      }
+    },
+    "http_status": 200,
+    "response": [
+      {
+        "component": "/layouts/TabLayout",
+        "icon": "home",
+        "id": 0,
+        "text": "首页",
+        "url": "/dashboard/analysis"
+      },
+      {
+        "component": "/layouts/TabLayout",
+        "children": [
+          {
+            "component": "/bill/OtherInList",
+            "icon": "profile",
+            "id": 201,
+            "text": "其它入库",
+            "url": "/bill/other_in"
+          },
+          {
+            "component": "/bill/OtherOutList",
+            "icon": "profile",
+            "id": 202,
+            "text": "其它出库",
+            "url": "/bill/other_out"
+          }
+        ],
+        "icon": "hdd",
+        "id": 239,
+        "text": "仓库管理",
+        "url": "/billD"
+      },
+      {
+        "component": "/layouts/TabLayout",
+        "children": [
+          {
+            "component": "/report/MaterialStock",
+            "icon": "profile",
+            "id": 246,
+            "text": "商品库存",
+            "url": "/report/material_stock"
+          },
+          {
+            "component": "/report/InDetail",
+            "icon": "profile",
+            "id": 226,
+            "text": "入库明细",
+            "url": "/report/in_detail"
+          },
+          {
+            "component": "/report/OutDetail",
+            "icon": "profile",
+            "id": 227,
+            "text": "出库明细",
+            "url": "/report/out_detail"
+          }
+        ],
+        "icon": "pie-chart",
+        "id": 198,
+        "text": "报表查询",
+        "url": "/report"
+      },
+      {
+        "component": "/layouts/TabLayout",
+        "children": [
+          {
+            "component": "/material/MaterialList",
+            "icon": "profile",
+            "id": 23,
+            "text": "商品信息",
+            "url": "/material/material"
+          }
+        ],
+        "icon": "shopping",
+        "id": 21,
+        "text": "商品管理",
+        "url": "/material"
+      }
+    ],
+    "authenticated_user_before": "148"
+  },
+  {
+    "time": "2026-10-08T16:43:28.071706+08:00",
+    "method": "POST",
+    "path": "/user/login",
+    "request": {
+      "json": {
+        "loginName": "fp_manager",
+        "password": "[MD5 REDACTED]",
+        "code": "[REDACTED]",
+        "uuid": "[REDACTED]"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "pwdSimple": false,
+        "user": {
+          "id": 146,
+          "username": "FlowPilot实施管理员",
+          "loginName": "fp_manager",
+          "password": "[REDACTED]",
+          "leaderFlag": "0",
+          "position": "FlowPilot实施管理员",
+          "department": null,
+          "email": null,
+          "phonenum": null,
+          "ismanager": 1,
+          "isystem": 0,
+          "status": 0,
+          "description": null,
+          "remark": null,
+          "weixinOpenId": null,
+          "tenantId": 63,
+          "deleteFlag": "0"
+        },
+        "msgTip": "user can login",
+        "token": "[REDACTED]"
+      }
+    },
+    "authenticated_user_before": null
+  },
+  {
+    "time": "2026-10-08T16:43:30.999485+08:00",
+    "method": "DELETE",
+    "path": "/depotHead/delete",
+    "request": {
+      "params": {
+        "id": 285
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "message": "成功"
+      }
+    },
+    "authenticated_user_before": "146"
+  },
+  {
+    "time": "2026-10-08T16:43:22.432257+08:00",
+    "method": "POST",
+    "path": "/user/login",
+    "request": {
+      "json": {
+        "loginName": "fp_sales",
+        "password": "[MD5 REDACTED]",
+        "code": "[REDACTED]",
+        "uuid": "[REDACTED]"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "pwdSimple": false,
+        "user": {
+          "id": 149,
+          "username": "FlowPilot销售员",
+          "loginName": "fp_sales",
+          "password": "[REDACTED]",
+          "leaderFlag": "0",
+          "position": "FlowPilot销售员",
+          "department": null,
+          "email": null,
+          "phonenum": null,
+          "ismanager": 1,
+          "isystem": 0,
+          "status": 0,
+          "description": null,
+          "remark": null,
+          "weixinOpenId": null,
+          "tenantId": 63,
+          "deleteFlag": "0"
+        },
+        "msgTip": "user can login",
+        "token": "[REDACTED]"
+      }
+    },
+    "authenticated_user_before": null
+  },
+  {
+    "time": "2026-10-08T16:43:24.192087+08:00",
+    "method": "POST",
+    "path": "/function/findMenuByPNumber",
+    "request": {
+      "json": {
+        "pNumber": "0",
+        "userId": "149"
+      }
+    },
+    "http_status": 200,
+    "response": [
+      {
+        "component": "/layouts/TabLayout",
+        "icon": "home",
+        "id": 0,
+        "text": "首页",
+        "url": "/dashboard/analysis"
+      },
+      {
+        "component": "/layouts/TabLayout",
+        "children": [
+          {
+            "component": "/bill/SaleOrderList",
+            "icon": "profile",
+            "id": 242,
+            "text": "销售订单",
+            "url": "/bill/sale_order"
+          },
+          {
+            "component": "/bill/SaleOutList",
+            "icon": "profile",
+            "id": 41,
+            "text": "销售出库",
+            "url": "/bill/sale_out"
+          }
+        ],
+        "icon": "shopping-cart",
+        "id": 38,
+        "text": "销售管理",
+        "url": "/billB"
+      },
+      {
+        "component": "/layouts/TabLayout",
+        "children": [
+          {
+            "component": "/report/MaterialStock",
+            "icon": "profile",
+            "id": 246,
+            "text": "商品库存",
+            "url": "/report/material_stock"
+          }
+        ],
+        "icon": "pie-chart",
+        "id": 198,
+        "text": "报表查询",
+        "url": "/report"
+      },
+      {
+        "component": "/layouts/TabLayout",
+        "children": [
+          {
+            "component": "/material/MaterialList",
+            "icon": "profile",
+            "id": 23,
+            "text": "商品信息",
+            "url": "/material/material"
+          }
+        ],
+        "icon": "shopping",
+        "id": 21,
+        "text": "商品管理",
+        "url": "/material"
+      },
+      {
+        "component": "/layouts/TabLayout",
+        "children": [
+          {
+            "component": "/system/CustomerList",
+            "icon": "profile",
+            "id": 217,
+            "text": "客户信息",
+            "url": "/system/customer"
+          }
+        ],
+        "icon": "appstore",
+        "id": 24,
+        "text": "基础资料",
+        "url": "/systemA"
+      }
+    ],
+    "authenticated_user_before": "149"
+  },
+  {
+    "time": "2026-10-08T16:43:26.225206+08:00",
+    "method": "DELETE",
+    "path": "/depotHead/delete",
+    "request": {
+      "params": {
+        "id": 284
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "message": "成功"
+      }
+    },
+    "authenticated_user_before": "149"
+  },
+  {
+    "time": "2026-10-08T16:43:28.002395+08:00",
+    "method": "POST",
+    "path": "/depotHead/addDepotHeadAndDetail",
+    "request": {
+      "json": {
+        "info": "{\"number\": \"FP-UAT-20261008-ROLE-CROSS\", \"defaultNumber\": \"FP-UAT-20261008-ROLE-CROSS\", \"type\": \"其它\", \"subType\": \"采购订单\", \"organId\": 90, \"accountId\": 24, \"operTime\": \"2026-10-08 16:43:26\", \"totalPrice\": -68, \"changeAmount\": 0, \"discount\": 0, \"discountMoney\": 0, \"discountLastMoney\": 68, \"otherMoney\": 0, \"deposit\": 0, \"payType\": \"现付\", \"status\": \"0\", \"remark\": \"FlowPilot虚构企业实施UAT，非生产业务\", \"linkNumber\": \"\"}",
+        "rows": "[{\"barCode\": \"FP-MAT-001\", \"unit\": \"件\", \"operNumber\": 1, \"unitPrice\": 68, \"allPrice\": 68, \"taxRate\": 0, \"taxMoney\": 0, \"taxLastMoney\": 68, \"depotId\": null, \"remark\": \"实施验收\"}]"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "msg": "操作成功",
+      "code": 200
+    },
+    "authenticated_user_before": "149"
+  },
+  {
+    "time": "2026-10-08T16:43:31.194306+08:00",
+    "method": "POST",
+    "path": "/depotHead/addDepotHeadAndDetail",
+    "request": {
+      "json": {
+        "info": "{\"number\": \"FP-UAT-20261008-NEG-SCREEN\", \"defaultNumber\": \"FP-UAT-20261008-NEG-SCREEN\", \"type\": \"出库\", \"subType\": \"销售\", \"organId\": 93, \"accountId\": 24, \"operTime\": \"2026-10-08 16:43:31\", \"totalPrice\": -95, \"changeAmount\": -95, \"discount\": 0, \"discountMoney\": 0, \"discountLastMoney\": -95, \"otherMoney\": 0, \"deposit\": 0, \"payType\": \"现付\", \"status\": \"0\", \"remark\": \"FlowPilot虚构企业实施UAT，非生产业务\", \"linkNumber\": \"\"}",
+        "rows": "[{\"barCode\": \"FP-MAT-001\", \"unit\": \"件\", \"operNumber\": -1, \"unitPrice\": 95, \"allPrice\": -95, \"taxRate\": 0, \"taxMoney\": 0, \"taxLastMoney\": -95, \"depotId\": 19, \"remark\": \"实施验收\"}]"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "msg": "操作成功",
+      "code": 200
+    },
+    "authenticated_user_before": "149"
+  },
+  {
+    "time": "2026-10-08T16:43:32.934248+08:00",
+    "method": "DELETE",
+    "path": "/depotHead/delete",
+    "request": {
+      "params": {
+        "id": 286
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "message": "成功"
+      }
+    },
+    "authenticated_user_before": "149"
+  },
+  {
+    "time": "2026-10-08T16:43:34.700191+08:00",
+    "method": "POST",
+    "path": "/depotHead/addDepotHeadAndDetail",
+    "request": {
+      "json": {
+        "info": "{\"number\": \"FP-UAT-20261008-DUP-RAPID\", \"defaultNumber\": \"FP-UAT-20261008-DUP-RAPID\", \"type\": \"其它\", \"subType\": \"销售订单\", \"organId\": 93, \"accountId\": 24, \"operTime\": \"2026-10-08 16:43:33\", \"totalPrice\": 95, \"changeAmount\": 0, \"discount\": 0, \"discountMoney\": 0, \"discountLastMoney\": 95, \"otherMoney\": 0, \"deposit\": 0, \"payType\": \"现付\", \"status\": \"0\", \"remark\": \"FlowPilot虚构企业实施UAT，非生产业务\", \"linkNumber\": \"\"}",
+        "rows": "[{\"barCode\": \"FP-MAT-001\", \"unit\": \"件\", \"operNumber\": 1, \"unitPrice\": 95, \"allPrice\": 95, \"taxRate\": 0, \"taxMoney\": 0, \"taxLastMoney\": 95, \"depotId\": null, \"remark\": \"实施验收\"}]"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "msg": "操作成功",
+      "code": 200
+    },
+    "authenticated_user_before": "149"
+  },
+  {
+    "time": "2026-10-08T16:43:34.718725+08:00",
+    "method": "POST",
+    "path": "/depotHead/addDepotHeadAndDetail",
+    "request": {
+      "json": {
+        "info": "{\"number\": \"FP-UAT-20261008-DUP-RAPID\", \"defaultNumber\": \"FP-UAT-20261008-DUP-RAPID\", \"type\": \"其它\", \"subType\": \"销售订单\", \"organId\": 93, \"accountId\": 24, \"operTime\": \"2026-10-08 16:43:33\", \"totalPrice\": 95, \"changeAmount\": 0, \"discount\": 0, \"discountMoney\": 0, \"discountLastMoney\": 95, \"otherMoney\": 0, \"deposit\": 0, \"payType\": \"现付\", \"status\": \"0\", \"remark\": \"FlowPilot虚构企业实施UAT，非生产业务\", \"linkNumber\": \"\"}",
+        "rows": "[{\"barCode\": \"FP-MAT-001\", \"unit\": \"件\", \"operNumber\": 1, \"unitPrice\": 95, \"allPrice\": 95, \"taxRate\": 0, \"taxMoney\": 0, \"taxLastMoney\": 95, \"depotId\": null, \"remark\": \"实施验收\"}]"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 8500032,
+      "data": {
+        "message": "抱歉，请不要频繁提交单据"
+      }
+    },
+    "authenticated_user_before": "149"
+  },
+  {
+    "time": "2026-10-08T16:43:36.477171+08:00",
+    "method": "DELETE",
+    "path": "/depotHead/delete",
+    "request": {
+      "params": {
+        "id": 287
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "message": "成功"
+      }
+    },
+    "authenticated_user_before": "149"
+  }
+]

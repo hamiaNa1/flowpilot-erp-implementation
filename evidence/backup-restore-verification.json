@@ -1,0 +1,344 @@
+{
+  "time": "2026-10-08T16:54:59.597661+08:00",
+  "backup_file": "backups\\jsh_erp_20261008_165458.sql",
+  "bytes": 110138,
+  "backup_sha256": "9b249309aed3e7e85968bd5a6e14c97bea67b37c0b76a432e52343e388f289d5",
+  "source_database": "jsh_erp",
+  "restore_database": "flowpilot_restore_20261008_165458",
+  "isolated_new_schema": true,
+  "source_modified": false,
+  "table_results": {
+    "jsh_account": {
+      "source": {
+        "rows": 3,
+        "sha256": "db353c5b4637cfb4bc7dd7e6f7ec1856f45515b5572ba4ea0148a500ddf59294"
+      },
+      "restored": {
+        "rows": 3,
+        "sha256": "db353c5b4637cfb4bc7dd7e6f7ec1856f45515b5572ba4ea0148a500ddf59294"
+      },
+      "equal": true
+    },
+    "jsh_account_head": {
+      "source": {
+        "rows": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "restored": {
+        "rows": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "equal": true
+    },
+    "jsh_account_item": {
+      "source": {
+        "rows": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "restored": {
+        "rows": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "equal": true
+    },
+    "jsh_depot": {
+      "source": {
+        "rows": 5,
+        "sha256": "2297a2ccecb8329e1b1ac336b00d156752e937c9b677cef158774a9f6ce7e7c0"
+      },
+      "restored": {
+        "rows": 5,
+        "sha256": "2297a2ccecb8329e1b1ac336b00d156752e937c9b677cef158774a9f6ce7e7c0"
+      },
+      "equal": true
+    },
+    "jsh_depot_head": {
+      "source": {
+        "rows": 9,
+        "sha256": "40434a5a3b81dd08f8618f1b856d48448e27b7a75b494d7bda4467cefe6a752d"
+      },
+      "restored": {
+        "rows": 9,
+        "sha256": "40434a5a3b81dd08f8618f1b856d48448e27b7a75b494d7bda4467cefe6a752d"
+      },
+      "equal": true
+    },
+    "jsh_depot_item": {
+      "source": {
+        "rows": 9,
+        "sha256": "e4630b451d00ab46a3a2dcc724afc9ed24d34066b1ae12458115eb24750470e2"
+      },
+      "restored": {
+        "rows": 9,
+        "sha256": "e4630b451d00ab46a3a2dcc724afc9ed24d34066b1ae12458115eb24750470e2"
+      },
+      "equal": true
+    },
+    "jsh_function": {
+      "source": {
+        "rows": 64,
+        "sha256": "29f814f7d7c42fd2e6fbfeb39426982d94197c51b78faeb088d5556652bd4de0"
+      },
+      "restored": {
+        "rows": 64,
+        "sha256": "29f814f7d7c42fd2e6fbfeb39426982d94197c51b78faeb088d5556652bd4de0"
+      },
+      "equal": true
+    },
+    "jsh_in_out_item": {
+      "source": {
+        "rows": 3,
+        "sha256": "f02d64ce64d031b1126aaf389d3b5f20d1765bb7f140f44ea1b7a67a7699ab3f"
+      },
+      "restored": {
+        "rows": 3,
+        "sha256": "f02d64ce64d031b1126aaf389d3b5f20d1765bb7f140f44ea1b7a67a7699ab3f"
+      },
+      "equal": true
+    },
+    "jsh_log": {
+      "source": {
+        "rows": 133,
+        "sha256": "2b5ca5f3c1f5334b44670dd752244807c4d59a2105cb53a4010e0924be223467"
+      },
+      "restored": {
+        "rows": 133,
+        "sha256": "2b5ca5f3c1f5334b44670dd752244807c4d59a2105cb53a4010e0924be223467"
+      },
+      "equal": true
+    },
+    "jsh_material": {
+      "source": {
+        "rows": 15,
+        "sha256": "d8fb98f0aa959c4bda58737d10cb78312ec531615003230dc76a5bbb66db01f9"
+      },
+      "restored": {
+        "rows": 15,
+        "sha256": "d8fb98f0aa959c4bda58737d10cb78312ec531615003230dc76a5bbb66db01f9"
+      },
+      "equal": true
+    },
+    "jsh_material_attribute": {
+      "source": {
+        "rows": 5,
+        "sha256": "c9178c2b05cb29a31b58bd2a414d4055bcfc2b79c9d53b2ad702942dfcf2fc11"
+      },
+      "restored": {
+        "rows": 5,
+        "sha256": "c9178c2b05cb29a31b58bd2a414d4055bcfc2b79c9d53b2ad702942dfcf2fc11"
+      },
+      "equal": true
+    },
+    "jsh_material_category": {
+      "source": {
+        "rows": 2,
+        "sha256": "b613643f9a76a2af8afeee4df76df97b238b7bfd3e01eb95ce79ee6dca1f29d7"
+      },
+      "restored": {
+        "rows": 2,
+        "sha256": "b613643f9a76a2af8afeee4df76df97b238b7bfd3e01eb95ce79ee6dca1f29d7"
+      },
+      "equal": true
+    },
+    "jsh_material_current_stock": {
+      "source": {
+        "rows": 14,
+        "sha256": "52cc6d0e770f21ea45f774e74d6c0364941b6935f60a4128e9ab73325c9dcd23"
+      },
+      "restored": {
+        "rows": 14,
+        "sha256": "52cc6d0e770f21ea45f774e74d6c0364941b6935f60a4128e9ab73325c9dcd23"
+      },
+      "equal": true
+    },
+    "jsh_material_extend": {
+      "source": {
+        "rows": 20,
+        "sha256": "9b9762a97e756a755d32796fb4d6c25030b10f6f9045d4dbeb2cb95144220900"
+      },
+      "restored": {
+        "rows": 20,
+        "sha256": "9b9762a97e756a755d32796fb4d6c25030b10f6f9045d4dbeb2cb95144220900"
+      },
+      "equal": true
+    },
+    "jsh_material_initial_stock": {
+      "source": {
+        "rows": 7,
+        "sha256": "5b789951ea2d6726ba9abae0279e72f432cb776ceffcd93507149d8a4b3398de"
+      },
+      "restored": {
+        "rows": 7,
+        "sha256": "5b789951ea2d6726ba9abae0279e72f432cb776ceffcd93507149d8a4b3398de"
+      },
+      "equal": true
+    },
+    "jsh_material_property": {
+      "source": {
+        "rows": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "restored": {
+        "rows": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "equal": true
+    },
+    "jsh_msg": {
+      "source": {
+        "rows": 1,
+        "sha256": "2593ff121f241dd51a18af21a643d5248cdc7a2fbcc4535a6df42228653de5c2"
+      },
+      "restored": {
+        "rows": 1,
+        "sha256": "2593ff121f241dd51a18af21a643d5248cdc7a2fbcc4535a6df42228653de5c2"
+      },
+      "equal": true
+    },
+    "jsh_orga_user_rel": {
+      "source": {
+        "rows": 7,
+        "sha256": "099ff1965901c166db290a44c62da8c7352108536fe019c3af728f80351d47d6"
+      },
+      "restored": {
+        "rows": 7,
+        "sha256": "099ff1965901c166db290a44c62da8c7352108536fe019c3af728f80351d47d6"
+      },
+      "equal": true
+    },
+    "jsh_organization": {
+      "source": {
+        "rows": 3,
+        "sha256": "5d5440f8704b90d362957e751511fcbb2f63c3abe33770de61075995f25dd5f2"
+      },
+      "restored": {
+        "rows": 3,
+        "sha256": "5d5440f8704b90d362957e751511fcbb2f63c3abe33770de61075995f25dd5f2"
+      },
+      "equal": true
+    },
+    "jsh_person": {
+      "source": {
+        "rows": 4,
+        "sha256": "ca819b51e4de05985940879adadb233d80902516e95cacebaa2829ac7fa55ab1"
+      },
+      "restored": {
+        "rows": 4,
+        "sha256": "ca819b51e4de05985940879adadb233d80902516e95cacebaa2829ac7fa55ab1"
+      },
+      "equal": true
+    },
+    "jsh_platform_config": {
+      "source": {
+        "rows": 22,
+        "sha256": "fcac2535f3af0862c03b8b66ac5b96ff743d972f71429cf9158f5f1bda6fdfbf"
+      },
+      "restored": {
+        "rows": 22,
+        "sha256": "fcac2535f3af0862c03b8b66ac5b96ff743d972f71429cf9158f5f1bda6fdfbf"
+      },
+      "equal": true
+    },
+    "jsh_role": {
+      "source": {
+        "rows": 8,
+        "sha256": "9c87c98c378b572aac60322bcf6f9d50906af5262d1942fec4dd2022e921cefe"
+      },
+      "restored": {
+        "rows": 8,
+        "sha256": "9c87c98c378b572aac60322bcf6f9d50906af5262d1942fec4dd2022e921cefe"
+      },
+      "equal": true
+    },
+    "jsh_sequence": {
+      "source": {
+        "rows": 1,
+        "sha256": "9daeac484c3a17e1e58b5fe6baa0bcaafa5664b26c75463c0a9b7a2ccb3ca256"
+      },
+      "restored": {
+        "rows": 1,
+        "sha256": "9daeac484c3a17e1e58b5fe6baa0bcaafa5664b26c75463c0a9b7a2ccb3ca256"
+      },
+      "equal": true
+    },
+    "jsh_serial_number": {
+      "source": {
+        "rows": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "restored": {
+        "rows": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "equal": true
+    },
+    "jsh_supplier": {
+      "source": {
+        "rows": 13,
+        "sha256": "bdf29f615737ce7d4764cac621922e5a66920f90b0a01c5a251ca5f6d664f616"
+      },
+      "restored": {
+        "rows": 13,
+        "sha256": "bdf29f615737ce7d4764cac621922e5a66920f90b0a01c5a251ca5f6d664f616"
+      },
+      "equal": true
+    },
+    "jsh_system_config": {
+      "source": {
+        "rows": 1,
+        "sha256": "1f74b33605d72a281a895a7bda47ff52cf07f97ee6e5bad81cad4a82ab141992"
+      },
+      "restored": {
+        "rows": 1,
+        "sha256": "1f74b33605d72a281a895a7bda47ff52cf07f97ee6e5bad81cad4a82ab141992"
+      },
+      "equal": true
+    },
+    "jsh_tenant": {
+      "source": {
+        "rows": 1,
+        "sha256": "df1a67dce7a2c0440306b9c20530bdb56f9dd5914db417f4b8ca48e83e7df345"
+      },
+      "restored": {
+        "rows": 1,
+        "sha256": "df1a67dce7a2c0440306b9c20530bdb56f9dd5914db417f4b8ca48e83e7df345"
+      },
+      "equal": true
+    },
+    "jsh_unit": {
+      "source": {
+        "rows": 4,
+        "sha256": "aa9094a3d6a4a233878e7759234415842e60c58a08b96d6087f701c126b8aa45"
+      },
+      "restored": {
+        "rows": 4,
+        "sha256": "aa9094a3d6a4a233878e7759234415842e60c58a08b96d6087f701c126b8aa45"
+      },
+      "equal": true
+    },
+    "jsh_user": {
+      "source": {
+        "rows": 7,
+        "sha256": "a9767a166e940185798de8ba682ede9466b22dd29c9020182b2404b970c6fa57"
+      },
+      "restored": {
+        "rows": 7,
+        "sha256": "a9767a166e940185798de8ba682ede9466b22dd29c9020182b2404b970c6fa57"
+      },
+      "equal": true
+    },
+    "jsh_user_business": {
+      "source": {
+        "rows": 56,
+        "sha256": "038bd926934720dbd0337dce46d89121746e6eafb33f8648683a5294eb0d66aa"
+      },
+      "restored": {
+        "rows": 56,
+        "sha256": "038bd926934720dbd0337dce46d89121746e6eafb33f8648683a5294eb0d66aa"
+      },
+      "equal": true
+    }
+  },
+  "all_equal": true,
+  "scope": "all 30 tables: row counts and canonical row SHA-256, not just a file-exists check"
+}

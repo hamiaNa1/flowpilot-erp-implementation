@@ -1,0 +1,229 @@
+[
+  {
+    "id": "UAT-11-fp_manager",
+    "scene": "岗位菜单权限 fp_manager",
+    "precondition": "原生角色和用户关系已配置",
+    "steps": "使用岗位账号真实浏览器登录，读取原生菜单接口",
+    "expected": "采购、销售、仓库菜单按岗位可见",
+    "actual": {
+      "paths": [
+        "/dashboard/analysis",
+        "/billC",
+        "/bill/retail_out",
+        "/bill/retail_back",
+        "/bill",
+        "/bill/purchase_apply",
+        "/bill/purchase_order",
+        "/bill/purchase_in",
+        "/bill/purchase_back",
+        "/billB",
+        "/bill/sale_order",
+        "/bill/sale_out",
+        "/bill/sale_back",
+        "/billD",
+        "/bill/other_in",
+        "/bill/other_out",
+        "/bill/allocation_out",
+        "/bill/assemble",
+        "/bill/disassemble",
+        "/financial",
+        "/financial/item_in",
+        "/financial/item_out",
+        "/financial/money_in",
+        "/financial/money_out",
+        "/financial/giro",
+        "/financial/advance_in",
+        "/report",
+        "/report/material_stock",
+        "/report/account_report",
+        "/report/retail_out_report",
+        "/report/buy_in_report",
+        "/report/sale_out_report",
+        "/report/in_detail",
+        "/report/out_detail",
+        "/report/allocation_detail",
+        "/report/in_material_count",
+        "/report/out_material_count",
+        "/report/in_out_stock_report",
+        "/report/customer_account",
+        "/report/vendor_account",
+        "/report/stock_warning_report",
+        "/material",
+        "/material/material_category",
+        "/material/material",
+        "/system/unit",
+        "/material/material_attribute",
+        "/systemA",
+        "/system/vendor",
+        "/system/customer",
+        "/system/member",
+        "/system/depot",
+        "/system/in_out_item",
+        "/system/account",
+        "/system/person"
+      ],
+      "visible_text": "管伊佳ERP\n首页\n零售管理\n采购管理\n销售管理\n仓库管理\n财务管理\n报表查询\n商品管理\n基础资料\nFlowPilot汽车零部件有限公司（虚构演示企业）\n欢迎您，FlowPilot实施管理员 退出登录\n首页\n今日销售\n\n￥2850\n\n今日零售\n\n￥0\n\n今日采购\n\n￥8160\n\n本月累计销售\n\n￥2850\n\n本月累计零售\n\n￥0\n\n本月累计采购\n\n￥8160\n\n昨日销售\n\n￥0\n\n昨日零售\n\n￥0\n\n昨日采购\n\n￥0\n\n今年累计销售\n\n￥2850\n\n今年累计零售\n\n￥0\n\n今年累计采购\n\n￥8160\n\n销售统计\n零售统计\n采购统计\n© 2015-2030 管伊佳ERP V3.6\n服务到期：2099-02-17授权用户：5/2000\n浏览器的缩放比例调整提示\n检测到您显示器的分辨率为：1600*1000 ，为了获得更好的操作体验，建议您将浏览器的缩放比例调整至80%\n欢迎\n下午好，欢迎回来\n整体风格设置\n主题色\n固定 Header\n下滑时隐藏 Header\n固定侧边菜单\n语言设置\n选择语言\n简体中文\n其他设置\n色弱模式"
+    },
+    "status": "通过",
+    "evidence": [
+      "role-fp_manager.png",
+      "permissions-api.json"
+    ],
+    "time": "2026-10-08T16:43:14.530254+08:00"
+  },
+  {
+    "id": "UAT-11-fp_purchase",
+    "scene": "岗位菜单权限 fp_purchase",
+    "precondition": "原生角色和用户关系已配置",
+    "steps": "使用岗位账号真实浏览器登录，读取原生菜单接口",
+    "expected": "采购、销售、仓库菜单按岗位可见",
+    "actual": {
+      "paths": [
+        "/dashboard/analysis",
+        "/bill",
+        "/bill/purchase_order",
+        "/bill/purchase_in",
+        "/report",
+        "/report/material_stock",
+        "/material",
+        "/material/material",
+        "/systemA",
+        "/system/vendor"
+      ],
+      "visible_text": "管伊佳ERP\n首页\n采购管理\n报表查询\n商品管理\n基础资料\nFlowPilot汽车零部件有限公司（虚构演示企业）\n欢迎您，FlowPilot采购员 退出登录\n首页\n今日销售\n\n￥2850\n\n今日零售\n\n￥0\n\n今日采购\n\n￥8160\n\n本月累计销售\n\n￥2850\n\n本月累计零售\n\n￥0\n\n本月累计采购\n\n￥8160\n\n昨日销售\n\n￥0\n\n昨日零售\n\n￥0\n\n昨日采购\n\n￥0\n\n今年累计销售\n\n￥2850\n\n今年累计零售\n\n￥0\n\n今年累计采购\n\n￥8160\n\n销售统计\n零售统计\n采购统计\n© 2015-2030 管伊佳ERP V3.6\n服务到期：2099-02-17授权用户：5/2000\n浏览器的缩放比例调整提示\n检测到您显示器的分辨率为：1600*1000 ，为了获得更好的操作体验，建议您将浏览器的缩放比例调整至80%\n欢迎\n下午好，欢迎回来\n整体风格设置\n主题色\n固定 Header\n下滑时隐藏 Header\n固定侧边菜单\n语言设置\n选择语言\n简体中文\n其他设置\n色弱模式"
+    },
+    "status": "通过",
+    "evidence": [
+      "role-fp_purchase.png",
+      "permissions-api.json"
+    ],
+    "time": "2026-10-08T16:43:18.275107+08:00"
+  },
+  {
+    "id": "UAT-11-fp_warehouse",
+    "scene": "岗位菜单权限 fp_warehouse",
+    "precondition": "原生角色和用户关系已配置",
+    "steps": "使用岗位账号真实浏览器登录，读取原生菜单接口",
+    "expected": "采购、销售、仓库菜单按岗位可见",
+    "actual": {
+      "paths": [
+        "/dashboard/analysis",
+        "/billD",
+        "/bill/other_in",
+        "/bill/other_out",
+        "/report",
+        "/report/material_stock",
+        "/report/in_detail",
+        "/report/out_detail",
+        "/material",
+        "/material/material"
+      ],
+      "visible_text": "管伊佳ERP\n首页\n仓库管理\n报表查询\n商品管理\nFlowPilot汽车零部件有限公司（虚构演示企业）\n欢迎您，FlowPilot仓库员 退出登录\n首页\n今日销售\n\n￥2850\n\n今日零售\n\n￥0\n\n今日采购\n\n￥8160\n\n本月累计销售\n\n￥2850\n\n本月累计零售\n\n￥0\n\n本月累计采购\n\n￥8160\n\n昨日销售\n\n￥0\n\n昨日零售\n\n￥0\n\n昨日采购\n\n￥0\n\n今年累计销售\n\n￥2850\n\n今年累计零售\n\n￥0\n\n今年累计采购\n\n￥8160\n\n销售统计\n零售统计\n采购统计\n© 2015-2030 管伊佳ERP V3.6\n服务到期：2099-02-17授权用户：5/2000\n浏览器的缩放比例调整提示\n检测到您显示器的分辨率为：1600*1000 ，为了获得更好的操作体验，建议您将浏览器的缩放比例调整至80%\n欢迎\n下午好，欢迎回来\n整体风格设置\n主题色\n固定 Header\n下滑时隐藏 Header\n固定侧边菜单\n语言设置\n选择语言\n简体中文\n其他设置\n色弱模式"
+    },
+    "status": "通过",
+    "evidence": [
+      "role-fp_warehouse.png",
+      "permissions-api.json"
+    ],
+    "time": "2026-10-08T16:43:22.388822+08:00"
+  },
+  {
+    "id": "UAT-11-fp_sales",
+    "scene": "岗位菜单权限 fp_sales",
+    "precondition": "原生角色和用户关系已配置",
+    "steps": "使用岗位账号真实浏览器登录，读取原生菜单接口",
+    "expected": "采购、销售、仓库菜单按岗位可见",
+    "actual": {
+      "paths": [
+        "/dashboard/analysis",
+        "/billB",
+        "/bill/sale_order",
+        "/bill/sale_out",
+        "/report",
+        "/report/material_stock",
+        "/material",
+        "/material/material",
+        "/systemA",
+        "/system/customer"
+      ],
+      "visible_text": "管伊佳ERP\n首页\n销售管理\n报表查询\n商品管理\n基础资料\nFlowPilot汽车零部件有限公司（虚构演示企业）\n欢迎您，FlowPilot销售员 退出登录\n首页\n今日销售\n\n￥2850\n\n今日零售\n\n￥0\n\n今日采购\n\n￥8160\n\n本月累计销售\n\n￥2850\n\n本月累计零售\n\n￥0\n\n本月累计采购\n\n￥8160\n\n昨日销售\n\n￥0\n\n昨日零售\n\n￥0\n\n昨日采购\n\n￥0\n\n今年累计销售\n\n￥2850\n\n今年累计零售\n\n￥0\n\n今年累计采购\n\n￥8160\n\n销售统计\n零售统计\n采购统计\n© 2015-2030 管伊佳ERP V3.6\n服务到期：2099-02-17授权用户：5/2000\n浏览器的缩放比例调整提示\n检测到您显示器的分辨率为：1600*1000 ，为了获得更好的操作体验，建议您将浏览器的缩放比例调整至80%\n欢迎\n下午好，欢迎回来\n整体风格设置\n主题色\n固定 Header\n下滑时隐藏 Header\n固定侧边菜单\n语言设置\n选择语言\n简体中文\n其他设置\n色弱模式"
+    },
+    "status": "通过",
+    "evidence": [
+      "role-fp_sales.png",
+      "permissions-api.json"
+    ],
+    "time": "2026-10-08T16:43:26.106385+08:00"
+  },
+  {
+    "id": "UAT-12",
+    "scene": "销售岗位调用采购写入接口",
+    "precondition": "fp_sales没有采购菜单和采购按钮",
+    "steps": "销售账号直接提交采购订单1件，查询SQL并截图；仅清理本测试草稿",
+    "expected": "后端拒绝未经授权的采购写入",
+    "actual": {
+      "response": {
+        "msg": "操作成功",
+        "code": 200
+      },
+      "created_draft": [
+        {
+          "id": 285,
+          "number": "FP-UAT-20261008-ROLE-CROSS",
+          "type": "其它",
+          "sub_type": "采购订单",
+          "status": "0",
+          "purchase_status": "0",
+          "creator": 149,
+          "link_number": "",
+          "total_price": "-68.000000"
+        }
+      ],
+      "browser_text": "管伊佳ERP\n首页\n零售管理\n采购管理\n请购单\n采购订单\n采购入库\n采购退货\n销售管理\n仓库管理\n财务管理\n报表查询\n商品管理\n基础资料\nFlowPilot汽车零部件有限公司（虚构演示企业）\n欢迎您，FlowPilot实施管理员 退出登录\n首页\n采购订单\n单据编号\n商品信息\n单据日期\n~\n查 询重 置 展开 \n新增删除转采购入库强制结单审核反审核列设置\n\t\n\t\n操作\n\t\n供应商\n\t\n单据编号\n\t\n商品信息\n\t\n单据日期\n\t\n操作员\n\t\n数量\n\t\n金额合计\n\t\n含税合计\n\t\n支付订金\n\t\n状态\n\t\n\t查看编辑复制删除\tFlowPilot精密钢材供应商（虚构）\tFP-UAT-20261008-ROLE-CROSS\tFlowPilot制动支架 BRK-01\t2026-10-08 16:43:26\tFlowPilot销售员\t1\t68\t68.00\t0\t未审核\n\t\n\t查看编辑复制删除\tFlowPilot精密钢材供应商（虚构）\tFP-UAT-20261008-PO\tFlowPilot制动支架 BRK-01\t2026-10-08 16:38:36\tFlowPilot采购员\t120\t8160\t8160.00\t0\t完成采购\n1-2 共2条\n1\n10 条/页\n整体风格设置\n主题色\n固定 Header\n下滑时隐藏 Header\n固定侧边菜单\n语言设置\n选择语言\n简体中文\n其他设置\n色弱模式",
+      "cleanup": {
+        "code": 200,
+        "data": {
+          "message": "成功"
+        }
+      },
+      "stock": "140.000000"
+    },
+    "status": "失败",
+    "evidence": [
+      "permissions-api.json",
+      "defect-cross-role-draft.png"
+    ],
+    "time": "2026-10-08T16:43:31.062302+08:00"
+  },
+  {
+    "id": "UAT-13",
+    "scene": "立即重复提交",
+    "precondition": "成功保存本测试销售订单，Redis防重复TTL为2秒",
+    "steps": "立即重放相同请求，SQL核对仅一个头；清理本测试草稿",
+    "expected": "Redis防重复拒绝第二次提交",
+    "actual": {
+      "first": {
+        "msg": "操作成功",
+        "code": 200
+      },
+      "second": {
+        "code": 8500032,
+        "data": {
+          "message": "抱歉，请不要频繁提交单据"
+        }
+      },
+      "count": 1,
+      "cleanup": {
+        "code": 200,
+        "data": {
+          "message": "成功"
+        }
+      }
+    },
+    "status": "通过",
+    "evidence": [
+      "permissions-api.json"
+    ],
+    "time": "2026-10-08T16:43:36.477171+08:00"
+  }
+]

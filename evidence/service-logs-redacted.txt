@@ -1,0 +1,248 @@
+### backend.log (last 65 lines, redacted)
+Caused by: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'btn_str' at row 1
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:104)
+	at com.mysql.cj.jdbc.ServerPreparedStatement.serverExecute(ServerPreparedStatement.java:555)
+	at com.mysql.cj.jdbc.ServerPreparedStatement.executeInternal(ServerPreparedStatement.java:339)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:354)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:47)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:74)
+	at sun.reflect.GeneratedMethodAccessor176.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:63)
+	at com.sun.proxy.$Proxy180.update(Unknown Source)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
+	at sun.reflect.GeneratedMethodAccessor163.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:63)
+	at com.sun.proxy.$Proxy179.update(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.insert(DefaultSqlSession.java:184)
+	at sun.reflect.GeneratedMethodAccessor190.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:426)
+	... 73 common frames omitted
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.0.0.RELEASE)
+
+2026/10/08-16:42:21 INFO  [main] com.jsh.erp.ErpApplication - Starting ErpApplication v3.6-SNAPSHOT on starain with PID 30076 (D:\7800\flowpilot-erp\runtime\jshERP.jar started by 11879 in D:\7800\flowpilot-erp\runtime)
+2026/10/08-16:42:21 INFO  [main] com.jsh.erp.ErpApplication - No active profile set, falling back to default profiles: default
+ _ _   |_  _ _|_. ___ _ |    _ 
+| | |\/|_)(_| | |_\  |_)||_|_\ 
+     /               |         
+                        3.0.7.1 
+2026/10/08-16:42:25 INFO  [main] com.jsh.erp.ErpApplication - Started ErpApplication in 4.297 seconds (JVM running for 4.569)
+启动成功，后端服务API地址：http://192.168.86.100:9999/jshERP-boot/doc.html
+您还需启动前端服务，启动命令：yarn run serve 或 npm run serve，测试用户：jsh，密码：123456
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.0.0.RELEASE)
+
+2026/10/08-16:55:11 INFO  [main] com.jsh.erp.ErpApplication - Starting ErpApplication v3.6-SNAPSHOT on starain with PID 29748 (D:\7800\flowpilot-erp\runtime\jshERP.jar started by 11879 in D:\7800\flowpilot-erp\runtime)
+2026/10/08-16:55:11 INFO  [main] com.jsh.erp.ErpApplication - No active profile set, falling back to default profiles: default
+ _ _   |_  _ _|_. ___ _ |    _ 
+| | |\/|_)(_| | |_\  |_)||_|_\ 
+     /               |         
+                        3.0.7.1 
+2026/10/08-16:55:15 INFO  [main] com.jsh.erp.ErpApplication - Started ErpApplication in 3.966 seconds (JVM running for 4.22)
+启动成功，后端服务API地址：http://192.168.86.100:9999/jshERP-boot/doc.html
+您还需启动前端服务，启动命令：yarn run serve 或 npm run serve，测试用户：jsh，密码：123456
+
+### jshERP.log (last 65 lines, redacted)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:109)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:81)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:199)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:496)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:803)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:790)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1459)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:750)
+Caused by: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'btn_str' at row 1
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:104)
+	at com.mysql.cj.jdbc.ServerPreparedStatement.serverExecute(ServerPreparedStatement.java:555)
+	at com.mysql.cj.jdbc.ServerPreparedStatement.executeInternal(ServerPreparedStatement.java:339)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:354)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:47)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:74)
+	at sun.reflect.GeneratedMethodAccessor176.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:63)
+	at com.sun.proxy.$Proxy180.update(Unknown Source)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
+	at sun.reflect.GeneratedMethodAccessor163.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:63)
+	at com.sun.proxy.$Proxy179.update(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.insert(DefaultSqlSession.java:184)
+	at sun.reflect.GeneratedMethodAccessor190.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:426)
+	... 73 common frames omitted
+2026/10/08-16:42:21 INFO  [main] com.jsh.erp.ErpApplication - Starting ErpApplication v3.6-SNAPSHOT on starain with PID 30076 (D:\7800\flowpilot-erp\runtime\jshERP.jar started by 11879 in D:\7800\flowpilot-erp\runtime)
+2026/10/08-16:42:21 INFO  [main] com.jsh.erp.ErpApplication - No active profile set, falling back to default profiles: default
+2026/10/08-16:42:25 INFO  [main] com.jsh.erp.ErpApplication - Started ErpApplication in 4.297 seconds (JVM running for 4.569)
+2026/10/08-16:55:11 INFO  [main] com.jsh.erp.ErpApplication - Starting ErpApplication v3.6-SNAPSHOT on starain with PID 29748 (D:\7800\flowpilot-erp\runtime\jshERP.jar started by 11879 in D:\7800\flowpilot-erp\runtime)
+2026/10/08-16:55:11 INFO  [main] com.jsh.erp.ErpApplication - No active profile set, falling back to default profiles: default
+2026/10/08-16:55:15 INFO  [main] com.jsh.erp.ErpApplication - Started ErpApplication in 3.966 seconds (JVM running for 4.22)
+
+### mysql-server.log (last 65 lines, redacted)
+2026-10-08T08:09:26.119637Z 0 [System] [MY-013169] [Server] D:\7800\flowpilot-erp\tools\mysql-8.0.44-winx64\bin\mysqld.exe (mysqld 8.0.44) initializing of server in progress as process 27140
+2026-10-08T08:09:26.141742Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-10-08T08:09:26.377627Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-10-08T08:09:27.437532Z 6 [Warning] [MY-010453] [Server] root@localhost is created with an empty password ! Please consider switching off the --initialize-insecure option.
+2026-10-08T08:09:29.136391Z 0 [System] [MY-010116] [Server] D:\7800\flowpilot-erp\tools\mysql-8.0.44-winx64\bin\mysqld.exe (mysqld 8.0.44) starting as process 12748
+2026-10-08T08:09:29.165038Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-10-08T08:09:29.335593Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-10-08T08:09:29.558052Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-10-08T08:09:29.558336Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-10-08T08:09:29.583637Z 0 [System] [MY-010931] [Server] D:\7800\flowpilot-erp\tools\mysql-8.0.44-winx64\bin\mysqld.exe: ready for connections. Version: '8.0.44'  socket: ''  port: 3308  MySQL Community Server - GPL.
+2026-10-08T08:18:55.397242Z 39 [System] [MY-013172] [Server] Received SHUTDOWN from user root. Shutting down mysqld (Version: 8.0.44).
+2026-10-08T08:18:55.398074Z 0 [System] [MY-013105] [Server] D:\7800\flowpilot-erp\tools\mysql-8.0.44-winx64\bin\mysqld.exe: Normal shutdown.
+2026-10-08T08:18:56.171999Z 0 [System] [MY-010910] [Server] D:\7800\flowpilot-erp\tools\mysql-8.0.44-winx64\bin\mysqld.exe: Shutdown complete (mysqld 8.0.44)  MySQL Community Server - GPL.
+2026-10-08T08:18:58.713096Z 0 [System] [MY-010116] [Server] D:\7800\flowpilot-erp\tools\mysql-8.0.44-winx64\bin\mysqld.exe (mysqld 8.0.44) starting as process 27076
+2026-10-08T08:18:58.751647Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-10-08T08:18:59.109052Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-10-08T08:18:59.613369Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-10-08T08:18:59.613914Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-10-08T08:18:59.655181Z 0 [System] [MY-010931] [Server] D:\7800\flowpilot-erp\tools\mysql-8.0.44-winx64\bin\mysqld.exe: ready for connections. Version: '8.0.44'  socket: ''  port: 3308  MySQL Community Server - GPL.
+2026-10-08T08:19:46.520905Z 10 [System] [MY-013172] [Server] Received SHUTDOWN from user root. Shutting down mysqld (Version: 8.0.44).
+2026-10-08T08:19:46.521397Z 0 [System] [MY-013105] [Server] D:\7800\flowpilot-erp\tools\mysql-8.0.44-winx64\bin\mysqld.exe: Normal shutdown.
+2026-10-08T08:19:47.708624Z 0 [System] [MY-010910] [Server] D:\7800\flowpilot-erp\tools\mysql-8.0.44-winx64\bin\mysqld.exe: Shutdown complete (mysqld 8.0.44)  MySQL Community Server - GPL.
+2026-10-08T08:20:55.971685Z 0 [System] [MY-010116] [Server] D:\7800\flowpilot-erp\tools\mysql-8.0.44-winx64\bin\mysqld.exe (mysqld 8.0.44) starting as process 26940
+2026-10-08T08:20:55.984786Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-10-08T08:20:56.217548Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-10-08T08:20:56.457764Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-10-08T08:20:56.458062Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-10-08T08:20:56.485748Z 0 [System] [MY-010931] [Server] D:\7800\flowpilot-erp\tools\mysql-8.0.44-winx64\bin\mysqld.exe: ready for connections. Version: '8.0.44'  socket: ''  port: 3308  MySQL Community Server - GPL.
+2026-10-08T08:42:09.735144Z 375 [System] [MY-013172] [Server] Received SHUTDOWN from user root. Shutting down mysqld (Version: 8.0.44).
+2026-10-08T08:42:09.736154Z 0 [System] [MY-013105] [Server] D:\7800\flowpilot-erp\tools\mysql-8.0.44-winx64\bin\mysqld.exe: Normal shutdown.
+2026-10-08T08:42:10.724070Z 0 [System] [MY-010910] [Server] D:\7800\flowpilot-erp\tools\mysql-8.0.44-winx64\bin\mysqld.exe: Shutdown complete (mysqld 8.0.44)  MySQL Community Server - GPL.
+2026-10-08T08:42:17.018398Z 0 [System] [MY-010116] [Server] D:\7800\flowpilot-erp\tools\mysql-8.0.44-winx64\bin\mysqld.exe (mysqld 8.0.44) starting as process 27612
+2026-10-08T08:42:17.047695Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-10-08T08:42:17.314721Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-10-08T08:42:17.544096Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-10-08T08:42:17.544384Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-10-08T08:42:17.578267Z 0 [System] [MY-010931] [Server] D:\7800\flowpilot-erp\tools\mysql-8.0.44-winx64\bin\mysqld.exe: ready for connections. Version: '8.0.44'  socket: ''  port: 3308  MySQL Community Server - GPL.
+2026-10-08T08:55:00.046012Z 176 [System] [MY-013172] [Server] Received SHUTDOWN from user root. Shutting down mysqld (Version: 8.0.44).
+2026-10-08T08:55:00.046635Z 0 [System] [MY-013105] [Server] D:\7800\flowpilot-erp\tools\mysql-8.0.44-winx64\bin\mysqld.exe: Normal shutdown.
+2026-10-08T08:55:00.796841Z 0 [System] [MY-010910] [Server] D:\7800\flowpilot-erp\tools\mysql-8.0.44-winx64\bin\mysqld.exe: Shutdown complete (mysqld 8.0.44)  MySQL Community Server - GPL.
+2026-10-08T08:55:07.268128Z 0 [System] [MY-010116] [Server] D:\7800\flowpilot-erp\tools\mysql-8.0.44-winx64\bin\mysqld.exe (mysqld 8.0.44) starting as process 24652
+2026-10-08T08:55:07.284197Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-10-08T08:55:07.509301Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-10-08T08:55:07.738752Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-10-08T08:55:07.739050Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-10-08T08:55:07.770261Z 0 [System] [MY-010931] [Server] D:\7800\flowpilot-erp\tools\mysql-8.0.44-winx64\bin\mysqld.exe: ready for connections. Version: '8.0.44'  socket: ''  port: 3308  MySQL Community Server - GPL.
+
+### redis.log (last 65 lines, redacted)
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+[21416] 08 Oct 16:20:58.363 # Server started, Redis version 3.0.504
+[21416] 08 Oct 16:20:58.363 * DB loaded from append only file: 0.000 seconds
+[21416] 08 Oct 16:20:58.363 * The server is now ready to accept connections on port 6388
+[21416] 08 Oct 16:42:09.683 # User requested shutdown...
+[21416] 08 Oct 16:42:09.683 * Calling fsync() on the AOF file.
+[21416] 08 Oct 16:42:09.684 * Saving the final RDB snapshot before exiting.
+[21416] 08 Oct 16:42:09.685 * DB saved on disk
+[21416] 08 Oct 16:42:09.685 # Redis is now ready to exit, bye bye...
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 3.0.504 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in standalone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 6388
+ |    `-._   `._    /     _.-'    |     PID: 3516
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+[3516] 08 Oct 16:42:19.400 # Server started, Redis version 3.0.504
+[3516] 08 Oct 16:42:19.402 * DB loaded from append only file: 0.002 seconds
+[3516] 08 Oct 16:42:19.402 * The server is now ready to accept connections on port 6388
+[3516] 08 Oct 16:54:59.991 # User requested shutdown...
+[3516] 08 Oct 16:54:59.991 * Calling fsync() on the AOF file.
+[3516] 08 Oct 16:54:59.992 * Saving the final RDB snapshot before exiting.
+[3516] 08 Oct 16:54:59.992 * DB saved on disk
+[3516] 08 Oct 16:54:59.992 # Redis is now ready to exit, bye bye...
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 3.0.504 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in standalone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 6388
+ |    `-._   `._    /     _.-'    |     PID: 31164
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+[31164] 08 Oct 16:55:09.715 # Server started, Redis version 3.0.504
+[31164] 08 Oct 16:55:09.719 * DB loaded from append only file: 0.004 seconds
+[31164] 08 Oct 16:55:09.719 * The server is now ready to accept connections on port 6388

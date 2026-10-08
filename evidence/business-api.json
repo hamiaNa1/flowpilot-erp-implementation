@@ -1,0 +1,597 @@
+[
+  {
+    "time": "2026-10-08T16:38:31.822640+08:00",
+    "method": "POST",
+    "path": "/user/login",
+    "request": {
+      "json": {
+        "loginName": "fp_purchase",
+        "password": "[MD5 REDACTED]",
+        "code": "[REDACTED]",
+        "uuid": "[REDACTED]"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "pwdSimple": false,
+        "user": {
+          "id": 147,
+          "username": "FlowPilot采购员",
+          "loginName": "fp_purchase",
+          "password": "[REDACTED]",
+          "leaderFlag": "0",
+          "position": "FlowPilot采购员",
+          "department": null,
+          "email": null,
+          "phonenum": null,
+          "ismanager": 1,
+          "isystem": 0,
+          "status": 0,
+          "description": null,
+          "remark": null,
+          "weixinOpenId": null,
+          "tenantId": 63,
+          "deleteFlag": "0"
+        },
+        "msgTip": "user can login",
+        "token": "[REDACTED]"
+      }
+    },
+    "authenticated_user_before": null
+  },
+  {
+    "time": "2026-10-08T16:38:34.360320+08:00",
+    "method": "GET",
+    "path": "/material/getListWithStock",
+    "request": {
+      "params": {
+        "currentPage": 1,
+        "pageSize": 10,
+        "depotIds": "19",
+        "materialParam": "FP-MAT-001",
+        "zeroStock": 0
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "currentStockPrice": 3400.0,
+        "total": 1,
+        "currentWeight": 0.0,
+        "currentStock": 50.0,
+        "rows": [
+          {
+            "id": 620,
+            "categoryId": null,
+            "name": "FlowPilot制动支架",
+            "mfrs": "FlowPilot虚构制造商",
+            "model": "",
+            "standard": "BRK-01",
+            "brand": "FlowPilot",
+            "mnemonic": null,
+            "color": "",
+            "unit": null,
+            "remark": null,
+            "imgName": null,
+            "unitId": null,
+            "expiryNum": null,
+            "weight": null,
+            "enabled": null,
+            "otherField1": null,
+            "otherField2": null,
+            "otherField3": null,
+            "enableSerialNumber": null,
+            "enableBatchNumber": null,
+            "position": null,
+            "attribute": null,
+            "tenantId": null,
+            "deleteFlag": null,
+            "unitName": "件",
+            "ratio": null,
+            "categoryName": null,
+            "materialOther": null,
+            "stock": null,
+            "purchaseDecimal": 68.0,
+            "commodityDecimal": null,
+            "wholesaleDecimal": null,
+            "lowDecimal": null,
+            "billPrice": null,
+            "mBarCode": "FP-MAT-001",
+            "commodityUnit": null,
+            "meId": null,
+            "initialStock": 50.0,
+            "currentUnitPrice": 0.0,
+            "currentStock": 50.0,
+            "currentStockPrice": 3400.0,
+            "currentStockMovePrice": 0.0,
+            "currentWeight": 0.0,
+            "sku": null,
+            "depotId": null,
+            "bigUnitStock": "",
+            "bigUnitInitialStock": null,
+            "imgSmall": null,
+            "imgLarge": null
+          }
+        ]
+      }
+    },
+    "authenticated_user_before": "147"
+  },
+  {
+    "time": "2026-10-08T16:38:36.098811+08:00",
+    "method": "POST",
+    "path": "/depotHead/addDepotHeadAndDetail",
+    "request": {
+      "json": {
+        "info": "{\"number\": \"FP-UAT-20261008-PO\", \"defaultNumber\": \"FP-UAT-20261008-PO\", \"type\": \"其它\", \"subType\": \"采购订单\", \"organId\": 90, \"accountId\": 24, \"operTime\": \"2026-10-08 16:38:36\", \"totalPrice\": -8160, \"changeAmount\": 0, \"discount\": 0, \"discountMoney\": 0, \"discountLastMoney\": 8160, \"otherMoney\": 0, \"deposit\": 0, \"payType\": \"现付\", \"status\": \"0\", \"remark\": \"FlowPilot虚构企业实施UAT，非生产业务\", \"linkNumber\": \"\"}",
+        "rows": "[{\"barCode\": \"FP-MAT-001\", \"unit\": \"件\", \"operNumber\": 120, \"unitPrice\": 68, \"allPrice\": 8160, \"taxRate\": 0, \"taxMoney\": 0, \"taxLastMoney\": 8160, \"depotId\": null, \"remark\": \"实施验收\"}]"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "msg": "操作成功",
+      "code": 200
+    },
+    "authenticated_user_before": "147"
+  },
+  {
+    "time": "2026-10-08T16:38:37.822686+08:00",
+    "method": "POST",
+    "path": "/depotHead/batchSetStatus",
+    "request": {
+      "json": {
+        "ids": "277",
+        "status": "1"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "message": "成功"
+      }
+    },
+    "authenticated_user_before": "147"
+  },
+  {
+    "time": "2026-10-08T16:38:39.565119+08:00",
+    "method": "POST",
+    "path": "/depotHead/addDepotHeadAndDetail",
+    "request": {
+      "json": {
+        "info": "{\"number\": \"FP-UAT-20261008-PI\", \"defaultNumber\": \"FP-UAT-20261008-PI\", \"type\": \"入库\", \"subType\": \"采购\", \"organId\": 90, \"accountId\": 24, \"operTime\": \"2026-10-08 16:38:37\", \"totalPrice\": -8160, \"changeAmount\": -8160, \"discount\": 0, \"discountMoney\": 0, \"discountLastMoney\": 8160, \"otherMoney\": 0, \"deposit\": 0, \"payType\": \"现付\", \"status\": \"0\", \"remark\": \"FlowPilot虚构企业实施UAT，非生产业务\", \"linkNumber\": \"FP-UAT-20261008-PO\"}",
+        "rows": "[{\"barCode\": \"FP-MAT-001\", \"unit\": \"件\", \"operNumber\": 120, \"unitPrice\": 68, \"allPrice\": 8160, \"taxRate\": 0, \"taxMoney\": 0, \"taxLastMoney\": 8160, \"depotId\": 19, \"remark\": \"实施验收\", \"linkId\": 334, \"preNumber\": 120.0, \"finishNumber\": 0}]"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "msg": "操作成功",
+      "code": 200
+    },
+    "authenticated_user_before": "147"
+  },
+  {
+    "time": "2026-10-08T16:38:41.308152+08:00",
+    "method": "POST",
+    "path": "/depotHead/batchSetStatus",
+    "request": {
+      "json": {
+        "ids": "278",
+        "status": "1"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "message": "成功"
+      }
+    },
+    "authenticated_user_before": "147"
+  },
+  {
+    "time": "2026-10-08T16:38:41.387407+08:00",
+    "method": "GET",
+    "path": "/material/getListWithStock",
+    "request": {
+      "params": {
+        "currentPage": 1,
+        "pageSize": 10,
+        "depotIds": "19",
+        "materialParam": "FP-MAT-001",
+        "zeroStock": 0
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "currentStockPrice": 11560.0,
+        "total": 1,
+        "currentWeight": 0.0,
+        "currentStock": 170.0,
+        "rows": [
+          {
+            "id": 620,
+            "categoryId": null,
+            "name": "FlowPilot制动支架",
+            "mfrs": "FlowPilot虚构制造商",
+            "model": "",
+            "standard": "BRK-01",
+            "brand": "FlowPilot",
+            "mnemonic": null,
+            "color": "",
+            "unit": null,
+            "remark": null,
+            "imgName": null,
+            "unitId": null,
+            "expiryNum": null,
+            "weight": null,
+            "enabled": null,
+            "otherField1": null,
+            "otherField2": null,
+            "otherField3": null,
+            "enableSerialNumber": null,
+            "enableBatchNumber": null,
+            "position": null,
+            "attribute": null,
+            "tenantId": null,
+            "deleteFlag": null,
+            "unitName": "件",
+            "ratio": null,
+            "categoryName": null,
+            "materialOther": null,
+            "stock": null,
+            "purchaseDecimal": 68.0,
+            "commodityDecimal": null,
+            "wholesaleDecimal": null,
+            "lowDecimal": null,
+            "billPrice": null,
+            "mBarCode": "FP-MAT-001",
+            "commodityUnit": null,
+            "meId": null,
+            "initialStock": 50.0,
+            "currentUnitPrice": 0.0,
+            "currentStock": 170.0,
+            "currentStockPrice": 11560.0,
+            "currentStockMovePrice": 0.0,
+            "currentWeight": 0.0,
+            "sku": null,
+            "depotId": null,
+            "bigUnitStock": "",
+            "bigUnitInitialStock": null,
+            "imgSmall": null,
+            "imgLarge": null
+          }
+        ]
+      }
+    },
+    "authenticated_user_before": "147"
+  },
+  {
+    "time": "2026-10-08T16:38:52.233744+08:00",
+    "method": "POST",
+    "path": "/depotHead/addDepotHeadAndDetail",
+    "request": {
+      "json": {
+        "info": "{\"number\": \"FP-UAT-20261008-PI\", \"defaultNumber\": \"FP-UAT-20261008-PI\", \"type\": \"入库\", \"subType\": \"采购\", \"organId\": 90, \"accountId\": 24, \"operTime\": \"2026-10-08 16:38:37\", \"totalPrice\": -8160, \"changeAmount\": -8160, \"discount\": 0, \"discountMoney\": 0, \"discountLastMoney\": 8160, \"otherMoney\": 0, \"deposit\": 0, \"payType\": \"现付\", \"status\": \"0\", \"remark\": \"FlowPilot虚构企业实施UAT，非生产业务\", \"linkNumber\": \"FP-UAT-20261008-PO\"}",
+        "rows": "[{\"barCode\": \"FP-MAT-001\", \"unit\": \"件\", \"operNumber\": 120, \"unitPrice\": 68, \"allPrice\": 8160, \"taxRate\": 0, \"taxMoney\": 0, \"taxLastMoney\": 8160, \"depotId\": 19, \"remark\": \"实施验收\", \"linkId\": 334, \"preNumber\": 120.0, \"finishNumber\": 0}]"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 8500022,
+      "data": {
+        "message": "抱歉，单据编号已经存在"
+      }
+    },
+    "authenticated_user_before": "147"
+  },
+  {
+    "time": "2026-10-08T16:38:31.850687+08:00",
+    "method": "POST",
+    "path": "/user/login",
+    "request": {
+      "json": {
+        "loginName": "fp_sales",
+        "password": "[MD5 REDACTED]",
+        "code": "[REDACTED]",
+        "uuid": "[REDACTED]"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "pwdSimple": false,
+        "user": {
+          "id": 149,
+          "username": "FlowPilot销售员",
+          "loginName": "fp_sales",
+          "password": "[REDACTED]",
+          "leaderFlag": "0",
+          "position": "FlowPilot销售员",
+          "department": null,
+          "email": null,
+          "phonenum": null,
+          "ismanager": 1,
+          "isystem": 0,
+          "status": 0,
+          "description": null,
+          "remark": null,
+          "weixinOpenId": null,
+          "tenantId": 63,
+          "deleteFlag": "0"
+        },
+        "msgTip": "user can login",
+        "token": "[REDACTED]"
+      }
+    },
+    "authenticated_user_before": null
+  },
+  {
+    "time": "2026-10-08T16:38:43.167881+08:00",
+    "method": "POST",
+    "path": "/depotHead/addDepotHeadAndDetail",
+    "request": {
+      "json": {
+        "info": "{\"number\": \"FP-UAT-20261008-SO\", \"defaultNumber\": \"FP-UAT-20261008-SO\", \"type\": \"其它\", \"subType\": \"销售订单\", \"organId\": 93, \"accountId\": 24, \"operTime\": \"2026-10-08 16:38:43\", \"totalPrice\": 2850, \"changeAmount\": 0, \"discount\": 0, \"discountMoney\": 0, \"discountLastMoney\": 2850, \"otherMoney\": 0, \"deposit\": 0, \"payType\": \"现付\", \"status\": \"0\", \"remark\": \"FlowPilot虚构企业实施UAT，非生产业务\", \"linkNumber\": \"\"}",
+        "rows": "[{\"barCode\": \"FP-MAT-001\", \"unit\": \"件\", \"operNumber\": 30, \"unitPrice\": 95, \"allPrice\": 2850, \"taxRate\": 0, \"taxMoney\": 0, \"taxLastMoney\": 2850, \"depotId\": null, \"remark\": \"实施验收\"}]"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "msg": "操作成功",
+      "code": 200
+    },
+    "authenticated_user_before": "149"
+  },
+  {
+    "time": "2026-10-08T16:38:44.868450+08:00",
+    "method": "POST",
+    "path": "/depotHead/batchSetStatus",
+    "request": {
+      "json": {
+        "ids": "279",
+        "status": "1"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "message": "成功"
+      }
+    },
+    "authenticated_user_before": "149"
+  },
+  {
+    "time": "2026-10-08T16:38:46.623157+08:00",
+    "method": "POST",
+    "path": "/depotHead/addDepotHeadAndDetail",
+    "request": {
+      "json": {
+        "info": "{\"number\": \"FP-UAT-20261008-SI\", \"defaultNumber\": \"FP-UAT-20261008-SI\", \"type\": \"出库\", \"subType\": \"销售\", \"organId\": 93, \"accountId\": 24, \"operTime\": \"2026-10-08 16:38:44\", \"totalPrice\": 2850, \"changeAmount\": 2850, \"discount\": 0, \"discountMoney\": 0, \"discountLastMoney\": 2850, \"otherMoney\": 0, \"deposit\": 0, \"payType\": \"现付\", \"status\": \"0\", \"remark\": \"FlowPilot虚构企业实施UAT，非生产业务\", \"linkNumber\": \"FP-UAT-20261008-SO\"}",
+        "rows": "[{\"barCode\": \"FP-MAT-001\", \"unit\": \"件\", \"operNumber\": 30, \"unitPrice\": 95, \"allPrice\": 2850, \"taxRate\": 0, \"taxMoney\": 0, \"taxLastMoney\": 2850, \"depotId\": 19, \"remark\": \"实施验收\", \"linkId\": 336, \"preNumber\": 30.0, \"finishNumber\": 0}]"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "msg": "操作成功",
+      "code": 200
+    },
+    "authenticated_user_before": "149"
+  },
+  {
+    "time": "2026-10-08T16:38:48.363225+08:00",
+    "method": "POST",
+    "path": "/depotHead/batchSetStatus",
+    "request": {
+      "json": {
+        "ids": "280",
+        "status": "1"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "message": "成功"
+      }
+    },
+    "authenticated_user_before": "149"
+  },
+  {
+    "time": "2026-10-08T16:38:48.413397+08:00",
+    "method": "GET",
+    "path": "/material/getListWithStock",
+    "request": {
+      "params": {
+        "currentPage": 1,
+        "pageSize": 10,
+        "depotIds": "19",
+        "materialParam": "FP-MAT-001",
+        "zeroStock": 0
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "currentStockPrice": 9520.0,
+        "total": 1,
+        "currentWeight": 0.0,
+        "currentStock": 140.0,
+        "rows": [
+          {
+            "id": 620,
+            "categoryId": null,
+            "name": "FlowPilot制动支架",
+            "mfrs": "FlowPilot虚构制造商",
+            "model": "",
+            "standard": "BRK-01",
+            "brand": "FlowPilot",
+            "mnemonic": null,
+            "color": "",
+            "unit": null,
+            "remark": null,
+            "imgName": null,
+            "unitId": null,
+            "expiryNum": null,
+            "weight": null,
+            "enabled": null,
+            "otherField1": null,
+            "otherField2": null,
+            "otherField3": null,
+            "enableSerialNumber": null,
+            "enableBatchNumber": null,
+            "position": null,
+            "attribute": null,
+            "tenantId": null,
+            "deleteFlag": null,
+            "unitName": "件",
+            "ratio": null,
+            "categoryName": null,
+            "materialOther": null,
+            "stock": null,
+            "purchaseDecimal": 68.0,
+            "commodityDecimal": null,
+            "wholesaleDecimal": null,
+            "lowDecimal": null,
+            "billPrice": null,
+            "mBarCode": "FP-MAT-001",
+            "commodityUnit": null,
+            "meId": null,
+            "initialStock": 50.0,
+            "currentUnitPrice": 68.0,
+            "currentStock": 140.0,
+            "currentStockPrice": 9520.0,
+            "currentStockMovePrice": 9520.0,
+            "currentWeight": 0.0,
+            "sku": null,
+            "depotId": null,
+            "bigUnitStock": "",
+            "bigUnitInitialStock": null,
+            "imgSmall": null,
+            "imgLarge": null
+          }
+        ]
+      }
+    },
+    "authenticated_user_before": "149"
+  },
+  {
+    "time": "2026-10-08T16:38:50.093034+08:00",
+    "method": "POST",
+    "path": "/depotHead/addDepotHeadAndDetail",
+    "request": {
+      "json": {
+        "info": "{\"number\": \"FP-UAT-20261008-SHORT\", \"defaultNumber\": \"FP-UAT-20261008-SHORT\", \"type\": \"出库\", \"subType\": \"销售\", \"organId\": 93, \"accountId\": 24, \"operTime\": \"2026-10-08 16:38:50\", \"totalPrice\": 13395, \"changeAmount\": 13395, \"discount\": 0, \"discountMoney\": 0, \"discountLastMoney\": 13395, \"otherMoney\": 0, \"deposit\": 0, \"payType\": \"现付\", \"status\": \"0\", \"remark\": \"FlowPilot虚构企业实施UAT，非生产业务\", \"linkNumber\": \"\"}",
+        "rows": "[{\"barCode\": \"FP-MAT-001\", \"unit\": \"件\", \"operNumber\": 141, \"unitPrice\": 95, \"allPrice\": 13395, \"taxRate\": 0, \"taxMoney\": 0, \"taxLastMoney\": 13395, \"depotId\": 19, \"remark\": \"实施验收\"}]"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 8000004,
+      "data": {
+        "message": "商品:FlowPilot制动支架-FP-MAT-001库存不足"
+      }
+    },
+    "authenticated_user_before": "149"
+  },
+  {
+    "time": "2026-10-08T16:38:52.375157+08:00",
+    "method": "POST",
+    "path": "/depotHead/addDepotHeadAndDetail",
+    "request": {
+      "json": {
+        "info": "{\"number\": \"FP-UAT-20261008-MISSING\", \"defaultNumber\": \"FP-UAT-20261008-MISSING\", \"type\": \"出库\", \"subType\": \"销售\", \"organId\": 93, \"accountId\": 24, \"operTime\": \"2026-10-08 16:38:52\", \"totalPrice\": 95, \"changeAmount\": 95, \"discount\": 0, \"discountMoney\": 0, \"discountLastMoney\": 95, \"otherMoney\": 0, \"deposit\": 0, \"payType\": \"现付\", \"status\": \"0\", \"remark\": \"FlowPilot虚构企业实施UAT，非生产业务\", \"linkNumber\": \"\"}",
+        "rows": "[{\"barCode\": \"FP-MAT-001\", \"unit\": \"件\", \"operNumber\": 1, \"unitPrice\": 95, \"allPrice\": 95, \"taxRate\": 0, \"taxMoney\": 0, \"taxLastMoney\": 95, \"depotId\": null, \"remark\": \"实施验收\"}]"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 8500004,
+      "data": {
+        "message": "仓库不能为空"
+      }
+    },
+    "authenticated_user_before": "149"
+  },
+  {
+    "time": "2026-10-08T16:38:54.133110+08:00",
+    "method": "POST",
+    "path": "/depotHead/addDepotHeadAndDetail",
+    "request": {
+      "json": {
+        "info": "{\"number\": \"FP-UAT-20261008-NEGATIVE\", \"defaultNumber\": \"FP-UAT-20261008-NEGATIVE\", \"type\": \"出库\", \"subType\": \"销售\", \"organId\": 93, \"accountId\": 24, \"operTime\": \"2026-10-08 16:38:52\", \"totalPrice\": -95, \"changeAmount\": -95, \"discount\": 0, \"discountMoney\": 0, \"discountLastMoney\": -95, \"otherMoney\": 0, \"deposit\": 0, \"payType\": \"现付\", \"status\": \"0\", \"remark\": \"FlowPilot虚构企业实施UAT，非生产业务\", \"linkNumber\": \"\"}",
+        "rows": "[{\"barCode\": \"FP-MAT-001\", \"unit\": \"件\", \"operNumber\": -1, \"unitPrice\": 95, \"allPrice\": -95, \"taxRate\": 0, \"taxMoney\": 0, \"taxLastMoney\": -95, \"depotId\": 19, \"remark\": \"实施验收\"}]"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "msg": "操作成功",
+      "code": 200
+    },
+    "authenticated_user_before": "149"
+  },
+  {
+    "time": "2026-10-08T16:38:55.901055+08:00",
+    "method": "DELETE",
+    "path": "/depotHead/delete",
+    "request": {
+      "params": {
+        "id": 283
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "message": "成功"
+      }
+    },
+    "authenticated_user_before": "149"
+  },
+  {
+    "time": "2026-10-08T16:38:57.624174+08:00",
+    "method": "POST",
+    "path": "/depotHead/batchSetStatus",
+    "request": {
+      "json": {
+        "ids": "280",
+        "status": "0"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "message": "成功"
+      }
+    },
+    "authenticated_user_before": "149"
+  },
+  {
+    "time": "2026-10-08T16:38:59.360152+08:00",
+    "method": "POST",
+    "path": "/depotHead/batchSetStatus",
+    "request": {
+      "json": {
+        "ids": "280",
+        "status": "1"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "message": "成功"
+      }
+    },
+    "authenticated_user_before": "149"
+  }
+]

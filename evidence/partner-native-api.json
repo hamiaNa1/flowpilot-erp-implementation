@@ -1,0 +1,92 @@
+[
+  {
+    "time": "2026-10-08T16:51:19.131524+08:00",
+    "method": "POST",
+    "path": "/user/login",
+    "request": {
+      "json": {
+        "loginName": "jsh",
+        "password": "[MD5 REDACTED]",
+        "code": "[REDACTED]",
+        "uuid": "[REDACTED]"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "pwdSimple": false,
+        "user": {
+          "id": 63,
+          "username": "测试用户",
+          "loginName": "jsh",
+          "password": "[REDACTED]",
+          "leaderFlag": "0",
+          "position": "主管",
+          "department": null,
+          "email": "666666@qq.com",
+          "phonenum": "1123123123132",
+          "ismanager": 1,
+          "isystem": 1,
+          "status": 0,
+          "description": "",
+          "remark": null,
+          "weixinOpenId": null,
+          "tenantId": 63,
+          "deleteFlag": "0"
+        },
+        "msgTip": "user can login",
+        "token": "[REDACTED]"
+      }
+    },
+    "authenticated_user_before": null
+  },
+  {
+    "time": "2026-10-08T16:51:21.164718+08:00",
+    "method": "POST",
+    "path": "/supplier/importVendor",
+    "request": {},
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": "导入成功"
+    },
+    "authenticated_user_before": "63"
+  },
+  {
+    "time": "2026-10-08T16:51:22.992929+08:00",
+    "method": "POST",
+    "path": "/supplier/importCustomer",
+    "request": {},
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": "导入成功"
+    },
+    "authenticated_user_before": "63"
+  },
+  {
+    "time": "2026-10-08T16:51:24.804940+08:00",
+    "method": "POST",
+    "path": "/supplier/importVendor",
+    "request": {},
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": "导入成功"
+    },
+    "authenticated_user_before": "63"
+  },
+  {
+    "time": "2026-10-08T16:51:26.641571+08:00",
+    "method": "POST",
+    "path": "/supplier/importCustomer",
+    "request": {},
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": "导入成功"
+    },
+    "authenticated_user_before": "63"
+  }
+]

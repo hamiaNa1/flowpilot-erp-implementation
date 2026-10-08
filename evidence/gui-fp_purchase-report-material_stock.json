@@ -1,0 +1,25 @@
+{
+  "time": "2026-10-08T16:32:25.589972+08:00",
+  "url": "http://127.0.0.1:8088/report/material_stock",
+  "user": "fp_purchase",
+  "body": "管伊佳ERP\n首页\n采购管理\n报表查询\n商品库存\n商品管理\n基础资料\nFlowPilot汽车零部件有限公司（虚构演示企业）\n欢迎您，FlowPilot采购员 退出登录\n首页\n商品库存\n仓库\n请选择仓库\n \n商品信息\n查 询打印导出 展开 \n总库存：1963.00，总库存金额：12114.00，总重量：0.00\n\t\n库存详情\n\t\n条码\t\n\t\n名称\n\t\n规格\n\t\n型号\n\t\n颜色\n\t\n类别\n\t\n仓位货架\n\t\n单位\n\t\n成本价\t\n\t\n初始库存\n\t\n库存\t\n\t\n库存金额\t\n\t\n重量\t\n1\t流水分布\tFP-MAT-006\tFlowPilot成品包装箱\tBOX-06\t\t\t\t\t个\t3\t100\t100\t300\t0\n2\t流水分布\tFP-MAT-005\tFlowPilot冷轧钢板\tSPCC-2mm\t\t\t\t\t千克\t6\t500\t500\t3000\t0\n3\t流水分布\tFP-MAT-004\tFlowPilot密封垫圈\tSEAL-04\t\t\t\t\t个\t2.5\t200\t200\t500\t0\n4\t流水分布\tFP-MAT-003\tFlowPilot紧固螺栓M10\tM10x30\t\t\t\t\t个\t1.2\t1000\t1000\t1200\t0\n5\t流水分布\tFP-MAT-002\tFlowPilot轮毂轴套\tHUB-02\t\t\t\t\t件\t35\t80\t80\t2800\t0\n6\t流水分布\tFP-MAT-001\tFlowPilot制动支架\tBRK-01\t\t\t\t\t件\t68\t60\t60\t4080\t0\n7\t流水分布\t1014\t衣服\t\t\t\t\t\t件\t12\t0\t5\t60\t0\n8\t流水分布\t1009\t商品200\t300ml\tweqwe\t红色\t目录2\t\t个\t11\t0\t7\t77\t0\n9\t流水分布\t1003\t商品3\t\tsp3\t\t目录1\t\t个\t8\t0\t8\t64\t0\n10\t流水分布\t1001\t商品1\t\tsp1\t\t目录1\t\t个\t11\t0\t3\t33\t0\n合计\t\t-\t-\t-\t-\t-\t-\t-\t-\t-\t1940.00\t1963.00\t12114.00\t0.00\n共 10 条\n1\n10条/页\n整体风格设置\n主题色\n固定 Header\n下滑时隐藏 Header\n固定侧边菜单\n语言设置\n选择语言\n简体中文\n其他设置\n色弱模式",
+  "page_errors": [],
+  "inputs": [
+    {
+      "placeholder": null,
+      "type": null
+    },
+    {
+      "placeholder": null,
+      "type": null
+    },
+    {
+      "placeholder": "请输入条码、名称、助记码、规格、型号等信息",
+      "type": "text"
+    },
+    {
+      "placeholder": null,
+      "type": null
+    }
+  ]
+}

@@ -1,0 +1,236 @@
+{
+  "time": "2026-10-08T16:27:09.453011+08:00",
+  "partners": [
+    {
+      "id": 90,
+      "supplier": "FlowPilot精密钢材供应商（虚构）",
+      "type": "供应商",
+      "description": "legacy-code:SUP-FP-001"
+    },
+    {
+      "id": 91,
+      "supplier": "FlowPilot标准件供应商（虚构）",
+      "type": "供应商",
+      "description": "legacy-code:SUP-FP-002"
+    },
+    {
+      "id": 92,
+      "supplier": "FlowPilot包装材料供应商（虚构）",
+      "type": "供应商",
+      "description": "legacy-code:SUP-FP-003"
+    },
+    {
+      "id": 93,
+      "supplier": "FlowPilot汽车总装客户（虚构）",
+      "type": "客户",
+      "description": "legacy-code:CUS-FP-001"
+    },
+    {
+      "id": 94,
+      "supplier": "FlowPilot售后配件客户（虚构）",
+      "type": "客户",
+      "description": "legacy-code:CUS-FP-002"
+    },
+    {
+      "id": 95,
+      "supplier": "FlowPilot底盘系统客户（虚构）",
+      "type": "客户",
+      "description": "legacy-code:CUS-FP-003"
+    }
+  ],
+  "materials": [
+    {
+      "id": 620,
+      "name": "FlowPilot制动支架",
+      "unit": "件",
+      "bar_code": "FP-MAT-001"
+    },
+    {
+      "id": 621,
+      "name": "FlowPilot轮毂轴套",
+      "unit": "件",
+      "bar_code": "FP-MAT-002"
+    },
+    {
+      "id": 622,
+      "name": "FlowPilot紧固螺栓M10",
+      "unit": "个",
+      "bar_code": "FP-MAT-003"
+    },
+    {
+      "id": 623,
+      "name": "FlowPilot密封垫圈",
+      "unit": "个",
+      "bar_code": "FP-MAT-004"
+    },
+    {
+      "id": 624,
+      "name": "FlowPilot冷轧钢板",
+      "unit": "千克",
+      "bar_code": "FP-MAT-005"
+    },
+    {
+      "id": 625,
+      "name": "FlowPilot成品包装箱",
+      "unit": "个",
+      "bar_code": "FP-MAT-006"
+    }
+  ],
+  "stocks": [
+    {
+      "bar_code": "FP-MAT-001",
+      "name": "FlowPilot原料仓",
+      "number": "50.000000",
+      "current_number": "50.000000"
+    },
+    {
+      "bar_code": "FP-MAT-001",
+      "name": "FlowPilot成品仓",
+      "number": "10.000000",
+      "current_number": "10.000000"
+    },
+    {
+      "bar_code": "FP-MAT-002",
+      "name": "FlowPilot原料仓",
+      "number": "80.000000",
+      "current_number": "80.000000"
+    },
+    {
+      "bar_code": "FP-MAT-003",
+      "name": "FlowPilot原料仓",
+      "number": "1000.000000",
+      "current_number": "1000.000000"
+    },
+    {
+      "bar_code": "FP-MAT-004",
+      "name": "FlowPilot原料仓",
+      "number": "200.000000",
+      "current_number": "200.000000"
+    },
+    {
+      "bar_code": "FP-MAT-005",
+      "name": "FlowPilot原料仓",
+      "number": "500.000000",
+      "current_number": "500.000000"
+    },
+    {
+      "bar_code": "FP-MAT-006",
+      "name": "FlowPilot原料仓",
+      "number": "100.000000",
+      "current_number": "100.000000"
+    }
+  ],
+  "roles": [
+    {
+      "login": "fp_manager",
+      "user_id": 146,
+      "role_id": 21,
+      "role_name": "FlowPilot实施管理员",
+      "menus": [
+        "角色管理",
+        "用户管理",
+        "日志管理",
+        "商品管理",
+        "商品类别",
+        "商品信息",
+        "基础资料",
+        "供应商信息",
+        "仓库信息",
+        "经手人管理",
+        "采购管理",
+        "采购入库",
+        "销售管理",
+        "调拨出库",
+        "销售出库",
+        "财务管理",
+        "进销存统计",
+        "收支项目",
+        "结算账户",
+        "收入单",
+        "报表查询",
+        "采购退货",
+        "销售退货",
+        "其它入库",
+        "其它出库",
+        "支出单",
+        "收款单",
+        "付款单",
+        "转账单",
+        "账户统计",
+        "采购统计",
+        "销售统计",
+        "零售出库",
+        "零售退货",
+        "收预付款",
+        "客户信息",
+        "会员信息",
+        "多单位",
+        "零售管理",
+        "入库明细",
+        "出库明细",
+        "入库汇总",
+        "出库汇总",
+        "组装单",
+        "拆卸单",
+        "系统配置",
+        "客户对账",
+        "商品属性",
+        "供应商对账",
+        "仓库管理",
+        "采购订单",
+        "销售订单",
+        "机构管理",
+        "库存预警",
+        "商品库存",
+        "多属性",
+        "调拨明细",
+        "零售统计",
+        "请购单"
+      ],
+      "data_scope": "全部数据"
+    },
+    {
+      "login": "fp_purchase",
+      "user_id": 147,
+      "role_id": 22,
+      "role_name": "FlowPilot采购员",
+      "menus": [
+        "商品信息",
+        "供应商信息",
+        "采购入库",
+        "采购订单",
+        "商品库存"
+      ],
+      "data_scope": "个人数据"
+    },
+    {
+      "login": "fp_warehouse",
+      "user_id": 148,
+      "role_id": 23,
+      "role_name": "FlowPilot仓库员",
+      "menus": [
+        "商品信息",
+        "其它入库",
+        "其它出库",
+        "入库明细",
+        "出库明细",
+        "商品库存"
+      ],
+      "data_scope": "全部数据"
+    },
+    {
+      "login": "fp_sales",
+      "user_id": 149,
+      "role_id": 24,
+      "role_name": "FlowPilot销售员",
+      "menus": [
+        "商品信息",
+        "销售出库",
+        "客户信息",
+        "销售订单",
+        "商品库存"
+      ],
+      "data_scope": "个人数据"
+    }
+  ]
+}

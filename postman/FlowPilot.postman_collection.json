@@ -1,0 +1,2061 @@
+{
+  "info": {
+    "_postman_id": "eb218c29-5171-4c4f-87c1-c623884f0cf9",
+    "name": "FlowPilot ERP native implementation verification",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Actual native contracts from jshERP v3.6. Baseline requests executed via requests/Edge, not Postman GUI. Writes guarded and require fresh isolated run."
+  },
+  "item": [
+    {
+      "name": "认证（手填验证码）",
+      "item": [
+        {
+          "name": "01 生成真实图形验证码",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/user/randomImage",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "user",
+                "randomImage"
+              ]
+            },
+            "description": "原生验证码保留。设置uuid后从base64图像识别并手填captcha_code。"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "const d = pm.response.json().data; pm.environment.set(\"captcha_uuid\", d.uuid);",
+                  "pm.visualizer.set(\"<img src=\"{{image}}\" alt=\"captcha\" />\", {image:d.base64 || \"\"});"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "name": "02 登录并保存本地会话",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/user/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "user",
+                "login"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"loginName\": \"{{login_name}}\",\n  \"password\": \"{{password_md5}}\",\n  \"code\": \"{{captcha_code}}\",\n  \"uuid\": \"{{captcha_uuid}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"native code 200\", () => pm.expect(pm.response.json().code).to.eql(200));",
+                  "const d=pm.response.json().data; pm.test(\"login\",()=>pm.expect(d.msgTip).to.eql(\"user can login\"));",
+                  "if(d.msgTip === \"user can login\") {pm.environment.set(\"token\",d.token); pm.environment.set(\"user_id\",String(d.user.id));}"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if(!pm.environment.get(\"password_md5\") || !pm.environment.get(\"captcha_code\")) throw new Error(\"Set local MD5 password and captcha first\");"
+                ]
+              }
+            }
+          ],
+          "response": [
+            {
+              "name": "2026-10-08 actual captured baseline (redacted)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/user/login",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "user",
+                    "login"
+                  ]
+                },
+                "description": "",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"loginName\": \"{{login_name}}\",\n  \"password\": \"{{password_md5}}\",\n  \"code\": \"{{captcha_code}}\",\n  \"uuid\": \"{{captcha_uuid}}\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"data\": {\n    \"pwdSimple\": false,\n    \"user\": {\n      \"id\": 146,\n      \"username\": \"FlowPilot实施管理员\",\n      \"loginName\": \"fp_manager\",\n      \"password\": \"[REDACTED]\",\n      \"leaderFlag\": \"0\",\n      \"position\": \"FlowPilot实施管理员\",\n      \"department\": null,\n      \"email\": null,\n      \"phonenum\": null,\n      \"ismanager\": 1,\n      \"isystem\": 0,\n      \"status\": 0,\n      \"description\": null,\n      \"remark\": null,\n      \"weixinOpenId\": null,\n      \"tenantId\": 63,\n      \"deleteFlag\": \"0\"\n    },\n    \"msgTip\": \"user can login\",\n    \"token\": \"[REDACTED]\"\n  }\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "只读实测查询",
+      "item": [
+        {
+          "name": "供应商3条",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Access-Token",
+                "value": "{{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/supplier/list?currentPage=1&pageSize=100&search=%7B%22type%22%3A+%22%E4%BE%9B%E5%BA%94%E5%95%86%22%2C+%22supplier%22%3A+%22FlowPilot%22%7D",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "supplier",
+                "list"
+              ],
+              "query": [
+                {
+                  "key": "currentPage",
+                  "value": "1"
+                },
+                {
+                  "key": "pageSize",
+                  "value": "100"
+                },
+                {
+                  "key": "search",
+                  "value": "{\"type\": \"供应商\", \"supplier\": \"FlowPilot\"}"
+                }
+              ]
+            },
+            "description": "只读查询已存在的演示资料或单据；SQL对应evidence/api-readonly-verification.json。"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"native code 200\", () => pm.expect(pm.response.json().code).to.eql(200));"
+                ]
+              }
+            }
+          ],
+          "response": [
+            {
+              "name": "2026-10-08 actual captured baseline (redacted)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "X-Access-Token",
+                    "value": "{{token}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/supplier/list?currentPage=1&pageSize=100&search=%7B%22type%22%3A+%22%E4%BE%9B%E5%BA%94%E5%95%86%22%2C+%22supplier%22%3A+%22FlowPilot%22%7D",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "supplier",
+                    "list"
+                  ],
+                  "query": [
+                    {
+                      "key": "currentPage",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "100"
+                    },
+                    {
+                      "key": "search",
+                      "value": "{\"type\": \"供应商\", \"supplier\": \"FlowPilot\"}"
+                    }
+                  ]
+                },
+                "description": "只读查询已存在的演示资料或单据；SQL对应evidence/api-readonly-verification.json。"
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"data\": {\n    \"total\": 3,\n    \"rows\": [\n      {\n        \"id\": 92,\n        \"supplier\": \"FlowPilot包装材料供应商（虚构）\",\n        \"contacts\": \"供应联系人丙\",\n        \"phoneNum\": \"\",\n        \"email\": \"\",\n        \"description\": \"legacy-code:SUP-FP-003\",\n        \"isystem\": null,\n        \"type\": \"供应商\",\n        \"enabled\": true,\n        \"advanceIn\": 0.0,\n        \"beginNeedGet\": 0.0,\n        \"beginNeedPay\": 0.0,\n        \"allNeedGet\": null,\n        \"allNeedPay\": 0,\n        \"fax\": \"\",\n        \"telephone\": \"\",\n        \"address\": \"常州演示工业园\",\n        \"taxNum\": \"\",\n        \"bankName\": \"\",\n        \"accountNumber\": \"\",\n        \"taxRate\": 13.0,\n        \"sort\": \"10\",\n        \"creator\": 63,\n        \"tenantId\": 63,\n        \"deleteFlag\": \"0\"\n      },\n      {\n        \"id\": 91,\n        \"supplier\": \"FlowPilot标准件供应商（虚构）\",\n        \"contacts\": \"供应联系人乙\",\n        \"phoneNum\": \"\",\n        \"email\": \"\",\n        \"description\": \"legacy-code:SUP-FP-002\",\n        \"isystem\": null,\n        \"type\": \"供应商\",\n        \"enabled\": true,\n        \"advanceIn\": 0.0,\n        \"beginNeedGet\": 0.0,\n        \"beginNeedPay\": 0.0,\n        \"allNeedGet\": null,\n        \"allNeedPay\": 0,\n        \"fax\": \"\",\n        \"telephone\": \"\",\n        \"address\": \"无锡演示工业园\",\n        \"taxNum\": \"\",\n        \"bankName\": \"\",\n        \"accountNumber\": \"\",\n        \"taxRate\": 13.0,\n        \"sort\": \"10\",\n        \"creator\": 63,\n        \"tenantId\": 63,\n        \"deleteFlag\": \"0\"\n      },\n      {\n        \"id\": 90,\n        \"supplier\": \"FlowPilot精密钢材供应商（虚构）\",\n        \"contacts\": \"供应联系人甲（页面验收）\",\n        \"phoneNum\": \"\",\n        \"email\": \"\",\n        \"description\": \"legacy-code:SUP-FP-001\",\n        \"isystem\": null,\n        \"type\": \"供应商\",\n        \"enabled\": true,\n        \"advanceIn\": 0.0,\n        \"beginNeedGet\": 0.0,\n        \"beginNeedPay\": 0.0,\n        \"allNeedGet\": null,\n        \"allNeedPay\": 0,\n        \"fax\": \"\",\n        \"telephone\": \"\",\n        \"address\": \"苏州演示工业园\",\n        \"taxNum\": \"\",\n        \"bankName\": \"\",\n        \"accountNumber\": \"\",\n        \"taxRate\": 13.0,\n        \"sort\": \"10\",\n        \"creator\": 63,\n        \"tenantId\": 63,\n        \"deleteFlag\": \"0\"\n      }\n    ]\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "客户3条",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Access-Token",
+                "value": "{{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/supplier/list?currentPage=1&pageSize=100&search=%7B%22type%22%3A+%22%E5%AE%A2%E6%88%B7%22%2C+%22supplier%22%3A+%22FlowPilot%22%7D",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "supplier",
+                "list"
+              ],
+              "query": [
+                {
+                  "key": "currentPage",
+                  "value": "1"
+                },
+                {
+                  "key": "pageSize",
+                  "value": "100"
+                },
+                {
+                  "key": "search",
+                  "value": "{\"type\": \"客户\", \"supplier\": \"FlowPilot\"}"
+                }
+              ]
+            },
+            "description": "只读查询已存在的演示资料或单据；SQL对应evidence/api-readonly-verification.json。"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"native code 200\", () => pm.expect(pm.response.json().code).to.eql(200));"
+                ]
+              }
+            }
+          ],
+          "response": [
+            {
+              "name": "2026-10-08 actual captured baseline (redacted)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "X-Access-Token",
+                    "value": "{{token}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/supplier/list?currentPage=1&pageSize=100&search=%7B%22type%22%3A+%22%E5%AE%A2%E6%88%B7%22%2C+%22supplier%22%3A+%22FlowPilot%22%7D",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "supplier",
+                    "list"
+                  ],
+                  "query": [
+                    {
+                      "key": "currentPage",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "100"
+                    },
+                    {
+                      "key": "search",
+                      "value": "{\"type\": \"客户\", \"supplier\": \"FlowPilot\"}"
+                    }
+                  ]
+                },
+                "description": "只读查询已存在的演示资料或单据；SQL对应evidence/api-readonly-verification.json。"
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"data\": {\n    \"total\": 3,\n    \"rows\": [\n      {\n        \"id\": 95,\n        \"supplier\": \"FlowPilot底盘系统客户（虚构）\",\n        \"contacts\": \"客户联系人丙\",\n        \"phoneNum\": \"\",\n        \"email\": \"\",\n        \"description\": \"legacy-code:CUS-FP-003\",\n        \"isystem\": null,\n        \"type\": \"客户\",\n        \"enabled\": true,\n        \"advanceIn\": 0.0,\n        \"beginNeedGet\": 0.0,\n        \"beginNeedPay\": 0.0,\n        \"allNeedGet\": 0,\n        \"allNeedPay\": null,\n        \"fax\": \"\",\n        \"telephone\": \"\",\n        \"address\": \"合肥演示工业园\",\n        \"taxNum\": \"\",\n        \"bankName\": \"\",\n        \"accountNumber\": \"\",\n        \"taxRate\": 13.0,\n        \"sort\": \"10\",\n        \"creator\": 63,\n        \"tenantId\": 63,\n        \"deleteFlag\": \"0\"\n      },\n      {\n        \"id\": 94,\n        \"supplier\": \"FlowPilot售后配件客户（虚构）\",\n        \"contacts\": \"客户联系人乙\",\n        \"phoneNum\": \"\",\n        \"email\": \"\",\n        \"description\": \"legacy-code:CUS-FP-002\",\n        \"isystem\": null,\n        \"type\": \"客户\",\n        \"enabled\": true,\n        \"advanceIn\": 0.0,\n        \"beginNeedGet\": 0.0,\n        \"beginNeedPay\": 0.0,\n        \"allNeedGet\": 0,\n        \"allNeedPay\": null,\n        \"fax\": \"\",\n        \"telephone\": \"\",\n        \"address\": \"南京演示工业园\",\n        \"taxNum\": \"\",\n        \"bankName\": \"\",\n        \"accountNumber\": \"\",\n        \"taxRate\": 13.0,\n        \"sort\": \"10\",\n        \"creator\": 63,\n        \"tenantId\": 63,\n        \"deleteFlag\": \"0\"\n      },\n      {\n        \"id\": 93,\n        \"supplier\": \"FlowPilot汽车总装客户（虚构）\",\n        \"contacts\": \"客户联系人甲\",\n        \"phoneNum\": \"\",\n        \"email\": \"\",\n        \"description\": \"legacy-code:CUS-FP-001\",\n        \"isystem\": null,\n        \"type\": \"客户\",\n        \"enabled\": true,\n        \"advanceIn\": 0.0,\n        \"beginNeedGet\": 0.0,\n        \"beginNeedPay\": 0.0,\n        \"allNeedGet\": 0,\n        \"allNeedPay\": null,\n        \"fax\": \"\",\n        \"telephone\": \"\",\n        \"address\": \"上海演示工业园\",\n        \"taxNum\": \"\",\n        \"bankName\": \"\",\n        \"accountNumber\": \"\",\n        \"taxRate\": 13.0,\n        \"sort\": \"10\",\n        \"creator\": 63,\n        \"tenantId\": 63,\n        \"deleteFlag\": \"0\"\n      }\n    ]\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "已验证采购入库详情",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Access-Token",
+                "value": "{{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/depotHead/getDetailByNumber?number=FP-UAT-20261008-PI",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "depotHead",
+                "getDetailByNumber"
+              ],
+              "query": [
+                {
+                  "key": "number",
+                  "value": "FP-UAT-20261008-PI"
+                }
+              ]
+            },
+            "description": "只读查询已存在的演示资料或单据；SQL对应evidence/api-readonly-verification.json。"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"native code 200\", () => pm.expect(pm.response.json().code).to.eql(200));"
+                ]
+              }
+            }
+          ],
+          "response": [
+            {
+              "name": "2026-10-08 actual captured baseline (redacted)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "X-Access-Token",
+                    "value": "{{token}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/depotHead/getDetailByNumber?number=FP-UAT-20261008-PI",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "depotHead",
+                    "getDetailByNumber"
+                  ],
+                  "query": [
+                    {
+                      "key": "number",
+                      "value": "FP-UAT-20261008-PI"
+                    }
+                  ]
+                },
+                "description": "只读查询已存在的演示资料或单据；SQL对应evidence/api-readonly-verification.json。"
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"data\": {\n    \"id\": 278,\n    \"type\": \"入库\",\n    \"subType\": \"采购\",\n    \"defaultNumber\": \"FP-UAT-20261008-PI\",\n    \"number\": \"FP-UAT-20261008-PI\",\n    \"createTime\": \"2026-10-08T08:38:40.000+0000\",\n    \"operTime\": \"2026-10-08T08:38:37.000+0000\",\n    \"organId\": 90,\n    \"creator\": 147,\n    \"accountId\": 24,\n    \"changeAmount\": 8160.0,\n    \"backAmount\": 0,\n    \"totalPrice\": 8160.0,\n    \"payType\": \"现付\",\n    \"billType\": null,\n    \"remark\": \"FlowPilot虚构企业实施UAT，非生产业务\",\n    \"fileName\": null,\n    \"salesMan\": null,\n    \"accountIdList\": null,\n    \"accountMoneyList\": null,\n    \"discount\": 0.0,\n    \"discountMoney\": 0.0,\n    \"discountLastMoney\": 8160.0,\n    \"otherMoney\": 0.0,\n    \"deposit\": 0.0,\n    \"status\": \"1\",\n    \"purchaseStatus\": \"0\",\n    \"source\": \"0\",\n    \"linkNumber\": \"FP-UAT-20261008-PO\",\n    \"linkApply\": null,\n    \"tenantId\": 63,\n    \"deleteFlag\": \"0\",\n    \"projectName\": null,\n    \"organName\": \"FlowPilot精密钢材供应商（虚构）\",\n    \"userName\": null,\n    \"accountName\": \"FlowPilot演示结算账户\",\n    \"allocationProjectName\": null,\n    \"materialsList\": \"FlowPilot制动支架 BRK-01  \",\n    \"salesManStr\": null,\n    \"operTimeStr\": \"2026-10-08 16:38:37\",\n    \"finishDebt\": null,\n    \"depotHeadType\": \"采购入库\",\n    \"creatorName\": \"FlowPilot采购员\",\n    \"contacts\": \"供应联系人甲（页面验收）\",\n    \"telephone\": \"\",\n    \"address\": \"苏州演示工业园\",\n    \"finishDeposit\": null,\n    \"needDebt\": null,\n    \"debt\": 0.0,\n    \"materialCount\": 120.0,\n    \"hasFinancialFlag\": false,\n    \"hasBackFlag\": false,\n    \"realNeedDebt\": null,\n    \"bankName\": \"\",\n    \"accountNumber\": \"\",\n    \"taxNum\": \"\",\n    \"phoneNum\": \"\"\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "已验证销售出库详情",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Access-Token",
+                "value": "{{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/depotHead/getDetailByNumber?number=FP-UAT-20261008-SI",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "depotHead",
+                "getDetailByNumber"
+              ],
+              "query": [
+                {
+                  "key": "number",
+                  "value": "FP-UAT-20261008-SI"
+                }
+              ]
+            },
+            "description": "只读查询已存在的演示资料或单据；SQL对应evidence/api-readonly-verification.json。"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"native code 200\", () => pm.expect(pm.response.json().code).to.eql(200));"
+                ]
+              }
+            }
+          ],
+          "response": [
+            {
+              "name": "2026-10-08 actual captured baseline (redacted)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "X-Access-Token",
+                    "value": "{{token}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/depotHead/getDetailByNumber?number=FP-UAT-20261008-SI",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "depotHead",
+                    "getDetailByNumber"
+                  ],
+                  "query": [
+                    {
+                      "key": "number",
+                      "value": "FP-UAT-20261008-SI"
+                    }
+                  ]
+                },
+                "description": "只读查询已存在的演示资料或单据；SQL对应evidence/api-readonly-verification.json。"
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"data\": {\n    \"id\": 280,\n    \"type\": \"出库\",\n    \"subType\": \"销售\",\n    \"defaultNumber\": \"FP-UAT-20261008-SI\",\n    \"number\": \"FP-UAT-20261008-SI\",\n    \"createTime\": \"2026-10-08T08:38:47.000+0000\",\n    \"operTime\": \"2026-10-08T08:38:44.000+0000\",\n    \"organId\": 93,\n    \"creator\": 149,\n    \"accountId\": 24,\n    \"changeAmount\": 2850.0,\n    \"backAmount\": 0,\n    \"totalPrice\": 2850.0,\n    \"payType\": \"现付\",\n    \"billType\": null,\n    \"remark\": \"FlowPilot虚构企业实施UAT，非生产业务\",\n    \"fileName\": null,\n    \"salesMan\": null,\n    \"accountIdList\": null,\n    \"accountMoneyList\": null,\n    \"discount\": 0.0,\n    \"discountMoney\": 0.0,\n    \"discountLastMoney\": 2850.0,\n    \"otherMoney\": 0.0,\n    \"deposit\": 0.0,\n    \"status\": \"1\",\n    \"purchaseStatus\": \"0\",\n    \"source\": \"0\",\n    \"linkNumber\": \"FP-UAT-20261008-SO\",\n    \"linkApply\": null,\n    \"tenantId\": 63,\n    \"deleteFlag\": \"0\",\n    \"projectName\": null,\n    \"organName\": \"FlowPilot汽车总装客户（虚构）\",\n    \"userName\": null,\n    \"accountName\": \"FlowPilot演示结算账户\",\n    \"allocationProjectName\": null,\n    \"materialsList\": \"FlowPilot制动支架 BRK-01  \",\n    \"salesManStr\": null,\n    \"operTimeStr\": \"2026-10-08 16:38:44\",\n    \"finishDebt\": null,\n    \"depotHeadType\": \"销售出库\",\n    \"creatorName\": \"FlowPilot销售员\",\n    \"contacts\": \"客户联系人甲\",\n    \"telephone\": \"\",\n    \"address\": \"上海演示工业园\",\n    \"finishDeposit\": null,\n    \"needDebt\": null,\n    \"debt\": 0.0,\n    \"materialCount\": 30.0,\n    \"hasFinancialFlag\": false,\n    \"hasBackFlag\": false,\n    \"realNeedDebt\": null,\n    \"bankName\": \"\",\n    \"accountNumber\": \"\",\n    \"taxNum\": \"\",\n    \"phoneNum\": \"\"\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "原料仓支架库存140",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Access-Token",
+                "value": "{{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/material/getListWithStock?currentPage=1&pageSize=10&depotIds=19&materialParam=FP-MAT-001&zeroStock=0",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "material",
+                "getListWithStock"
+              ],
+              "query": [
+                {
+                  "key": "currentPage",
+                  "value": "1"
+                },
+                {
+                  "key": "pageSize",
+                  "value": "10"
+                },
+                {
+                  "key": "depotIds",
+                  "value": "19"
+                },
+                {
+                  "key": "materialParam",
+                  "value": "FP-MAT-001"
+                },
+                {
+                  "key": "zeroStock",
+                  "value": "0"
+                }
+              ]
+            },
+            "description": "只读查询已存在的演示资料或单据；SQL对应evidence/api-readonly-verification.json。"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"native code 200\", () => pm.expect(pm.response.json().code).to.eql(200));"
+                ]
+              }
+            }
+          ],
+          "response": [
+            {
+              "name": "2026-10-08 actual captured baseline (redacted)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "X-Access-Token",
+                    "value": "{{token}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/material/getListWithStock?currentPage=1&pageSize=10&depotIds=19&materialParam=FP-MAT-001&zeroStock=0",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "material",
+                    "getListWithStock"
+                  ],
+                  "query": [
+                    {
+                      "key": "currentPage",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "depotIds",
+                      "value": "19"
+                    },
+                    {
+                      "key": "materialParam",
+                      "value": "FP-MAT-001"
+                    },
+                    {
+                      "key": "zeroStock",
+                      "value": "0"
+                    }
+                  ]
+                },
+                "description": "只读查询已存在的演示资料或单据；SQL对应evidence/api-readonly-verification.json。"
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"data\": {\n    \"currentStockPrice\": 9520.0,\n    \"total\": 1,\n    \"currentWeight\": 0.0,\n    \"currentStock\": 140.0,\n    \"rows\": [\n      {\n        \"id\": 620,\n        \"categoryId\": null,\n        \"name\": \"FlowPilot制动支架\",\n        \"mfrs\": \"FlowPilot虚构制造商\",\n        \"model\": \"\",\n        \"standard\": \"BRK-01\",\n        \"brand\": \"FlowPilot\",\n        \"mnemonic\": null,\n        \"color\": \"\",\n        \"unit\": null,\n        \"remark\": null,\n        \"imgName\": null,\n        \"unitId\": null,\n        \"expiryNum\": null,\n        \"weight\": null,\n        \"enabled\": null,\n        \"otherField1\": null,\n        \"otherField2\": null,\n        \"otherField3\": null,\n        \"enableSerialNumber\": null,\n        \"enableBatchNumber\": null,\n        \"position\": null,\n        \"attribute\": null,\n        \"tenantId\": null,\n        \"deleteFlag\": null,\n        \"unitName\": \"件\",\n        \"ratio\": null,\n        \"categoryName\": null,\n        \"materialOther\": null,\n        \"stock\": null,\n        \"purchaseDecimal\": 68.0,\n        \"commodityDecimal\": null,\n        \"wholesaleDecimal\": null,\n        \"lowDecimal\": null,\n        \"billPrice\": null,\n        \"mBarCode\": \"FP-MAT-001\",\n        \"commodityUnit\": null,\n        \"meId\": null,\n        \"initialStock\": 50.0,\n        \"currentUnitPrice\": 68.0,\n        \"currentStock\": 140.0,\n        \"currentStockPrice\": 9520.0,\n        \"currentStockMovePrice\": 9520.0,\n        \"currentWeight\": 0.0,\n        \"sku\": null,\n        \"depotId\": null,\n        \"bigUnitStock\": \"\",\n        \"bigUnitInitialStock\": null,\n        \"imgSmall\": null,\n        \"imgLarge\": null\n      }\n    ]\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "已验证采购订单明细",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Access-Token",
+                "value": "{{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/depotItem/getDetailList?headerId=277&mpList=",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "depotItem",
+                "getDetailList"
+              ],
+              "query": [
+                {
+                  "key": "headerId",
+                  "value": "277"
+                },
+                {
+                  "key": "mpList",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "只读查询已存在的演示资料或单据；SQL对应evidence/api-readonly-verification.json。"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"native code 200\", () => pm.expect(pm.response.json().code).to.eql(200));"
+                ]
+              }
+            }
+          ],
+          "response": [
+            {
+              "name": "2026-10-08 actual captured baseline (redacted)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "X-Access-Token",
+                    "value": "{{token}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/depotItem/getDetailList?headerId=277&mpList=",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "depotItem",
+                    "getDetailList"
+                  ],
+                  "query": [
+                    {
+                      "key": "headerId",
+                      "value": "277"
+                    },
+                    {
+                      "key": "mpList",
+                      "value": ""
+                    }
+                  ]
+                },
+                "description": "只读查询已存在的演示资料或单据；SQL对应evidence/api-readonly-verification.json。"
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"data\": {\n    \"total\": 1,\n    \"rows\": [\n      {\n        \"standard\": \"BRK-01\",\n        \"materialExtendId\": 40,\n        \"anotherDepotName\": \"\",\n        \"color\": \"\",\n        \"preNumber\": 120.0,\n        \"depotId\": \"\",\n        \"remark\": \"实施验收\",\n        \"purchaseDecimal\": 68.0,\n        \"imgName\": null,\n        \"operNumber\": 120.0,\n        \"anotherDepotId\": \"\",\n        \"basicNumber\": 120.0,\n        \"model\": \"\",\n        \"id\": 334,\n        \"enableSerialNumber\": \"0\",\n        \"stock\": 150.0,\n        \"sku\": null,\n        \"brand\": \"FlowPilot\",\n        \"finishNumber\": 120.0,\n        \"batchNumber\": null,\n        \"expirationDate\": \"\",\n        \"enableBatchNumber\": \"0\",\n        \"op\": 1,\n        \"otherField1\": null,\n        \"depotName\": \"\",\n        \"mfrs\": \"FlowPilot虚构制造商\",\n        \"weight\": 0,\n        \"otherField3\": null,\n        \"otherField2\": null,\n        \"imgSmall\": \"\",\n        \"barCode\": \"FP-MAT-001\",\n        \"mType\": null,\n        \"unit\": \"件\",\n        \"linkId\": null,\n        \"snList\": null,\n        \"name\": \"FlowPilot制动支架\",\n        \"imgLarge\": \"\",\n        \"position\": null\n      }\n    ]\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "已验证销售订单明细",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Access-Token",
+                "value": "{{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/depotItem/getDetailList?headerId=279&mpList=",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "depotItem",
+                "getDetailList"
+              ],
+              "query": [
+                {
+                  "key": "headerId",
+                  "value": "279"
+                },
+                {
+                  "key": "mpList",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "只读查询已存在的演示资料或单据；SQL对应evidence/api-readonly-verification.json。"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"native code 200\", () => pm.expect(pm.response.json().code).to.eql(200));"
+                ]
+              }
+            }
+          ],
+          "response": [
+            {
+              "name": "2026-10-08 actual captured baseline (redacted)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "X-Access-Token",
+                    "value": "{{token}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/depotItem/getDetailList?headerId=279&mpList=",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "depotItem",
+                    "getDetailList"
+                  ],
+                  "query": [
+                    {
+                      "key": "headerId",
+                      "value": "279"
+                    },
+                    {
+                      "key": "mpList",
+                      "value": ""
+                    }
+                  ]
+                },
+                "description": "只读查询已存在的演示资料或单据；SQL对应evidence/api-readonly-verification.json。"
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"data\": {\n    \"total\": 1,\n    \"rows\": [\n      {\n        \"standard\": \"BRK-01\",\n        \"materialExtendId\": 40,\n        \"anotherDepotName\": \"\",\n        \"color\": \"\",\n        \"preNumber\": 30.0,\n        \"depotId\": \"\",\n        \"remark\": \"实施验收\",\n        \"purchaseDecimal\": 68.0,\n        \"imgName\": null,\n        \"operNumber\": 30.0,\n        \"anotherDepotId\": \"\",\n        \"basicNumber\": 30.0,\n        \"model\": \"\",\n        \"id\": 336,\n        \"enableSerialNumber\": \"0\",\n        \"stock\": 150.0,\n        \"sku\": null,\n        \"brand\": \"FlowPilot\",\n        \"finishNumber\": 30.0,\n        \"batchNumber\": null,\n        \"expirationDate\": \"\",\n        \"enableBatchNumber\": \"0\",\n        \"op\": 1,\n        \"otherField1\": null,\n        \"depotName\": \"\",\n        \"mfrs\": \"FlowPilot虚构制造商\",\n        \"weight\": 0,\n        \"otherField3\": null,\n        \"otherField2\": null,\n        \"imgSmall\": \"\",\n        \"barCode\": \"FP-MAT-001\",\n        \"mType\": null,\n        \"unit\": \"件\",\n        \"linkId\": null,\n        \"snList\": null,\n        \"name\": \"FlowPilot制动支架\",\n        \"imgLarge\": \"\",\n        \"position\": null\n      }\n    ]\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "当前岗位菜单",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Access-Token",
+                "value": "{{token}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/function/findMenuByPNumber",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "function",
+                "findMenuByPNumber"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pNumber\": \"0\",\n  \"userId\": \"{{user_id}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"native code 200\", () => pm.expect(pm.response.json().code).to.eql(200));"
+                ]
+              }
+            }
+          ],
+          "response": [
+            {
+              "name": "2026-10-08 actual captured baseline (redacted)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "X-Access-Token",
+                    "value": "{{token}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/function/findMenuByPNumber",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "function",
+                    "findMenuByPNumber"
+                  ]
+                },
+                "description": "",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pNumber\": \"0\",\n  \"userId\": \"{{user_id}}\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"component\": \"/layouts/TabLayout\",\n    \"icon\": \"home\",\n    \"id\": 0,\n    \"text\": \"首页\",\n    \"url\": \"/dashboard/analysis\"\n  },\n  {\n    \"component\": \"/layouts/TabLayout\",\n    \"children\": [\n      {\n        \"component\": \"/bill/RetailOutList\",\n        \"icon\": \"profile\",\n        \"id\": 210,\n        \"text\": \"零售出库\",\n        \"url\": \"/bill/retail_out\"\n      },\n      {\n        \"component\": \"/bill/RetailBackList\",\n        \"icon\": \"profile\",\n        \"id\": 211,\n        \"text\": \"零售退货\",\n        \"url\": \"/bill/retail_back\"\n      }\n    ],\n    \"icon\": \"gift\",\n    \"id\": 225,\n    \"text\": \"零售管理\",\n    \"url\": \"/billC\"\n  },\n  {\n    \"component\": \"/layouts/TabLayout\",\n    \"children\": [\n      {\n        \"component\": \"/bill/PurchaseApplyList\",\n        \"icon\": \"profile\",\n        \"id\": 261,\n        \"text\": \"请购单\",\n        \"url\": \"/bill/purchase_apply\"\n      },\n      {\n        \"component\": \"/bill/PurchaseOrderList\",\n        \"icon\": \"profile\",\n        \"id\": 241,\n        \"text\": \"采购订单\",\n        \"url\": \"/bill/purchase_order\"\n      },\n      {\n        \"component\": \"/bill/PurchaseInList\",\n        \"icon\": \"profile\",\n        \"id\": 33,\n        \"text\": \"采购入库\",\n        \"url\": \"/bill/purchase_in\"\n      },\n      {\n        \"component\": \"/bill/PurchaseBackList\",\n        \"icon\": \"profile\",\n        \"id\": 199,\n        \"text\": \"采购退货\",\n        \"url\": \"/bill/purchase_back\"\n      }\n    ],\n    \"icon\": \"retweet\",\n    \"id\": 32,\n    \"text\": \"采购管理\",\n    \"url\": \"/bill\"\n  },\n  {\n    \"component\": \"/layouts/TabLayout\",\n    \"children\": [\n      {\n        \"component\": \"/bill/SaleOrderList\",\n        \"icon\": \"profile\",\n        \"id\": 242,\n        \"text\": \"销售订单\",\n        \"url\": \"/bill/sale_order\"\n      },\n      {\n        \"component\": \"/bill/SaleOutList\",\n        \"icon\": \"profile\",\n        \"id\": 41,\n        \"text\": \"销售出库\",\n        \"url\": \"/bill/sale_out\"\n      },\n      {\n        \"component\": \"/bill/SaleBackList\",\n        \"icon\": \"profile\",\n        \"id\": 200,\n        \"text\": \"销售退货\",\n        \"url\": \"/bill/sale_back\"\n      }\n    ],\n    \"icon\": \"shopping-cart\",\n    \"id\": 38,\n    \"text\": \"销售管理\",\n    \"url\": \"/billB\"\n  },\n  {\n    \"component\": \"/layouts/TabLayout\",\n    \"children\": [\n      {\n        \"component\": \"/bill/OtherInList\",\n        \"icon\": \"profile\",\n        \"id\": 201,\n        \"text\": \"其它入库\",\n        \"url\": \"/bill/other_in\"\n      },\n      {\n        \"component\": \"/bill/OtherOutList\",\n        \"icon\": \"profile\",\n        \"id\": 202,\n        \"text\": \"其它出库\",\n        \"url\": \"/bill/other_out\"\n      },\n      {\n        \"component\": \"/bill/AllocationOutList\",\n        \"icon\": \"profile\",\n        \"id\": 40,\n        \"text\": \"调拨出库\",\n        \"url\": \"/bill/allocation_out\"\n      },\n      {\n        \"component\": \"/bill/AssembleList\",\n        \"icon\": \"profile\",\n        \"id\": 232,\n        \"text\": \"组装单\",\n        \"url\": \"/bill/assemble\"\n      },\n      {\n        \"component\": \"/bill/DisassembleList\",\n        \"icon\": \"profile\",\n        \"id\": 233,\n        \"text\": \"拆卸单\",\n        \"url\": \"/bill/disassemble\"\n      }\n    ],\n    \"icon\": \"hdd\",\n    \"id\": 239,\n    \"text\": \"仓库管理\",\n    \"url\": \"/billD\"\n  },\n  {\n    \"component\": \"/layouts/TabLayout\",\n    \"children\": [\n      {\n        \"component\": \"/financial/ItemInList\",\n        \"icon\": \"profile\",\n        \"id\": 197,\n        \"text\": \"收入单\",\n        \"url\": \"/financial/item_in\"\n      },\n      {\n        \"component\": \"/financial/ItemOutList\",\n        \"icon\": \"profile\",\n        \"id\": 203,\n        \"text\": \"支出单\",\n        \"url\": \"/financial/item_out\"\n      },\n      {\n        \"component\": \"/financial/MoneyInList\",\n        \"icon\": \"profile\",\n        \"id\": 204,\n        \"text\": \"收款单\",\n        \"url\": \"/financial/money_in\"\n      },\n      {\n        \"component\": \"/financial/MoneyOutList\",\n        \"icon\": \"profile\",\n        \"id\": 205,\n        \"text\": \"付款单\",\n        \"url\": \"/financial/money_out\"\n      },\n      {\n        \"component\": \"/financial/GiroList\",\n        \"icon\": \"profile\",\n        \"id\": 206,\n        \"text\": \"转账单\",\n        \"url\": \"/financial/giro\"\n      },\n      {\n        \"component\": \"/financial/AdvanceInList\",\n        \"icon\": \"profile\",\n        \"id\": 212,\n        \"text\": \"收预付款\",\n        \"url\": \"/financial/advance_in\"\n      }\n    ],\n    \"icon\": \"money-collect\",\n    \"id\": 44,\n    \"text\": \"财务管理\",\n    \"url\": \"/financial\"\n  },\n  {\n    \"component\": \"/layouts/TabLayout\",\n    \"children\": [\n      {\n        \"component\": \"/report/MaterialStock\",\n        \"icon\": \"profile\",\n        \"id\": 246,\n        \"text\": \"商品库存\",\n        \"url\": \"/report/material_stock\"\n      },\n      {\n        \"component\": \"/report/AccountReport\",\n        \"icon\": \"profile\",\n        \"id\": 207,\n        \"text\": \"账户统计\",\n        \"url\": \"/report/account_report\"\n      },\n      {\n        \"component\": \"/report/RetailOutReport\",\n        \"icon\": \"profile\",\n        \"id\": 259,\n        \"text\": \"零售统计\",\n        \"url\": \"/report/retail_out_report\"\n      },\n      {\n        \"component\": \"/report/BuyInReport\",\n        \"icon\": \"profile\",\n        \"id\": 208,\n        \"text\": \"采购统计\",\n        \"url\": \"/report/buy_in_report\"\n      },\n      {\n        \"component\": \"/report/SaleOutReport\",\n        \"icon\": \"profile\",\n        \"id\": 209,\n        \"text\": \"销售统计\",\n        \"url\": \"/report/sale_out_report\"\n      },\n      {\n        \"component\": \"/report/InDetail\",\n        \"icon\": \"profile\",\n        \"id\": 226,\n        \"text\": \"入库明细\",\n        \"url\": \"/report/in_detail\"\n      },\n      {\n        \"component\": \"/report/OutDetail\",\n        \"icon\": \"profile\",\n        \"id\": 227,\n        \"text\": \"出库明细\",\n        \"url\": \"/report/out_detail\"\n      },\n      {\n        \"component\": \"/report/AllocationDetail\",\n        \"icon\": \"profile\",\n        \"id\": 248,\n        \"text\": \"调拨明细\",\n        \"url\": \"/report/allocation_detail\"\n      },\n      {\n        \"component\": \"/report/InMaterialCount\",\n        \"icon\": \"profile\",\n        \"id\": 228,\n        \"text\": \"入库汇总\",\n        \"url\": \"/report/in_material_count\"\n      },\n      {\n        \"component\": \"/report/OutMaterialCount\",\n        \"icon\": \"profile\",\n        \"id\": 229,\n        \"text\": \"出库汇总\",\n        \"url\": \"/report/out_material_count\"\n      },\n      {\n        \"component\": \"/report/InOutStockReport\",\n        \"icon\": \"profile\",\n        \"id\": 59,\n        \"text\": \"进销存统计\",\n        \"url\": \"/report/in_out_stock_report\"\n      },\n      {\n        \"component\": \"/report/CustomerAccount\",\n        \"icon\": \"profile\",\n        \"id\": 235,\n        \"text\": \"客户对账\",\n        \"url\": \"/report/customer_account\"\n      },\n      {\n        \"component\": \"/report/VendorAccount\",\n        \"icon\": \"profile\",\n        \"id\": 237,\n        \"text\": \"供应商对账\",\n        \"url\": \"/report/vendor_account\"\n      },\n      {\n        \"component\": \"/report/StockWarningReport\",\n        \"icon\": \"profile\",\n        \"id\": 244,\n        \"text\": \"库存预警\",\n        \"url\": \"/report/stock_warning_report\"\n      }\n    ],\n    \"icon\": \"pie-chart\",\n    \"id\": 198,\n    \"text\": \"报表查询\",\n    \"url\": \"/report\"\n  },\n  {\n    \"component\": \"/layouts/TabLayout\",\n    \"children\": [\n      {\n        \"component\": \"/material/MaterialCategoryList\",\n        \"icon\": \"profile\",\n        \"id\": 22,\n        \"text\": \"商品类别\",\n        \"url\": \"/material/material_category\"\n      },\n      {\n        \"component\": \"/material/MaterialList\",\n        \"icon\": \"profile\",\n        \"id\": 23,\n        \"text\": \"商品信息\",\n        \"url\": \"/material/material\"\n      },\n      {\n        \"component\": \"/system/UnitList\",\n        \"icon\": \"profile\",\n        \"id\": 220,\n        \"text\": \"多单位\",\n        \"url\": \"/system/unit\"\n      },\n      {\n        \"component\": \"/material/MaterialAttributeList\",\n        \"icon\": \"profile\",\n        \"id\": 247,\n        \"text\": \"多属性\",\n        \"url\": \"/material/material_attribute\"\n      }\n    ],\n    \"icon\": \"shopping\",\n    \"id\": 21,\n    \"text\": \"商品管理\",\n    \"url\": \"/material\"\n  },\n  {\n    \"component\": \"/layouts/TabLayout\",\n    \"children\": [\n      {\n        \"component\": \"/system/VendorList\",\n        \"icon\": \"profile\",\n        \"id\": 25,\n        \"text\": \"供应商信息\",\n        \"url\": \"/system/vendor\"\n      },\n      {\n        \"component\": \"/system/CustomerList\",\n        \"icon\": \"profile\",\n        \"id\": 217,\n        \"text\": \"客户信息\",\n        \"url\": \"/system/customer\"\n      },\n      {\n        \"component\": \"/system/MemberList\",\n        \"icon\": \"profile\",\n        \"id\": 218,\n        \"text\": \"会员信息\",\n        \"url\": \"/system/member\"\n      },\n      {\n        \"component\": \"/system/DepotList\",\n        \"icon\": \"profile\",\n        \"id\": 26,\n        \"text\": \"仓库信息\",\n        \"url\": \"/system/depot\"\n      },\n      {\n        \"component\": \"/system/InOutItemList\",\n        \"icon\": \"profile\",\n        \"id\": 194,\n        \"text\": \"收支项目\",\n        \"url\": \"/system/in_out_item\"\n      },\n      {\n        \"component\": \"/system/AccountList\",\n        \"icon\": \"profile\",\n        \"id\": 195,\n        \"text\": \"结算账户\",\n        \"url\": \"/system/account\"\n      },\n      {\n        \"component\": \"/system/PersonList\",\n        \"icon\": \"profile\",\n        \"id\": 31,\n        \"text\": \"经手人管理\",\n        \"url\": \"/system/person\"\n      }\n    ],\n    \"icon\": \"appstore\",\n    \"id\": 24,\n    \"text\": \"基础资料\",\n    \"url\": \"/systemA\"\n  }\n]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "隔离实验写入（默认阻止）",
+      "item": [
+        {
+          "name": "新采购订单120件",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Access-Token",
+                "value": "{{token}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/depotHead/addDepotHeadAndDetail",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "depotHead",
+                "addDepotHeadAndDetail"
+              ]
+            },
+            "description": "根据真实请求生成。先查询本轮订单头/行ID；保存后需显式审核，不能沿用现有UAT ID。",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"info\": \"{\\\"number\\\": \\\"{{new_run}}-PO\\\", \\\"defaultNumber\\\": \\\"{{new_run}}-PO\\\", \\\"type\\\": \\\"其它\\\", \\\"subType\\\": \\\"采购订单\\\", \\\"organId\\\": \\\"{{supplier_id}}\\\", \\\"accountId\\\": \\\"{{account_id}}\\\", \\\"operTime\\\": \\\"{{oper_time}}\\\", \\\"totalPrice\\\": -8160, \\\"changeAmount\\\": 0, \\\"discount\\\": 0, \\\"discountMoney\\\": 0, \\\"discountLastMoney\\\": 8160, \\\"otherMoney\\\": 0, \\\"deposit\\\": 0, \\\"payType\\\": \\\"现付\\\", \\\"status\\\": \\\"0\\\", \\\"remark\\\": \\\"FlowPilot虚构企业实施UAT，非生产业务\\\", \\\"linkNumber\\\": \\\"\\\"}\",\n  \"rows\": \"[{\\\"barCode\\\": \\\"FP-MAT-001\\\", \\\"unit\\\": \\\"件\\\", \\\"operNumber\\\": 120, \\\"unitPrice\\\": 68, \\\"allPrice\\\": 8160, \\\"taxRate\\\": 0, \\\"taxMoney\\\": 0, \\\"taxLastMoney\\\": 8160, \\\"depotId\\\": null, \\\"remark\\\": \\\"实施验收\\\"}]\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"native code 200\", () => pm.expect(pm.response.json().code).to.eql(200));"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if(pm.environment.get(\"allow_mutation\") !== \"true\") throw new Error(\"Writes disabled. Use isolated test DB and explicitly set allow_mutation=true\");",
+                  "if(!pm.environment.get(\"new_run\")) pm.environment.set(\"new_run\", \"FP-POSTMAN-\"+Date.now());",
+                  "if(!/^FP-POSTMAN-/.test(pm.environment.get(\"new_run\"))) throw new Error(\"Use a fresh FP-POSTMAN run prefix, never the accepted UAT run\");",
+                  "pm.environment.set(\"oper_time\", new Date().toISOString().slice(0,19).replace(\"T\",\" \"));",
+                  "setTimeout(()=>{},1700);"
+                ]
+              }
+            }
+          ],
+          "response": [
+            {
+              "name": "2026-10-08 actual captured baseline (redacted)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "X-Access-Token",
+                    "value": "{{token}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/depotHead/addDepotHeadAndDetail",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "depotHead",
+                    "addDepotHeadAndDetail"
+                  ]
+                },
+                "description": "根据真实请求生成。先查询本轮订单头/行ID；保存后需显式审核，不能沿用现有UAT ID。",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"info\": \"{\\\"number\\\": \\\"{{new_run}}-PO\\\", \\\"defaultNumber\\\": \\\"{{new_run}}-PO\\\", \\\"type\\\": \\\"其它\\\", \\\"subType\\\": \\\"采购订单\\\", \\\"organId\\\": \\\"{{supplier_id}}\\\", \\\"accountId\\\": \\\"{{account_id}}\\\", \\\"operTime\\\": \\\"{{oper_time}}\\\", \\\"totalPrice\\\": -8160, \\\"changeAmount\\\": 0, \\\"discount\\\": 0, \\\"discountMoney\\\": 0, \\\"discountLastMoney\\\": 8160, \\\"otherMoney\\\": 0, \\\"deposit\\\": 0, \\\"payType\\\": \\\"现付\\\", \\\"status\\\": \\\"0\\\", \\\"remark\\\": \\\"FlowPilot虚构企业实施UAT，非生产业务\\\", \\\"linkNumber\\\": \\\"\\\"}\",\n  \"rows\": \"[{\\\"barCode\\\": \\\"FP-MAT-001\\\", \\\"unit\\\": \\\"件\\\", \\\"operNumber\\\": 120, \\\"unitPrice\\\": 68, \\\"allPrice\\\": 8160, \\\"taxRate\\\": 0, \\\"taxMoney\\\": 0, \\\"taxLastMoney\\\": 8160, \\\"depotId\\\": null, \\\"remark\\\": \\\"实施验收\\\"}]\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"msg\": \"操作成功\",\n  \"code\": 200\n}"
+            }
+          ]
+        },
+        {
+          "name": "新采购订单120件：查询本轮单据",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Access-Token",
+                "value": "{{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/depotHead/getDetailByNumber?number=%7B%7Bnew_run%7D%7D-PO",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "depotHead",
+                "getDetailByNumber"
+              ],
+              "query": [
+                {
+                  "key": "number",
+                  "value": "{{new_run}}-PO"
+                }
+              ]
+            },
+            "description": "保存本轮头ID供审核/明细查询。查询模板来自原生合同，尚未在新Postman业务轮次执行。"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"native code 200\", () => pm.expect(pm.response.json().code).to.eql(200));",
+                  "const d=pm.response.json().data; if(d && String(d.number).startsWith(pm.environment.get(\"new_run\"))) pm.environment.set(\"document_id\",String(d.id));"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "name": "新采购订单120件：查询本轮关联行ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Access-Token",
+                "value": "{{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/depotItem/getDetailList?headerId=%7B%7Bdocument_id%7D%7D&mpList=",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "depotItem",
+                "getDetailList"
+              ],
+              "query": [
+                {
+                  "key": "headerId",
+                  "value": "{{document_id}}"
+                },
+                {
+                  "key": "mpList",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "从真实原生明细响应提取本轮订单行ID，手动填写purchase_order_item_id或sale_order_item_id；不要沿用现有UAT行ID。"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"native code 200\", () => pm.expect(pm.response.json().code).to.eql(200));"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "name": "新采购订单120件：审核本轮单据",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Access-Token",
+                "value": "{{token}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/depotHead/batchSetStatus",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "depotHead",
+                "batchSetStatus"
+              ]
+            },
+            "description": "只对当前隔离测试轮次新单审核，不使用固定验收单ID。",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ids\": \"{{document_id}}\",\n  \"status\": \"1\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"native code 200\", () => pm.expect(pm.response.json().code).to.eql(200));"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if(pm.environment.get(\"allow_mutation\") !== \"true\") throw new Error(\"Writes disabled. Use isolated test DB and explicitly set allow_mutation=true\");",
+                  "if(!pm.environment.get(\"new_run\")) pm.environment.set(\"new_run\", \"FP-POSTMAN-\"+Date.now());",
+                  "if(!/^FP-POSTMAN-/.test(pm.environment.get(\"new_run\"))) throw new Error(\"Use a fresh FP-POSTMAN run prefix, never the accepted UAT run\");",
+                  "pm.environment.set(\"oper_time\", new Date().toISOString().slice(0,19).replace(\"T\",\" \"));",
+                  "setTimeout(()=>{},1700);",
+                  "if(!pm.environment.get(\"document_id\")) throw new Error(\"Set the NEW document_id first\");"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "name": "新采购入库120件",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Access-Token",
+                "value": "{{token}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/depotHead/addDepotHeadAndDetail",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "depotHead",
+                "addDepotHeadAndDetail"
+              ]
+            },
+            "description": "根据真实请求生成。先查询本轮订单头/行ID；保存后需显式审核，不能沿用现有UAT ID。",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"info\": \"{\\\"number\\\": \\\"{{new_run}}-PI\\\", \\\"defaultNumber\\\": \\\"{{new_run}}-PI\\\", \\\"type\\\": \\\"入库\\\", \\\"subType\\\": \\\"采购\\\", \\\"organId\\\": \\\"{{supplier_id}}\\\", \\\"accountId\\\": \\\"{{account_id}}\\\", \\\"operTime\\\": \\\"{{oper_time}}\\\", \\\"totalPrice\\\": -8160, \\\"changeAmount\\\": -8160, \\\"discount\\\": 0, \\\"discountMoney\\\": 0, \\\"discountLastMoney\\\": 8160, \\\"otherMoney\\\": 0, \\\"deposit\\\": 0, \\\"payType\\\": \\\"现付\\\", \\\"status\\\": \\\"0\\\", \\\"remark\\\": \\\"FlowPilot虚构企业实施UAT，非生产业务\\\", \\\"linkNumber\\\": \\\"{{new_run}}-PO\\\"}\",\n  \"rows\": \"[{\\\"barCode\\\": \\\"FP-MAT-001\\\", \\\"unit\\\": \\\"件\\\", \\\"operNumber\\\": 120, \\\"unitPrice\\\": 68, \\\"allPrice\\\": 8160, \\\"taxRate\\\": 0, \\\"taxMoney\\\": 0, \\\"taxLastMoney\\\": 8160, \\\"depotId\\\": \\\"{{depot_id}}\\\", \\\"remark\\\": \\\"实施验收\\\", \\\"linkId\\\": \\\"{{purchase_order_item_id}}\\\", \\\"preNumber\\\": 120.0, \\\"finishNumber\\\": 0}]\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"native code 200\", () => pm.expect(pm.response.json().code).to.eql(200));"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if(pm.environment.get(\"allow_mutation\") !== \"true\") throw new Error(\"Writes disabled. Use isolated test DB and explicitly set allow_mutation=true\");",
+                  "if(!pm.environment.get(\"new_run\")) pm.environment.set(\"new_run\", \"FP-POSTMAN-\"+Date.now());",
+                  "if(!/^FP-POSTMAN-/.test(pm.environment.get(\"new_run\"))) throw new Error(\"Use a fresh FP-POSTMAN run prefix, never the accepted UAT run\");",
+                  "pm.environment.set(\"oper_time\", new Date().toISOString().slice(0,19).replace(\"T\",\" \"));",
+                  "setTimeout(()=>{},1700);",
+                  "if(!pm.environment.get(\"purchase_order_item_id\")) throw new Error(\"Query the NEW order detail and set purchase_order_item_id; never reuse baseline IDs\");"
+                ]
+              }
+            }
+          ],
+          "response": [
+            {
+              "name": "2026-10-08 actual captured baseline (redacted)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "X-Access-Token",
+                    "value": "{{token}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/depotHead/addDepotHeadAndDetail",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "depotHead",
+                    "addDepotHeadAndDetail"
+                  ]
+                },
+                "description": "根据真实请求生成。先查询本轮订单头/行ID；保存后需显式审核，不能沿用现有UAT ID。",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"info\": \"{\\\"number\\\": \\\"{{new_run}}-PI\\\", \\\"defaultNumber\\\": \\\"{{new_run}}-PI\\\", \\\"type\\\": \\\"入库\\\", \\\"subType\\\": \\\"采购\\\", \\\"organId\\\": \\\"{{supplier_id}}\\\", \\\"accountId\\\": \\\"{{account_id}}\\\", \\\"operTime\\\": \\\"{{oper_time}}\\\", \\\"totalPrice\\\": -8160, \\\"changeAmount\\\": -8160, \\\"discount\\\": 0, \\\"discountMoney\\\": 0, \\\"discountLastMoney\\\": 8160, \\\"otherMoney\\\": 0, \\\"deposit\\\": 0, \\\"payType\\\": \\\"现付\\\", \\\"status\\\": \\\"0\\\", \\\"remark\\\": \\\"FlowPilot虚构企业实施UAT，非生产业务\\\", \\\"linkNumber\\\": \\\"{{new_run}}-PO\\\"}\",\n  \"rows\": \"[{\\\"barCode\\\": \\\"FP-MAT-001\\\", \\\"unit\\\": \\\"件\\\", \\\"operNumber\\\": 120, \\\"unitPrice\\\": 68, \\\"allPrice\\\": 8160, \\\"taxRate\\\": 0, \\\"taxMoney\\\": 0, \\\"taxLastMoney\\\": 8160, \\\"depotId\\\": \\\"{{depot_id}}\\\", \\\"remark\\\": \\\"实施验收\\\", \\\"linkId\\\": \\\"{{purchase_order_item_id}}\\\", \\\"preNumber\\\": 120.0, \\\"finishNumber\\\": 0}]\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"msg\": \"操作成功\",\n  \"code\": 200\n}"
+            }
+          ]
+        },
+        {
+          "name": "新采购入库120件：查询本轮单据",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Access-Token",
+                "value": "{{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/depotHead/getDetailByNumber?number=%7B%7Bnew_run%7D%7D-PI",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "depotHead",
+                "getDetailByNumber"
+              ],
+              "query": [
+                {
+                  "key": "number",
+                  "value": "{{new_run}}-PI"
+                }
+              ]
+            },
+            "description": "保存本轮头ID供审核/明细查询。查询模板来自原生合同，尚未在新Postman业务轮次执行。"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"native code 200\", () => pm.expect(pm.response.json().code).to.eql(200));",
+                  "const d=pm.response.json().data; if(d && String(d.number).startsWith(pm.environment.get(\"new_run\"))) pm.environment.set(\"document_id\",String(d.id));"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "name": "新采购入库120件：审核本轮单据",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Access-Token",
+                "value": "{{token}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/depotHead/batchSetStatus",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "depotHead",
+                "batchSetStatus"
+              ]
+            },
+            "description": "只对当前隔离测试轮次新单审核，不使用固定验收单ID。",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ids\": \"{{document_id}}\",\n  \"status\": \"1\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"native code 200\", () => pm.expect(pm.response.json().code).to.eql(200));"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if(pm.environment.get(\"allow_mutation\") !== \"true\") throw new Error(\"Writes disabled. Use isolated test DB and explicitly set allow_mutation=true\");",
+                  "if(!pm.environment.get(\"new_run\")) pm.environment.set(\"new_run\", \"FP-POSTMAN-\"+Date.now());",
+                  "if(!/^FP-POSTMAN-/.test(pm.environment.get(\"new_run\"))) throw new Error(\"Use a fresh FP-POSTMAN run prefix, never the accepted UAT run\");",
+                  "pm.environment.set(\"oper_time\", new Date().toISOString().slice(0,19).replace(\"T\",\" \"));",
+                  "setTimeout(()=>{},1700);",
+                  "if(!pm.environment.get(\"document_id\")) throw new Error(\"Set the NEW document_id first\");"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "name": "新销售订单30件",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Access-Token",
+                "value": "{{token}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/depotHead/addDepotHeadAndDetail",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "depotHead",
+                "addDepotHeadAndDetail"
+              ]
+            },
+            "description": "根据真实请求生成。先查询本轮订单头/行ID；保存后需显式审核，不能沿用现有UAT ID。",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"info\": \"{\\\"number\\\": \\\"{{new_run}}-SO\\\", \\\"defaultNumber\\\": \\\"{{new_run}}-SO\\\", \\\"type\\\": \\\"其它\\\", \\\"subType\\\": \\\"销售订单\\\", \\\"organId\\\": \\\"{{customer_id}}\\\", \\\"accountId\\\": \\\"{{account_id}}\\\", \\\"operTime\\\": \\\"{{oper_time}}\\\", \\\"totalPrice\\\": 2850, \\\"changeAmount\\\": 0, \\\"discount\\\": 0, \\\"discountMoney\\\": 0, \\\"discountLastMoney\\\": 2850, \\\"otherMoney\\\": 0, \\\"deposit\\\": 0, \\\"payType\\\": \\\"现付\\\", \\\"status\\\": \\\"0\\\", \\\"remark\\\": \\\"FlowPilot虚构企业实施UAT，非生产业务\\\", \\\"linkNumber\\\": \\\"\\\"}\",\n  \"rows\": \"[{\\\"barCode\\\": \\\"FP-MAT-001\\\", \\\"unit\\\": \\\"件\\\", \\\"operNumber\\\": 30, \\\"unitPrice\\\": 95, \\\"allPrice\\\": 2850, \\\"taxRate\\\": 0, \\\"taxMoney\\\": 0, \\\"taxLastMoney\\\": 2850, \\\"depotId\\\": null, \\\"remark\\\": \\\"实施验收\\\"}]\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"native code 200\", () => pm.expect(pm.response.json().code).to.eql(200));"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if(pm.environment.get(\"allow_mutation\") !== \"true\") throw new Error(\"Writes disabled. Use isolated test DB and explicitly set allow_mutation=true\");",
+                  "if(!pm.environment.get(\"new_run\")) pm.environment.set(\"new_run\", \"FP-POSTMAN-\"+Date.now());",
+                  "if(!/^FP-POSTMAN-/.test(pm.environment.get(\"new_run\"))) throw new Error(\"Use a fresh FP-POSTMAN run prefix, never the accepted UAT run\");",
+                  "pm.environment.set(\"oper_time\", new Date().toISOString().slice(0,19).replace(\"T\",\" \"));",
+                  "setTimeout(()=>{},1700);"
+                ]
+              }
+            }
+          ],
+          "response": [
+            {
+              "name": "2026-10-08 actual captured baseline (redacted)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "X-Access-Token",
+                    "value": "{{token}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/depotHead/addDepotHeadAndDetail",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "depotHead",
+                    "addDepotHeadAndDetail"
+                  ]
+                },
+                "description": "根据真实请求生成。先查询本轮订单头/行ID；保存后需显式审核，不能沿用现有UAT ID。",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"info\": \"{\\\"number\\\": \\\"{{new_run}}-SO\\\", \\\"defaultNumber\\\": \\\"{{new_run}}-SO\\\", \\\"type\\\": \\\"其它\\\", \\\"subType\\\": \\\"销售订单\\\", \\\"organId\\\": \\\"{{customer_id}}\\\", \\\"accountId\\\": \\\"{{account_id}}\\\", \\\"operTime\\\": \\\"{{oper_time}}\\\", \\\"totalPrice\\\": 2850, \\\"changeAmount\\\": 0, \\\"discount\\\": 0, \\\"discountMoney\\\": 0, \\\"discountLastMoney\\\": 2850, \\\"otherMoney\\\": 0, \\\"deposit\\\": 0, \\\"payType\\\": \\\"现付\\\", \\\"status\\\": \\\"0\\\", \\\"remark\\\": \\\"FlowPilot虚构企业实施UAT，非生产业务\\\", \\\"linkNumber\\\": \\\"\\\"}\",\n  \"rows\": \"[{\\\"barCode\\\": \\\"FP-MAT-001\\\", \\\"unit\\\": \\\"件\\\", \\\"operNumber\\\": 30, \\\"unitPrice\\\": 95, \\\"allPrice\\\": 2850, \\\"taxRate\\\": 0, \\\"taxMoney\\\": 0, \\\"taxLastMoney\\\": 2850, \\\"depotId\\\": null, \\\"remark\\\": \\\"实施验收\\\"}]\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"msg\": \"操作成功\",\n  \"code\": 200\n}"
+            }
+          ]
+        },
+        {
+          "name": "新销售订单30件：查询本轮单据",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Access-Token",
+                "value": "{{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/depotHead/getDetailByNumber?number=%7B%7Bnew_run%7D%7D-SO",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "depotHead",
+                "getDetailByNumber"
+              ],
+              "query": [
+                {
+                  "key": "number",
+                  "value": "{{new_run}}-SO"
+                }
+              ]
+            },
+            "description": "保存本轮头ID供审核/明细查询。查询模板来自原生合同，尚未在新Postman业务轮次执行。"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"native code 200\", () => pm.expect(pm.response.json().code).to.eql(200));",
+                  "const d=pm.response.json().data; if(d && String(d.number).startsWith(pm.environment.get(\"new_run\"))) pm.environment.set(\"document_id\",String(d.id));"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "name": "新销售订单30件：查询本轮关联行ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Access-Token",
+                "value": "{{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/depotItem/getDetailList?headerId=%7B%7Bdocument_id%7D%7D&mpList=",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "depotItem",
+                "getDetailList"
+              ],
+              "query": [
+                {
+                  "key": "headerId",
+                  "value": "{{document_id}}"
+                },
+                {
+                  "key": "mpList",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "从真实原生明细响应提取本轮订单行ID，手动填写purchase_order_item_id或sale_order_item_id；不要沿用现有UAT行ID。"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"native code 200\", () => pm.expect(pm.response.json().code).to.eql(200));"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "name": "新销售订单30件：审核本轮单据",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Access-Token",
+                "value": "{{token}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/depotHead/batchSetStatus",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "depotHead",
+                "batchSetStatus"
+              ]
+            },
+            "description": "只对当前隔离测试轮次新单审核，不使用固定验收单ID。",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ids\": \"{{document_id}}\",\n  \"status\": \"1\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"native code 200\", () => pm.expect(pm.response.json().code).to.eql(200));"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if(pm.environment.get(\"allow_mutation\") !== \"true\") throw new Error(\"Writes disabled. Use isolated test DB and explicitly set allow_mutation=true\");",
+                  "if(!pm.environment.get(\"new_run\")) pm.environment.set(\"new_run\", \"FP-POSTMAN-\"+Date.now());",
+                  "if(!/^FP-POSTMAN-/.test(pm.environment.get(\"new_run\"))) throw new Error(\"Use a fresh FP-POSTMAN run prefix, never the accepted UAT run\");",
+                  "pm.environment.set(\"oper_time\", new Date().toISOString().slice(0,19).replace(\"T\",\" \"));",
+                  "setTimeout(()=>{},1700);",
+                  "if(!pm.environment.get(\"document_id\")) throw new Error(\"Set the NEW document_id first\");"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "name": "新销售出库30件",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Access-Token",
+                "value": "{{token}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/depotHead/addDepotHeadAndDetail",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "depotHead",
+                "addDepotHeadAndDetail"
+              ]
+            },
+            "description": "根据真实请求生成。先查询本轮订单头/行ID；保存后需显式审核，不能沿用现有UAT ID。",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"info\": \"{\\\"number\\\": \\\"{{new_run}}-SI\\\", \\\"defaultNumber\\\": \\\"{{new_run}}-SI\\\", \\\"type\\\": \\\"出库\\\", \\\"subType\\\": \\\"销售\\\", \\\"organId\\\": \\\"{{customer_id}}\\\", \\\"accountId\\\": \\\"{{account_id}}\\\", \\\"operTime\\\": \\\"{{oper_time}}\\\", \\\"totalPrice\\\": 2850, \\\"changeAmount\\\": 2850, \\\"discount\\\": 0, \\\"discountMoney\\\": 0, \\\"discountLastMoney\\\": 2850, \\\"otherMoney\\\": 0, \\\"deposit\\\": 0, \\\"payType\\\": \\\"现付\\\", \\\"status\\\": \\\"0\\\", \\\"remark\\\": \\\"FlowPilot虚构企业实施UAT，非生产业务\\\", \\\"linkNumber\\\": \\\"{{new_run}}-SO\\\"}\",\n  \"rows\": \"[{\\\"barCode\\\": \\\"FP-MAT-001\\\", \\\"unit\\\": \\\"件\\\", \\\"operNumber\\\": 30, \\\"unitPrice\\\": 95, \\\"allPrice\\\": 2850, \\\"taxRate\\\": 0, \\\"taxMoney\\\": 0, \\\"taxLastMoney\\\": 2850, \\\"depotId\\\": \\\"{{depot_id}}\\\", \\\"remark\\\": \\\"实施验收\\\", \\\"linkId\\\": \\\"{{sale_order_item_id}}\\\", \\\"preNumber\\\": 30.0, \\\"finishNumber\\\": 0}]\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"native code 200\", () => pm.expect(pm.response.json().code).to.eql(200));"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if(pm.environment.get(\"allow_mutation\") !== \"true\") throw new Error(\"Writes disabled. Use isolated test DB and explicitly set allow_mutation=true\");",
+                  "if(!pm.environment.get(\"new_run\")) pm.environment.set(\"new_run\", \"FP-POSTMAN-\"+Date.now());",
+                  "if(!/^FP-POSTMAN-/.test(pm.environment.get(\"new_run\"))) throw new Error(\"Use a fresh FP-POSTMAN run prefix, never the accepted UAT run\");",
+                  "pm.environment.set(\"oper_time\", new Date().toISOString().slice(0,19).replace(\"T\",\" \"));",
+                  "setTimeout(()=>{},1700);",
+                  "if(!pm.environment.get(\"sale_order_item_id\")) throw new Error(\"Query the NEW order detail and set sale_order_item_id; never reuse baseline IDs\");"
+                ]
+              }
+            }
+          ],
+          "response": [
+            {
+              "name": "2026-10-08 actual captured baseline (redacted)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "X-Access-Token",
+                    "value": "{{token}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/depotHead/addDepotHeadAndDetail",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "depotHead",
+                    "addDepotHeadAndDetail"
+                  ]
+                },
+                "description": "根据真实请求生成。先查询本轮订单头/行ID；保存后需显式审核，不能沿用现有UAT ID。",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"info\": \"{\\\"number\\\": \\\"{{new_run}}-SI\\\", \\\"defaultNumber\\\": \\\"{{new_run}}-SI\\\", \\\"type\\\": \\\"出库\\\", \\\"subType\\\": \\\"销售\\\", \\\"organId\\\": \\\"{{customer_id}}\\\", \\\"accountId\\\": \\\"{{account_id}}\\\", \\\"operTime\\\": \\\"{{oper_time}}\\\", \\\"totalPrice\\\": 2850, \\\"changeAmount\\\": 2850, \\\"discount\\\": 0, \\\"discountMoney\\\": 0, \\\"discountLastMoney\\\": 2850, \\\"otherMoney\\\": 0, \\\"deposit\\\": 0, \\\"payType\\\": \\\"现付\\\", \\\"status\\\": \\\"0\\\", \\\"remark\\\": \\\"FlowPilot虚构企业实施UAT，非生产业务\\\", \\\"linkNumber\\\": \\\"{{new_run}}-SO\\\"}\",\n  \"rows\": \"[{\\\"barCode\\\": \\\"FP-MAT-001\\\", \\\"unit\\\": \\\"件\\\", \\\"operNumber\\\": 30, \\\"unitPrice\\\": 95, \\\"allPrice\\\": 2850, \\\"taxRate\\\": 0, \\\"taxMoney\\\": 0, \\\"taxLastMoney\\\": 2850, \\\"depotId\\\": \\\"{{depot_id}}\\\", \\\"remark\\\": \\\"实施验收\\\", \\\"linkId\\\": \\\"{{sale_order_item_id}}\\\", \\\"preNumber\\\": 30.0, \\\"finishNumber\\\": 0}]\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"msg\": \"操作成功\",\n  \"code\": 200\n}"
+            }
+          ]
+        },
+        {
+          "name": "新销售出库30件：查询本轮单据",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Access-Token",
+                "value": "{{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/depotHead/getDetailByNumber?number=%7B%7Bnew_run%7D%7D-SI",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "depotHead",
+                "getDetailByNumber"
+              ],
+              "query": [
+                {
+                  "key": "number",
+                  "value": "{{new_run}}-SI"
+                }
+              ]
+            },
+            "description": "保存本轮头ID供审核/明细查询。查询模板来自原生合同，尚未在新Postman业务轮次执行。"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"native code 200\", () => pm.expect(pm.response.json().code).to.eql(200));",
+                  "const d=pm.response.json().data; if(d && String(d.number).startsWith(pm.environment.get(\"new_run\"))) pm.environment.set(\"document_id\",String(d.id));"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "name": "新销售出库30件：审核本轮单据",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Access-Token",
+                "value": "{{token}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/depotHead/batchSetStatus",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "depotHead",
+                "batchSetStatus"
+              ]
+            },
+            "description": "只对当前隔离测试轮次新单审核，不使用固定验收单ID。",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ids\": \"{{document_id}}\",\n  \"status\": \"1\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"native code 200\", () => pm.expect(pm.response.json().code).to.eql(200));"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if(pm.environment.get(\"allow_mutation\") !== \"true\") throw new Error(\"Writes disabled. Use isolated test DB and explicitly set allow_mutation=true\");",
+                  "if(!pm.environment.get(\"new_run\")) pm.environment.set(\"new_run\", \"FP-POSTMAN-\"+Date.now());",
+                  "if(!/^FP-POSTMAN-/.test(pm.environment.get(\"new_run\"))) throw new Error(\"Use a fresh FP-POSTMAN run prefix, never the accepted UAT run\");",
+                  "pm.environment.set(\"oper_time\", new Date().toISOString().slice(0,19).replace(\"T\",\" \"));",
+                  "setTimeout(()=>{},1700);",
+                  "if(!pm.environment.get(\"document_id\")) throw new Error(\"Set the NEW document_id first\");"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "name": "原生XLS suppliers-native.xls",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Access-Token",
+                "value": "{{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/supplier/importVendor",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "supplier",
+                "importVendor"
+              ]
+            },
+            "description": "在Postman本地选择文件。商品原生模板包括期初库存，只在新演示库导入；业务开展后不要覆盖期初。",
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "../data/suppliers-native.xls"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"native code 200\", () => pm.expect(pm.response.json().code).to.eql(200));"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if(pm.environment.get(\"allow_mutation\") !== \"true\") throw new Error(\"Writes disabled. Use isolated test DB and explicitly set allow_mutation=true\");",
+                  "if(!pm.environment.get(\"new_run\")) pm.environment.set(\"new_run\", \"FP-POSTMAN-\"+Date.now());",
+                  "if(!/^FP-POSTMAN-/.test(pm.environment.get(\"new_run\"))) throw new Error(\"Use a fresh FP-POSTMAN run prefix, never the accepted UAT run\");",
+                  "pm.environment.set(\"oper_time\", new Date().toISOString().slice(0,19).replace(\"T\",\" \"));",
+                  "setTimeout(()=>{},1700);"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "name": "原生XLS customers-native.xls",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Access-Token",
+                "value": "{{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/supplier/importCustomer",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "supplier",
+                "importCustomer"
+              ]
+            },
+            "description": "在Postman本地选择文件。商品原生模板包括期初库存，只在新演示库导入；业务开展后不要覆盖期初。",
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "../data/customers-native.xls"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"native code 200\", () => pm.expect(pm.response.json().code).to.eql(200));"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if(pm.environment.get(\"allow_mutation\") !== \"true\") throw new Error(\"Writes disabled. Use isolated test DB and explicitly set allow_mutation=true\");",
+                  "if(!pm.environment.get(\"new_run\")) pm.environment.set(\"new_run\", \"FP-POSTMAN-\"+Date.now());",
+                  "if(!/^FP-POSTMAN-/.test(pm.environment.get(\"new_run\"))) throw new Error(\"Use a fresh FP-POSTMAN run prefix, never the accepted UAT run\");",
+                  "pm.environment.set(\"oper_time\", new Date().toISOString().slice(0,19).replace(\"T\",\" \"));",
+                  "setTimeout(()=>{},1700);"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "name": "原生XLS materials-native.xls",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Access-Token",
+                "value": "{{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/material/importExcel",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "material",
+                "importExcel"
+              ]
+            },
+            "description": "在Postman本地选择文件。商品原生模板包括期初库存，只在新演示库导入；业务开展后不要覆盖期初。",
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "../data/materials-native.xls"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"native code 200\", () => pm.expect(pm.response.json().code).to.eql(200));"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if(pm.environment.get(\"allow_mutation\") !== \"true\") throw new Error(\"Writes disabled. Use isolated test DB and explicitly set allow_mutation=true\");",
+                  "if(!pm.environment.get(\"new_run\")) pm.environment.set(\"new_run\", \"FP-POSTMAN-\"+Date.now());",
+                  "if(!/^FP-POSTMAN-/.test(pm.environment.get(\"new_run\"))) throw new Error(\"Use a fresh FP-POSTMAN run prefix, never the accepted UAT run\");",
+                  "pm.environment.set(\"oper_time\", new Date().toISOString().slice(0,19).replace(\"T\",\" \"));",
+                  "setTimeout(()=>{},1700);"
+                ]
+              }
+            }
+          ],
+          "response": []
+        }
+      ]
+    }
+  ]
+}

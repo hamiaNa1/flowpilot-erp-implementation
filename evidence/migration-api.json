@@ -1,0 +1,646 @@
+[
+  {
+    "time": "2026-10-08T16:26:19.392735+08:00",
+    "method": "POST",
+    "path": "/user/login",
+    "request": {
+      "json": {
+        "loginName": "jsh",
+        "password": "[MD5 REDACTED]",
+        "code": "[REDACTED]",
+        "uuid": "[REDACTED]"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "pwdSimple": false,
+        "user": {
+          "id": 63,
+          "username": "测试用户",
+          "loginName": "jsh",
+          "password": "[REDACTED]",
+          "leaderFlag": "0",
+          "position": "主管",
+          "department": null,
+          "email": "666666@qq.com",
+          "phonenum": "1123123123132",
+          "ismanager": 1,
+          "isystem": 1,
+          "status": 0,
+          "description": "",
+          "remark": null,
+          "weixinOpenId": null,
+          "tenantId": 63,
+          "deleteFlag": "0"
+        },
+        "msgTip": "user can login",
+        "token": "[REDACTED]"
+      }
+    },
+    "authenticated_user_before": null
+  },
+  {
+    "time": "2026-10-08T16:26:21.121797+08:00",
+    "method": "PUT",
+    "path": "/systemConfig/update",
+    "request": {
+      "json": {
+        "id": 11,
+        "companyName": "FlowPilot汽车零部件有限公司（虚构演示企业）",
+        "minusStockFlag": "0",
+        "inOutManageFlag": "0",
+        "forceApprovalFlag": "1"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "message": "成功"
+      }
+    },
+    "authenticated_user_before": "63"
+  },
+  {
+    "time": "2026-10-08T16:26:22.828057+08:00",
+    "method": "PUT",
+    "path": "/userBusiness/update",
+    "request": {
+      "json": {
+        "type": "UserDepot",
+        "keyId": "63",
+        "value": "[14][15][19][20]",
+        "id": 18
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "message": "成功"
+      }
+    },
+    "authenticated_user_before": "63"
+  },
+  {
+    "time": "2026-10-08T16:26:24.545044+08:00",
+    "method": "PUT",
+    "path": "/userBusiness/update",
+    "request": {
+      "json": {
+        "type": "RoleFunctions",
+        "keyId": "21",
+        "value": "[210][225][211][261][32][241][33][199][242][38][41][200][201][239][202][40][232][233][197][44][203][204][205][206][212][246][198][207][259][208][209][226][227][248][228][229][59][235][237][244][22][21][23][220][247][25][24][217][218][26][194][195][31][13][14][243][15][234][236]",
+        "btnStr": "[{\"funId\":210,\"btnStr\":\"1,2,3,7\"},{\"funId\":225,\"btnStr\":\"1,2,3,7\"},{\"funId\":211,\"btnStr\":\"1,2,3,7\"},{\"funId\":261,\"btnStr\":\"1,2,3,7\"},{\"funId\":32,\"btnStr\":\"1,2,3,7\"},{\"funId\":241,\"btnStr\":\"1,2,3,7\"},{\"funId\":33,\"btnStr\":\"1,2,3,7\"},{\"funId\":199,\"btnStr\":\"1,2,3,7\"},{\"funId\":242,\"btnStr\":\"1,2,3,7\"},{\"funId\":38,\"btnStr\":\"1,2,3,7\"},{\"funId\":41,\"btnStr\":\"1,2,3,7\"},{\"funId\":200,\"btnStr\":\"1,2,3,7\"},{\"funId\":201,\"btnStr\":\"1,2,3,7\"},{\"funId\":239,\"btnStr\":\"1,2,3,7\"},{\"funId\":202,\"btnStr\":\"1,2,3,7\"},{\"funId\":40,\"btnStr\":\"1,2,3,7\"},{\"funId\":232,\"btnStr\":\"1,2,3,7\"},{\"funId\":233,\"btnStr\":\"1,2,3,7\"},{\"funId\":197,\"btnStr\":\"1,2,3,7\"},{\"funId\":44,\"btnStr\":\"1,2,3,7\"},{\"funId\":203,\"btnStr\":\"1,2,3,7\"},{\"funId\":204,\"btnStr\":\"1,2,3,7\"},{\"funId\":205,\"btnStr\":\"1,2,3,7\"},{\"funId\":206,\"btnStr\":\"1,2,3,7\"},{\"funId\":212,\"btnStr\":\"1,2,3,7\"},{\"funId\":246,\"btnStr\":\"1,2,3,7\"},{\"funId\":198,\"btnStr\":\"1,2,3,7\"},{\"funId\":207,\"btnStr\":\"1,2,3,7\"},{\"funId\":259,\"btnStr\":\"1,2,3,7\"},{\"funId\":208,\"btnStr\":\"1,2,3,7\"},{\"funId\":209,\"btnStr\":\"1,2,3,7\"},{\"funId\":226,\"btnStr\":\"1,2,3,7\"},{\"funId\":227,\"btnStr\":\"1,2,3,7\"},{\"funId\":248,\"btnStr\":\"1,2,3,7\"},{\"funId\":228,\"btnStr\":\"1,2,3,7\"},{\"funId\":229,\"btnStr\":\"1,2,3,7\"},{\"funId\":59,\"btnStr\":\"1,2,3,7\"},{\"funId\":235,\"btnStr\":\"1,2,3,7\"},{\"funId\":237,\"btnStr\":\"1,2,3,7\"},{\"funId\":244,\"btnStr\":\"1,2,3,7\"},{\"funId\":22,\"btnStr\":\"1,2,3,7\"},{\"funId\":21,\"btnStr\":\"1,2,3,7\"},{\"funId\":23,\"btnStr\":\"1,2,3,7\"},{\"funId\":220,\"btnStr\":\"1,2,3,7\"},{\"funId\":247,\"btnStr\":\"1,2,3,7\"},{\"funId\":25,\"btnStr\":\"1,2,3,7\"},{\"funId\":24,\"btnStr\":\"1,2,3,7\"},{\"funId\":217,\"btnStr\":\"1,2,3,7\"},{\"funId\":218,\"btnStr\":\"1,2,3,7\"},{\"funId\":26,\"btnStr\":\"1,2,3,7\"},{\"funId\":194,\"btnStr\":\"1,2,3,7\"},{\"funId\":195,\"btnStr\":\"1,2,3,7\"},{\"funId\":31,\"btnStr\":\"1,2,3,7\"},{\"funId\":13,\"btnStr\":\"1,2,3,7\"},{\"funId\":14,\"btnStr\":\"1,2,3,7\"},{\"funId\":243,\"btnStr\":\"1,2,3,7\"},{\"funId\":15,\"btnStr\":\"1,2,3,7\"},{\"funId\":234,\"btnStr\":\"1,2,3,7\"},{\"funId\":236,\"btnStr\":\"1,2,3,7\"}]",
+        "id": 83
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "message": "成功"
+      }
+    },
+    "authenticated_user_before": "63"
+  },
+  {
+    "time": "2026-10-08T16:26:26.278181+08:00",
+    "method": "POST",
+    "path": "/user/addUser",
+    "request": {
+      "json": {
+        "username": "FlowPilot实施管理员",
+        "loginName": "fp_manager",
+        "position": "FlowPilot实施管理员",
+        "roleId": 21,
+        "leaderFlag": "0"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "msg": "操作成功",
+      "code": 200
+    },
+    "authenticated_user_before": "63"
+  },
+  {
+    "time": "2026-10-08T16:26:27.992935+08:00",
+    "method": "PUT",
+    "path": "/user/updatePwd",
+    "request": {
+      "json": {
+        "userId": 146,
+        "oldpassword": "[REDACTED]",
+        "password": "[REDACTED]"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "message": "修改成功",
+        "status": 1
+      }
+    },
+    "authenticated_user_before": "63"
+  },
+  {
+    "time": "2026-10-08T16:26:29.721973+08:00",
+    "method": "PUT",
+    "path": "/userBusiness/update",
+    "request": {
+      "json": {
+        "type": "UserRole",
+        "keyId": "146",
+        "value": "[21]",
+        "id": 84
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "message": "成功"
+      }
+    },
+    "authenticated_user_before": "63"
+  },
+  {
+    "time": "2026-10-08T16:26:31.468265+08:00",
+    "method": "POST",
+    "path": "/userBusiness/add",
+    "request": {
+      "json": {
+        "type": "UserDepot",
+        "keyId": "146",
+        "value": "[19][20]"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "message": "成功"
+      }
+    },
+    "authenticated_user_before": "63"
+  },
+  {
+    "time": "2026-10-08T16:26:33.181406+08:00",
+    "method": "POST",
+    "path": "/userBusiness/add",
+    "request": {
+      "json": {
+        "type": "UserCustomer",
+        "keyId": "146",
+        "value": "[93][94][95]"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "message": "成功"
+      }
+    },
+    "authenticated_user_before": "63"
+  },
+  {
+    "time": "2026-10-08T16:26:34.904775+08:00",
+    "method": "POST",
+    "path": "/role/add",
+    "request": {
+      "json": {
+        "name": "FlowPilot采购员",
+        "description": "个人数据",
+        "type": "私有",
+        "remark": "虚构演示岗位",
+        "sort": "10"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "message": "成功"
+      }
+    },
+    "authenticated_user_before": "63"
+  },
+  {
+    "time": "2026-10-08T16:26:36.624756+08:00",
+    "method": "POST",
+    "path": "/userBusiness/add",
+    "request": {
+      "json": {
+        "type": "RoleFunctions",
+        "keyId": "22",
+        "value": "[23][25][33][241][246]",
+        "btnStr": "[{\"funId\":23,\"btnStr\":\"1,2,3,7\"},{\"funId\":25,\"btnStr\":\"1,2,3,7\"},{\"funId\":33,\"btnStr\":\"1,2,3,7\"},{\"funId\":241,\"btnStr\":\"1,2,3,7\"},{\"funId\":246,\"btnStr\":\"1,2,3,7\"}]"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "message": "成功"
+      }
+    },
+    "authenticated_user_before": "63"
+  },
+  {
+    "time": "2026-10-08T16:26:38.371301+08:00",
+    "method": "POST",
+    "path": "/user/addUser",
+    "request": {
+      "json": {
+        "username": "FlowPilot采购员",
+        "loginName": "fp_purchase",
+        "position": "FlowPilot采购员",
+        "roleId": 22,
+        "leaderFlag": "0"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "msg": "操作成功",
+      "code": 200
+    },
+    "authenticated_user_before": "63"
+  },
+  {
+    "time": "2026-10-08T16:26:40.110575+08:00",
+    "method": "PUT",
+    "path": "/user/updatePwd",
+    "request": {
+      "json": {
+        "userId": 147,
+        "oldpassword": "[REDACTED]",
+        "password": "[REDACTED]"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "message": "修改成功",
+        "status": 1
+      }
+    },
+    "authenticated_user_before": "63"
+  },
+  {
+    "time": "2026-10-08T16:26:41.839995+08:00",
+    "method": "PUT",
+    "path": "/userBusiness/update",
+    "request": {
+      "json": {
+        "type": "UserRole",
+        "keyId": "147",
+        "value": "[22]",
+        "id": 88
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "message": "成功"
+      }
+    },
+    "authenticated_user_before": "63"
+  },
+  {
+    "time": "2026-10-08T16:26:43.551253+08:00",
+    "method": "POST",
+    "path": "/userBusiness/add",
+    "request": {
+      "json": {
+        "type": "UserDepot",
+        "keyId": "147",
+        "value": "[19][20]"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "message": "成功"
+      }
+    },
+    "authenticated_user_before": "63"
+  },
+  {
+    "time": "2026-10-08T16:26:45.271329+08:00",
+    "method": "POST",
+    "path": "/userBusiness/add",
+    "request": {
+      "json": {
+        "type": "UserCustomer",
+        "keyId": "147",
+        "value": "[93][94][95]"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "message": "成功"
+      }
+    },
+    "authenticated_user_before": "63"
+  },
+  {
+    "time": "2026-10-08T16:26:46.987668+08:00",
+    "method": "POST",
+    "path": "/role/add",
+    "request": {
+      "json": {
+        "name": "FlowPilot仓库员",
+        "description": "全部数据",
+        "type": "私有",
+        "remark": "虚构演示岗位",
+        "sort": "10"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "message": "成功"
+      }
+    },
+    "authenticated_user_before": "63"
+  },
+  {
+    "time": "2026-10-08T16:26:48.711027+08:00",
+    "method": "POST",
+    "path": "/userBusiness/add",
+    "request": {
+      "json": {
+        "type": "RoleFunctions",
+        "keyId": "23",
+        "value": "[23][201][202][226][227][246]",
+        "btnStr": "[{\"funId\":23,\"btnStr\":\"1,2,3,7\"},{\"funId\":201,\"btnStr\":\"1,2,3,7\"},{\"funId\":202,\"btnStr\":\"1,2,3,7\"},{\"funId\":226,\"btnStr\":\"1,2,3,7\"},{\"funId\":227,\"btnStr\":\"1,2,3,7\"},{\"funId\":246,\"btnStr\":\"1,2,3,7\"}]"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "message": "成功"
+      }
+    },
+    "authenticated_user_before": "63"
+  },
+  {
+    "time": "2026-10-08T16:26:50.441469+08:00",
+    "method": "POST",
+    "path": "/user/addUser",
+    "request": {
+      "json": {
+        "username": "FlowPilot仓库员",
+        "loginName": "fp_warehouse",
+        "position": "FlowPilot仓库员",
+        "roleId": 23,
+        "leaderFlag": "0"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "msg": "操作成功",
+      "code": 200
+    },
+    "authenticated_user_before": "63"
+  },
+  {
+    "time": "2026-10-08T16:26:52.164788+08:00",
+    "method": "PUT",
+    "path": "/user/updatePwd",
+    "request": {
+      "json": {
+        "userId": 148,
+        "oldpassword": "[REDACTED]",
+        "password": "[REDACTED]"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "message": "修改成功",
+        "status": 1
+      }
+    },
+    "authenticated_user_before": "63"
+  },
+  {
+    "time": "2026-10-08T16:26:53.893607+08:00",
+    "method": "PUT",
+    "path": "/userBusiness/update",
+    "request": {
+      "json": {
+        "type": "UserRole",
+        "keyId": "148",
+        "value": "[23]",
+        "id": 92
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "message": "成功"
+      }
+    },
+    "authenticated_user_before": "63"
+  },
+  {
+    "time": "2026-10-08T16:26:55.618757+08:00",
+    "method": "POST",
+    "path": "/userBusiness/add",
+    "request": {
+      "json": {
+        "type": "UserDepot",
+        "keyId": "148",
+        "value": "[19][20]"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "message": "成功"
+      }
+    },
+    "authenticated_user_before": "63"
+  },
+  {
+    "time": "2026-10-08T16:26:57.357307+08:00",
+    "method": "POST",
+    "path": "/userBusiness/add",
+    "request": {
+      "json": {
+        "type": "UserCustomer",
+        "keyId": "148",
+        "value": "[93][94][95]"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "message": "成功"
+      }
+    },
+    "authenticated_user_before": "63"
+  },
+  {
+    "time": "2026-10-08T16:26:59.072757+08:00",
+    "method": "POST",
+    "path": "/role/add",
+    "request": {
+      "json": {
+        "name": "FlowPilot销售员",
+        "description": "个人数据",
+        "type": "私有",
+        "remark": "虚构演示岗位",
+        "sort": "10"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "message": "成功"
+      }
+    },
+    "authenticated_user_before": "63"
+  },
+  {
+    "time": "2026-10-08T16:27:00.811627+08:00",
+    "method": "POST",
+    "path": "/userBusiness/add",
+    "request": {
+      "json": {
+        "type": "RoleFunctions",
+        "keyId": "24",
+        "value": "[23][41][217][242][246]",
+        "btnStr": "[{\"funId\":23,\"btnStr\":\"1,2,3,7\"},{\"funId\":41,\"btnStr\":\"1,2,3,7\"},{\"funId\":217,\"btnStr\":\"1,2,3,7\"},{\"funId\":242,\"btnStr\":\"1,2,3,7\"},{\"funId\":246,\"btnStr\":\"1,2,3,7\"}]"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "message": "成功"
+      }
+    },
+    "authenticated_user_before": "63"
+  },
+  {
+    "time": "2026-10-08T16:27:02.558257+08:00",
+    "method": "POST",
+    "path": "/user/addUser",
+    "request": {
+      "json": {
+        "username": "FlowPilot销售员",
+        "loginName": "fp_sales",
+        "position": "FlowPilot销售员",
+        "roleId": 24,
+        "leaderFlag": "0"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "msg": "操作成功",
+      "code": 200
+    },
+    "authenticated_user_before": "63"
+  },
+  {
+    "time": "2026-10-08T16:27:04.281818+08:00",
+    "method": "PUT",
+    "path": "/user/updatePwd",
+    "request": {
+      "json": {
+        "userId": 149,
+        "oldpassword": "[REDACTED]",
+        "password": "[REDACTED]"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "message": "修改成功",
+        "status": 1
+      }
+    },
+    "authenticated_user_before": "63"
+  },
+  {
+    "time": "2026-10-08T16:27:05.992095+08:00",
+    "method": "PUT",
+    "path": "/userBusiness/update",
+    "request": {
+      "json": {
+        "type": "UserRole",
+        "keyId": "149",
+        "value": "[24]",
+        "id": 96
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "message": "成功"
+      }
+    },
+    "authenticated_user_before": "63"
+  },
+  {
+    "time": "2026-10-08T16:27:07.733020+08:00",
+    "method": "POST",
+    "path": "/userBusiness/add",
+    "request": {
+      "json": {
+        "type": "UserDepot",
+        "keyId": "149",
+        "value": "[19][20]"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "message": "成功"
+      }
+    },
+    "authenticated_user_before": "63"
+  },
+  {
+    "time": "2026-10-08T16:27:09.453011+08:00",
+    "method": "POST",
+    "path": "/userBusiness/add",
+    "request": {
+      "json": {
+        "type": "UserCustomer",
+        "keyId": "149",
+        "value": "[93][94][95]"
+      }
+    },
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "message": "成功"
+      }
+    },
+    "authenticated_user_before": "63"
+  }
+]

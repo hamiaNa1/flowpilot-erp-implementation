@@ -1,0 +1,12 @@
+{
+  "time": "2026-10-08T16:51:19.073534+08:00",
+  "records": {
+    "suppliers": 3,
+    "customers": 3,
+    "materials": 6,
+    "initial-stock": 12
+  },
+  "errors": [],
+  "encoding": "UTF-8 BOM",
+  "valid": true
+}

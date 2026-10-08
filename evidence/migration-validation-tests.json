@@ -1,0 +1,42 @@
+{
+  "time": "2026-10-08T16:51:26.671858+08:00",
+  "valid_source_passed": true,
+  "negative_cases": [
+    {
+      "case": "missing-name",
+      "rejected_before_mutation": true,
+      "actual": "Source validation failed before mutation: [{'file': 'suppliers.csv', 'row': 2, 'error': 'missing name'}]"
+    },
+    {
+      "case": "duplicate-code",
+      "rejected_before_mutation": true,
+      "actual": "Source validation failed before mutation: [{'file': 'materials.csv', 'row': 8, 'error': 'duplicate code FP-MAT-001'}]"
+    },
+    {
+      "case": "negative-quantity",
+      "rejected_before_mutation": true,
+      "actual": "Source validation failed before mutation: [{'file': 'initial-stock.csv', 'row': 2, 'error': 'illegal nonnegative quantity/price quantity'}, {'file': 'initial-stock.csv', 'error': 'initial quantity mismatch'}]"
+    },
+    {
+      "case": "invalid-number",
+      "rejected_before_mutation": true,
+      "actual": "Source validation failed before mutation: [{'file': 'initial-stock.csv', 'row': 2, 'error': \"[<class 'decimal.ConversionSyntax'>]\"}, {'file': 'initial-stock.csv', 'error': 'invalid quantity in cross-check'}]"
+    },
+    {
+      "case": "invalid-date",
+      "rejected_before_mutation": true,
+      "actual": "Source validation failed before mutation: [{'file': 'customers.csv', 'row': 2, 'error': \"time data '2026/99/99' does not match format '%Y-%m-%d'\"}]"
+    },
+    {
+      "case": "unknown-material",
+      "rejected_before_mutation": true,
+      "actual": "Source validation failed before mutation: [{'file': 'initial-stock.csv', 'error': 'unknown material UNKNOWN'}]"
+    },
+    {
+      "case": "unknown-warehouse",
+      "rejected_before_mutation": true,
+      "actual": "Source validation failed before mutation: [{'file': 'initial-stock.csv', 'error': 'unknown warehouse UNKNOWN'}]"
+    }
+  ],
+  "source_files_unchanged": true
+}

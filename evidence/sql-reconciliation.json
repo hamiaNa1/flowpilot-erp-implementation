@@ -1,0 +1,223 @@
+{
+  "time": "2026-10-08T17:16:12.204751+08:00",
+  "results": [
+    {
+      "sql": "SELECT VERSION(), @@character_set_server, @@collation_server",
+      "rows": [
+        {
+          "VERSION()": "8.0.44",
+          "@@character_set_server": "utf8mb4",
+          "@@collation_server": "utf8mb4_unicode_ci"
+        }
+      ]
+    },
+    {
+      "sql": "SELECT type, COUNT(*) AS migrated_records FROM jsh_supplier\nWHERE tenant_id=63 AND description LIKE 'legacy-code:%' AND delete_flag='0' GROUP BY type",
+      "rows": [
+        {
+          "type": "供应商",
+          "migrated_records": 3
+        },
+        {
+          "type": "客户",
+          "migrated_records": 3
+        }
+      ]
+    },
+    {
+      "sql": "SELECT me.bar_code,m.name,m.unit,d.name AS warehouse,\n       COALESCE(i.number,0) AS initial_quantity,c.current_number\nFROM jsh_material m JOIN jsh_material_extend me ON me.material_id=m.id\nJOIN jsh_material_current_stock c ON c.material_id=m.id\nJOIN jsh_depot d ON d.id=c.depot_id\nLEFT JOIN jsh_material_initial_stock i ON i.material_id=m.id AND i.depot_id=d.id\nWHERE me.tenant_id=63 AND me.bar_code LIKE 'FP-MAT-%' AND me.delete_flag='0'\nORDER BY me.bar_code,d.id",
+      "rows": [
+        {
+          "bar_code": "FP-MAT-001",
+          "name": "FlowPilot制动支架",
+          "unit": "件",
+          "warehouse": "FlowPilot原料仓",
+          "initial_quantity": "50.000000",
+          "current_number": "140.000000"
+        },
+        {
+          "bar_code": "FP-MAT-001",
+          "name": "FlowPilot制动支架",
+          "unit": "件",
+          "warehouse": "FlowPilot成品仓",
+          "initial_quantity": "10.000000",
+          "current_number": "10.000000"
+        },
+        {
+          "bar_code": "FP-MAT-002",
+          "name": "FlowPilot轮毂轴套",
+          "unit": "件",
+          "warehouse": "FlowPilot原料仓",
+          "initial_quantity": "80.000000",
+          "current_number": "80.000000"
+        },
+        {
+          "bar_code": "FP-MAT-003",
+          "name": "FlowPilot紧固螺栓M10",
+          "unit": "个",
+          "warehouse": "FlowPilot原料仓",
+          "initial_quantity": "1000.000000",
+          "current_number": "1000.000000"
+        },
+        {
+          "bar_code": "FP-MAT-004",
+          "name": "FlowPilot密封垫圈",
+          "unit": "个",
+          "warehouse": "FlowPilot原料仓",
+          "initial_quantity": "200.000000",
+          "current_number": "200.000000"
+        },
+        {
+          "bar_code": "FP-MAT-005",
+          "name": "FlowPilot冷轧钢板",
+          "unit": "千克",
+          "warehouse": "FlowPilot原料仓",
+          "initial_quantity": "500.000000",
+          "current_number": "500.000000"
+        },
+        {
+          "bar_code": "FP-MAT-006",
+          "name": "FlowPilot成品包装箱",
+          "unit": "个",
+          "warehouse": "FlowPilot原料仓",
+          "initial_quantity": "100.000000",
+          "current_number": "100.000000"
+        }
+      ]
+    },
+    {
+      "sql": "SELECT me.bar_code,d.name,\n       COALESCE(i.number,0) AS initial_quantity,\n       COALESCE(SUM(CASE WHEN dh.status='1' AND dh.type='入库' THEN di.basic_number\n                        WHEN dh.status='1' AND dh.type='出库' THEN -di.basic_number ELSE 0 END),0) AS net_movement,\n       c.current_number,\n       c.current_number-COALESCE(i.number,0)-COALESCE(SUM(CASE\n         WHEN dh.status='1' AND dh.type='入库' THEN di.basic_number\n         WHEN dh.status='1' AND dh.type='出库' THEN -di.basic_number ELSE 0 END),0) AS difference\nFROM jsh_material_extend me JOIN jsh_material_current_stock c ON c.material_id=me.material_id\nJOIN jsh_depot d ON d.id=c.depot_id\nLEFT JOIN jsh_material_initial_stock i ON i.material_id=me.material_id AND i.depot_id=c.depot_id AND i.delete_flag='0'\nLEFT JOIN jsh_depot_item di ON di.material_id=me.material_id AND di.depot_id=c.depot_id AND di.delete_flag='0'\nLEFT JOIN jsh_depot_head dh ON dh.id=di.header_id AND dh.delete_flag='0'\nWHERE me.tenant_id=63 AND me.bar_code LIKE 'FP-MAT-%' AND me.delete_flag='0' AND c.delete_flag='0'\nGROUP BY me.bar_code,d.name,i.number,c.current_number ORDER BY me.bar_code,d.name",
+      "rows": [
+        {
+          "bar_code": "FP-MAT-001",
+          "name": "FlowPilot原料仓",
+          "initial_quantity": "50.000000",
+          "net_movement": "90.000000",
+          "current_number": "140.000000",
+          "difference": "0.000000"
+        },
+        {
+          "bar_code": "FP-MAT-001",
+          "name": "FlowPilot成品仓",
+          "initial_quantity": "10.000000",
+          "net_movement": "0.000000",
+          "current_number": "10.000000",
+          "difference": "0.000000"
+        },
+        {
+          "bar_code": "FP-MAT-002",
+          "name": "FlowPilot原料仓",
+          "initial_quantity": "80.000000",
+          "net_movement": "0.000000",
+          "current_number": "80.000000",
+          "difference": "0.000000"
+        },
+        {
+          "bar_code": "FP-MAT-003",
+          "name": "FlowPilot原料仓",
+          "initial_quantity": "1000.000000",
+          "net_movement": "0.000000",
+          "current_number": "1000.000000",
+          "difference": "0.000000"
+        },
+        {
+          "bar_code": "FP-MAT-004",
+          "name": "FlowPilot原料仓",
+          "initial_quantity": "200.000000",
+          "net_movement": "0.000000",
+          "current_number": "200.000000",
+          "difference": "0.000000"
+        },
+        {
+          "bar_code": "FP-MAT-005",
+          "name": "FlowPilot原料仓",
+          "initial_quantity": "500.000000",
+          "net_movement": "0.000000",
+          "current_number": "500.000000",
+          "difference": "0.000000"
+        },
+        {
+          "bar_code": "FP-MAT-006",
+          "name": "FlowPilot原料仓",
+          "initial_quantity": "100.000000",
+          "net_movement": "0.000000",
+          "current_number": "100.000000",
+          "difference": "0.000000"
+        }
+      ]
+    },
+    {
+      "sql": "SELECT dh.number,dh.type,dh.sub_type,dh.status,dh.purchase_status,dh.creator,dh.link_number,\n       me.bar_code,di.oper_number,di.basic_number,di.depot_id,di.link_id\nFROM jsh_depot_head dh JOIN jsh_depot_item di ON di.header_id=dh.id\nJOIN jsh_material_extend me ON me.id=di.material_extend_id\nWHERE dh.tenant_id=63 AND dh.number LIKE 'FP-%' AND dh.delete_flag='0' AND di.delete_flag='0'\nORDER BY dh.id",
+      "rows": [
+        {
+          "number": "FP-UAT-20261008-PO",
+          "type": "其它",
+          "sub_type": "采购订单",
+          "status": "2",
+          "purchase_status": "0",
+          "creator": 147,
+          "link_number": "",
+          "bar_code": "FP-MAT-001",
+          "oper_number": "120.000000",
+          "basic_number": "120.000000",
+          "depot_id": null,
+          "link_id": null
+        },
+        {
+          "number": "FP-UAT-20261008-PI",
+          "type": "入库",
+          "sub_type": "采购",
+          "status": "1",
+          "purchase_status": "0",
+          "creator": 147,
+          "link_number": "FP-UAT-20261008-PO",
+          "bar_code": "FP-MAT-001",
+          "oper_number": "120.000000",
+          "basic_number": "120.000000",
+          "depot_id": 19,
+          "link_id": 334
+        },
+        {
+          "number": "FP-UAT-20261008-SO",
+          "type": "其它",
+          "sub_type": "销售订单",
+          "status": "2",
+          "purchase_status": "0",
+          "creator": 149,
+          "link_number": "",
+          "bar_code": "FP-MAT-001",
+          "oper_number": "30.000000",
+          "basic_number": "30.000000",
+          "depot_id": null,
+          "link_id": null
+        },
+        {
+          "number": "FP-UAT-20261008-SI",
+          "type": "出库",
+          "sub_type": "销售",
+          "status": "1",
+          "purchase_status": "0",
+          "creator": 149,
+          "link_number": "FP-UAT-20261008-SO",
+          "bar_code": "FP-MAT-001",
+          "oper_number": "30.000000",
+          "basic_number": "30.000000",
+          "depot_id": 19,
+          "link_id": 336
+        }
+      ]
+    },
+    {
+      "sql": "SELECT tenant_id,bar_code,COUNT(*) AS copies FROM jsh_material_extend\nWHERE tenant_id=63 AND bar_code LIKE 'FP-MAT-%' AND delete_flag='0'\nGROUP BY tenant_id,bar_code HAVING COUNT(*)>1",
+      "rows": []
+    },
+    {
+      "sql": "SELECT description,COUNT(*) AS copies FROM jsh_supplier\nWHERE tenant_id=63 AND description LIKE 'legacy-code:%' AND delete_flag='0'\nGROUP BY description HAVING COUNT(*)>1",
+      "rows": []
+    },
+    {
+      "sql": "SELECT number,COUNT(*) AS copies FROM jsh_depot_head\nWHERE tenant_id=63 AND number LIKE 'FP-%' AND delete_flag='0'\nGROUP BY number HAVING COUNT(*)>1",
+      "rows": []
+    }
+  ]
+}

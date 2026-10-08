@@ -1,0 +1,50 @@
+[
+  {
+    "time": "2026-10-08T16:53:11.207827+08:00",
+    "url": "http://127.0.0.1:8088/jshERP-boot/supplier/update",
+    "request": "{\"id\":90,\"supplier\":\"FlowPilot精密钢材供应商（虚构）\",\"contacts\":\"供应联系人甲（页面验收）\",\"phoneNum\":\"\",\"email\":\"\",\"description\":\"legacy-code:SUP-FP-001\",\"isystem\":null,\"type\":\"供应商\",\"enabled\":true,\"advanceIn\":0,\"beginNeedGet\":0,\"beginNeedPay\":0,\"allNeedGet\":null,\"allNeedPay\":0,\"fax\":\"\",\"telephone\":\"\",\"address\":\"苏州演示工业园\",\"taxNum\":\"\",\"bankName\":\"\",\"accountNumber\":\"\",\"taxRate\":13,\"sort\":\"10\",\"creator\":63,\"tenantId\":63,\"deleteFlag\":\"0\"}",
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "message": "成功"
+      }
+    }
+  },
+  {
+    "time": "2026-10-08T16:53:13.927995+08:00",
+    "url": "http://127.0.0.1:8088/jshERP-boot/depotHead/batchSetStatus",
+    "request": "{\"status\":0,\"ids\":\"280,\"}",
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "message": "成功"
+      }
+    }
+  },
+  {
+    "time": "2026-10-08T16:54:11.479448+08:00",
+    "url": "http://127.0.0.1:8088/jshERP-boot/supplier/update",
+    "request": "{\"id\":90,\"supplier\":\"FlowPilot精密钢材供应商（虚构）\",\"contacts\":\"供应联系人甲（页面验收）\",\"phoneNum\":\"\",\"email\":\"\",\"description\":\"legacy-code:SUP-FP-001\",\"isystem\":null,\"type\":\"供应商\",\"enabled\":true,\"advanceIn\":0,\"beginNeedGet\":0,\"beginNeedPay\":0,\"allNeedGet\":null,\"allNeedPay\":0,\"fax\":\"\",\"telephone\":\"\",\"address\":\"苏州演示工业园\",\"taxNum\":\"\",\"bankName\":\"\",\"accountNumber\":\"\",\"taxRate\":13,\"sort\":\"10\",\"creator\":63,\"tenantId\":63,\"deleteFlag\":\"0\"}",
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "message": "成功"
+      }
+    }
+  },
+  {
+    "time": "2026-10-08T16:54:14.392433+08:00",
+    "url": "http://127.0.0.1:8088/jshERP-boot/depotHead/batchSetStatus",
+    "request": "{\"status\":1,\"ids\":\"280,\"}",
+    "http_status": 200,
+    "response": {
+      "code": 200,
+      "data": {
+        "message": "成功"
+      }
+    }
+  }
+]

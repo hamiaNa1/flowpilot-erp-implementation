@@ -1,0 +1,41 @@
+{
+  "time": "2026-10-08T16:52:47.430624+08:00",
+  "url": "http://127.0.0.1:8088/bill/sale_out",
+  "user": "fp_manager",
+  "body": "管伊佳ERP\n首页\n零售管理\n采购管理\n销售管理\n销售订单\n销售出库\n销售退货\n仓库管理\n财务管理\n报表查询\n商品管理\n基础资料\nFlowPilot汽车零部件有限公司（虚构演示企业）\n欢迎您，FlowPilot实施管理员 退出登录\n首页\n销售出库\n单据编号\n商品信息\n单据日期\n~\n查 询重 置 展开 \n新增删除转销售退货审核反审核列设置\n\t\n\t\n操作\n\t\n客户\n\t\n单据编号\n\t\n商品信息\n\t\n单据日期\n\t\n操作员\n\t\n数量\n\t\n金额合计\n\t\n含税合计\n\t\n待收金额\n\t\n本次收款\n\t\n本次欠款\n\t\n状态\n\t\n\t查看编辑复制删除\tFlowPilot汽车总装客户（虚构）\tFP-UAT-20261008-SI[订]\tFlowPilot制动支架 BRK-01\t2026-10-08 16:38:44\tFlowPilot销售员\t30\t2850\t2850.00\t2850.00\t2850\t0\t已审核\n1-1 共1条\n1\n10 条/页\n整体风格设置\n主题色\n固定 Header\n下滑时隐藏 Header\n固定侧边菜单\n语言设置\n选择语言\n简体中文\n其他设置\n色弱模式",
+  "page_errors": [],
+  "inputs": [
+    {
+      "placeholder": null,
+      "type": null
+    },
+    {
+      "placeholder": "请输入单据编号",
+      "type": "text"
+    },
+    {
+      "placeholder": "请输入条码、名称、助记码、规格、型号等信息",
+      "type": "text"
+    },
+    {
+      "placeholder": "开始时间",
+      "type": null
+    },
+    {
+      "placeholder": "结束时间",
+      "type": null
+    },
+    {
+      "placeholder": null,
+      "type": "checkbox"
+    },
+    {
+      "placeholder": null,
+      "type": "checkbox"
+    },
+    {
+      "placeholder": null,
+      "type": null
+    }
+  ]
+}

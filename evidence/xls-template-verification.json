@@ -1,0 +1,66 @@
+{
+  "time": "2026-10-08T17:10:10.948036+08:00",
+  "books": [
+    {
+      "file": "data/suppliers-native.xls",
+      "rows": 3,
+      "columns": 15,
+      "preview_columns": [
+        0,
+        1,
+        6,
+        8,
+        11,
+        12,
+        14
+      ],
+      "utf8_chinese_readback": true
+    },
+    {
+      "file": "data/customers-native.xls",
+      "rows": 3,
+      "columns": 15,
+      "preview_columns": [
+        0,
+        1,
+        6,
+        8,
+        11,
+        12,
+        14
+      ],
+      "utf8_chinese_readback": true
+    },
+    {
+      "file": "data/materials-native.xls",
+      "rows": 6,
+      "columns": 32,
+      "preview_columns": [
+        0,
+        1,
+        8,
+        10,
+        14,
+        16,
+        30,
+        31
+      ],
+      "utf8_chinese_readback": true
+    },
+    {
+      "file": "data/initial-stock.xls",
+      "rows": 12,
+      "columns": 4,
+      "preview_columns": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "utf8_chinese_readback": true
+    }
+  ],
+  "method": "xlrd readback + browser rendering of actual values",
+  "excel_gui_executed": false,
+  "visual_review": "passed: inspected rendered PNG; Chinese text readable, no clipping or overlaps"
+}

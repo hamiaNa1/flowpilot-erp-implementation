@@ -1,0 +1,8 @@
+Collecting PyMuPDF==1.26.5
+  Downloading pymupdf-1.26.5-cp39-abi3-win_amd64.whl (18.7 MB)
+     --------------------------------------- 18.7/18.7 MB 15.6 MB/s eta 0:00:00
+Installing collected packages: PyMuPDF
+Successfully installed PyMuPDF-1.26.5
+
+[notice] A new release of pip is available: 23.0.1 -> 26.2.1
+[notice] To update, run: D:\7800\flowpilot-erp\.venv\Scripts\python.exe -m pip install --upgrade pip

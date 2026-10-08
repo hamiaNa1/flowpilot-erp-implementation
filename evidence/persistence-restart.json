@@ -1,0 +1,225 @@
+{
+  "time": "2026-10-08T16:55:17.543929+08:00",
+  "before": {
+    "stocks": [
+      {
+        "bar_code": "FP-MAT-001",
+        "name": "FlowPilot原料仓",
+        "current_number": "140.000000"
+      },
+      {
+        "bar_code": "FP-MAT-001",
+        "name": "FlowPilot成品仓",
+        "current_number": "10.000000"
+      },
+      {
+        "bar_code": "FP-MAT-002",
+        "name": "FlowPilot原料仓",
+        "current_number": "80.000000"
+      },
+      {
+        "bar_code": "FP-MAT-003",
+        "name": "FlowPilot原料仓",
+        "current_number": "1000.000000"
+      },
+      {
+        "bar_code": "FP-MAT-004",
+        "name": "FlowPilot原料仓",
+        "current_number": "200.000000"
+      },
+      {
+        "bar_code": "FP-MAT-005",
+        "name": "FlowPilot原料仓",
+        "current_number": "500.000000"
+      },
+      {
+        "bar_code": "FP-MAT-006",
+        "name": "FlowPilot原料仓",
+        "current_number": "100.000000"
+      }
+    ],
+    "bills": [
+      {
+        "id": 277,
+        "number": "FP-UAT-20261008-PO",
+        "status": "2",
+        "link_number": "",
+        "total_price": "-8160.000000"
+      },
+      {
+        "id": 278,
+        "number": "FP-UAT-20261008-PI",
+        "status": "1",
+        "link_number": "FP-UAT-20261008-PO",
+        "total_price": "-8160.000000"
+      },
+      {
+        "id": 279,
+        "number": "FP-UAT-20261008-SO",
+        "status": "2",
+        "link_number": "",
+        "total_price": "2850.000000"
+      },
+      {
+        "id": 280,
+        "number": "FP-UAT-20261008-SI",
+        "status": "1",
+        "link_number": "FP-UAT-20261008-SO",
+        "total_price": "2850.000000"
+      }
+    ],
+    "masters": [
+      {
+        "id": 90,
+        "supplier": "FlowPilot精密钢材供应商（虚构）",
+        "type": "供应商",
+        "description": "legacy-code:SUP-FP-001"
+      },
+      {
+        "id": 91,
+        "supplier": "FlowPilot标准件供应商（虚构）",
+        "type": "供应商",
+        "description": "legacy-code:SUP-FP-002"
+      },
+      {
+        "id": 92,
+        "supplier": "FlowPilot包装材料供应商（虚构）",
+        "type": "供应商",
+        "description": "legacy-code:SUP-FP-003"
+      },
+      {
+        "id": 93,
+        "supplier": "FlowPilot汽车总装客户（虚构）",
+        "type": "客户",
+        "description": "legacy-code:CUS-FP-001"
+      },
+      {
+        "id": 94,
+        "supplier": "FlowPilot售后配件客户（虚构）",
+        "type": "客户",
+        "description": "legacy-code:CUS-FP-002"
+      },
+      {
+        "id": 95,
+        "supplier": "FlowPilot底盘系统客户（虚构）",
+        "type": "客户",
+        "description": "legacy-code:CUS-FP-003"
+      }
+    ]
+  },
+  "all_ports_stopped": {
+    "MYSQL_PORT": true,
+    "REDIS_PORT": true,
+    "BACKEND_PORT": true,
+    "HTTP_PORT": true
+  },
+  "after": {
+    "stocks": [
+      {
+        "bar_code": "FP-MAT-001",
+        "name": "FlowPilot原料仓",
+        "current_number": "140.000000"
+      },
+      {
+        "bar_code": "FP-MAT-001",
+        "name": "FlowPilot成品仓",
+        "current_number": "10.000000"
+      },
+      {
+        "bar_code": "FP-MAT-002",
+        "name": "FlowPilot原料仓",
+        "current_number": "80.000000"
+      },
+      {
+        "bar_code": "FP-MAT-003",
+        "name": "FlowPilot原料仓",
+        "current_number": "1000.000000"
+      },
+      {
+        "bar_code": "FP-MAT-004",
+        "name": "FlowPilot原料仓",
+        "current_number": "200.000000"
+      },
+      {
+        "bar_code": "FP-MAT-005",
+        "name": "FlowPilot原料仓",
+        "current_number": "500.000000"
+      },
+      {
+        "bar_code": "FP-MAT-006",
+        "name": "FlowPilot原料仓",
+        "current_number": "100.000000"
+      }
+    ],
+    "bills": [
+      {
+        "id": 277,
+        "number": "FP-UAT-20261008-PO",
+        "status": "2",
+        "link_number": "",
+        "total_price": "-8160.000000"
+      },
+      {
+        "id": 278,
+        "number": "FP-UAT-20261008-PI",
+        "status": "1",
+        "link_number": "FP-UAT-20261008-PO",
+        "total_price": "-8160.000000"
+      },
+      {
+        "id": 279,
+        "number": "FP-UAT-20261008-SO",
+        "status": "2",
+        "link_number": "",
+        "total_price": "2850.000000"
+      },
+      {
+        "id": 280,
+        "number": "FP-UAT-20261008-SI",
+        "status": "1",
+        "link_number": "FP-UAT-20261008-SO",
+        "total_price": "2850.000000"
+      }
+    ],
+    "masters": [
+      {
+        "id": 90,
+        "supplier": "FlowPilot精密钢材供应商（虚构）",
+        "type": "供应商",
+        "description": "legacy-code:SUP-FP-001"
+      },
+      {
+        "id": 91,
+        "supplier": "FlowPilot标准件供应商（虚构）",
+        "type": "供应商",
+        "description": "legacy-code:SUP-FP-002"
+      },
+      {
+        "id": 92,
+        "supplier": "FlowPilot包装材料供应商（虚构）",
+        "type": "供应商",
+        "description": "legacy-code:SUP-FP-003"
+      },
+      {
+        "id": 93,
+        "supplier": "FlowPilot汽车总装客户（虚构）",
+        "type": "客户",
+        "description": "legacy-code:CUS-FP-001"
+      },
+      {
+        "id": 94,
+        "supplier": "FlowPilot售后配件客户（虚构）",
+        "type": "客户",
+        "description": "legacy-code:CUS-FP-002"
+      },
+      {
+        "id": 95,
+        "supplier": "FlowPilot底盘系统客户（虚构）",
+        "type": "客户",
+        "description": "legacy-code:CUS-FP-003"
+      }
+    ]
+  },
+  "data_equal": true,
+  "deployment": "Windows portable processes; container restart NOT EXECUTED"
+}

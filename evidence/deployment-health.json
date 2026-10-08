@@ -1,0 +1,9 @@
+{
+  "time": "2026-10-08T16:55:17.486821+08:00",
+  "url": "http://127.0.0.1:8088",
+  "mysql_port": "3308",
+  "redis_ping": "PONG",
+  "proxy_http_status": 200,
+  "platform_response": "管伊佳ERP",
+  "all_loopback": true
+}

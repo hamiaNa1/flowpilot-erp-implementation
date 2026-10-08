@@ -1,0 +1,12 @@
+Collecting reportlab==4.4.4
+  Downloading reportlab-4.4.4-py3-none-any.whl (2.0 MB)
+     ---------------------------------------- 2.0/2.0 MB 5.9 MB/s eta 0:00:00
+Requirement already satisfied: charset-normalizer in d:\7800\flowpilot-erp\.venv\lib\site-packages (from reportlab==4.4.4) (3.5.2)
+Collecting pillow>=9.0.0
+  Downloading pillow-12.3.0-cp310-cp310-win_amd64.whl (7.2 MB)
+     ---------------------------------------- 7.2/7.2 MB 16.5 MB/s eta 0:00:00
+Installing collected packages: pillow, reportlab
+Successfully installed pillow-12.3.0 reportlab-4.4.4
+
+[notice] A new release of pip is available: 23.0.1 -> 26.2.1
+[notice] To update, run: D:\7800\flowpilot-erp\.venv\Scripts\python.exe -m pip install --upgrade pip

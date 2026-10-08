@@ -1,0 +1,12 @@
+.env
+.venv/
+tools/
+runtime/
+backups/
+upstream/
+__pycache__/
+*.pyc
+evidence/*raw*
+evidence/*private*
+evidence/*.har
+deployment/.env

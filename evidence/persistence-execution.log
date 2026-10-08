@@ -1,0 +1,3 @@
+Project services stopped; all persisted data retained.
+ERP started: http://127.0.0.1:8088
+All four services stopped and restarted; business/master/stock data unchanged.

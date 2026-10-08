@@ -1,0 +1,194 @@
+{
+  "time": "2026-10-08T17:18:54.958594+08:00",
+  "checks": [
+    {
+      "check": "13 delivery documents",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Python syntax",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "Local Markdown links",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "Compose YAML/static safety only (Docker runtime NOT executed)",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "Postman secret placeholders blank, writes disabled",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Postman v2.1 schema declaration",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "resume-pdf-verification.json visual review",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "xls-template-verification.json visual review",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "UAT truthful count and two failures preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Only four valid core bills; all disposable drafts cleaned",
+      "passed": true,
+      "detail": [
+        {
+          "number": "FP-UAT-20261008-PO",
+          "status": "2",
+          "creator": 147
+        },
+        {
+          "number": "FP-UAT-20261008-PI",
+          "status": "1",
+          "creator": 147
+        },
+        {
+          "number": "FP-UAT-20261008-SO",
+          "status": "2",
+          "creator": 149
+        },
+        {
+          "number": "FP-UAT-20261008-SI",
+          "status": "1",
+          "creator": 149
+        }
+      ]
+    },
+    {
+      "check": "Final raw warehouse stock 140",
+      "passed": true,
+      "detail": [
+        {
+          "current_number": "140.000000"
+        }
+      ]
+    },
+    {
+      "check": "MySQL charset utf8mb4",
+      "passed": true,
+      "detail": [
+        {
+          "version": "8.0.44",
+          "charset": "utf8mb4",
+          "collation": "utf8mb4_unicode_ci"
+        }
+      ]
+    },
+    {
+      "check": "Redis authenticated PONG",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "HTTP /healthz",
+      "passed": true,
+      "detail": {
+        "status": 200,
+        "bytes": 2
+      }
+    },
+    {
+      "check": "HTTP /",
+      "passed": true,
+      "detail": {
+        "status": 200,
+        "bytes": 30615
+      }
+    },
+    {
+      "check": "HTTP /jshERP-boot/platformConfig/getPlatform/name",
+      "passed": true,
+      "detail": {
+        "status": 200,
+        "bytes": 12
+      }
+    },
+    {
+      "check": "Native default accounts rotated; sample disabled",
+      "passed": true,
+      "detail": [
+        {
+          "login_name": "jsh",
+          "status": 0,
+          "default_password_changed": true
+        },
+        {
+          "login_name": "admin",
+          "status": 0,
+          "default_password_changed": true
+        },
+        {
+          "login_name": "test123",
+          "status": 1,
+          "default_password_changed": null
+        }
+      ]
+    },
+    {
+      "check": "Recorded isolated restore: all 30 tables equal",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Recorded four-service restart data persisted",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "PowerShell syntax",
+      "passed": true,
+      "detail": [
+        {
+          "file": "build.ps1",
+          "errors": []
+        },
+        {
+          "file": "compose.ps1",
+          "errors": []
+        },
+        {
+          "file": "environment.ps1",
+          "errors": []
+        },
+        {
+          "file": "setup.ps1",
+          "errors": []
+        },
+        {
+          "file": "start.ps1",
+          "errors": []
+        },
+        {
+          "file": "stop.ps1",
+          "errors": []
+        }
+      ]
+    }
+  ],
+  "all_passed": true,
+  "meaning": "Delivery consistency checks passed does NOT mean all UAT passed; two business/security failures remain",
+  "not_executed": [
+    "Docker runtime/compose config CLI",
+    "Linux VM",
+    "Clean-machine complete setup",
+    "Upstream unit-test compilation/execution"
+  ]
+}

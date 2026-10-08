@@ -1,0 +1,23 @@
+{
+  "time": "2026-10-08T16:43:32.934248+08:00",
+  "response": {
+    "msg": "操作成功",
+    "code": 200
+  },
+  "sql_draft": [
+    {
+      "id": 286,
+      "number": "FP-UAT-20261008-NEG-SCREEN",
+      "type": "出库",
+      "sub_type": "销售",
+      "status": "0",
+      "purchase_status": "0",
+      "creator": 149,
+      "link_number": "",
+      "total_price": "-95.000000"
+    }
+  ],
+  "visible_text": "管伊佳ERP\n首页\n零售管理\n采购管理\n销售管理\n销售订单\n销售出库\n销售退货\n仓库管理\n财务管理\n报表查询\n商品管理\n基础资料\nFlowPilot汽车零部件有限公司（虚构演示企业）\n欢迎您，FlowPilot实施管理员 退出登录\n首页\n销售出库\n单据编号\n商品信息\n单据日期\n~\n查 询重 置 展开 \n新增删除转销售退货审核反审核列设置\n\t\n\t\n操作\n\t\n客户\n\t\n单据编号\n\t\n商品信息\n\t\n单据日期\n\t\n操作员\n\t\n数量\n\t\n金额合计\n\t\n含税合计\n\t\n待收金额\n\t\n本次收款\n\t\n本次欠款\n\t\n状态\n\t\n\t查看编辑复制删除\tFlowPilot汽车总装客户（虚构）\tFP-UAT-20261008-NEG-SCREEN\tFlowPilot制动支架 BRK-01\t2026-10-08 16:43:31\tFlowPilot销售员\t-1\t95\t-95.00\t-95.00\t95\t\t未审核\n\t\n\t查看编辑复制删除\tFlowPilot汽车总装客户（虚构）\tFP-UAT-20261008-SI[订]\tFlowPilot制动支架 BRK-01\t2026-10-08 16:38:44\tFlowPilot销售员\t30\t2850\t2850.00\t2850.00\t2850\t0\t已审核\n1-2 共2条\n1\n10 条/页\n整体风格设置\n主题色\n固定 Header\n下滑时隐藏 Header\n固定侧边菜单\n语言设置\n选择语言\n简体中文\n其他设置\n色弱模式",
+  "deleted_own_draft": true,
+  "stock": "140.000000"
+}

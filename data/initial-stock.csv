@@ -1,0 +1,13 @@
+﻿barcode,warehouse,quantity,effective_date
+FP-MAT-001,FlowPilot原料仓,50,2026-10-01
+FP-MAT-001,FlowPilot成品仓,10,2026-10-01
+FP-MAT-002,FlowPilot原料仓,80,2026-10-01
+FP-MAT-002,FlowPilot成品仓,0,2026-10-01
+FP-MAT-003,FlowPilot原料仓,1000,2026-10-01
+FP-MAT-003,FlowPilot成品仓,0,2026-10-01
+FP-MAT-004,FlowPilot原料仓,200,2026-10-01
+FP-MAT-004,FlowPilot成品仓,0,2026-10-01
+FP-MAT-005,FlowPilot原料仓,500,2026-10-01
+FP-MAT-005,FlowPilot成品仓,0,2026-10-01
+FP-MAT-006,FlowPilot原料仓,100,2026-10-01
+FP-MAT-006,FlowPilot成品仓,0,2026-10-01

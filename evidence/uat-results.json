@@ -1,0 +1,350 @@
+[
+  {
+    "id": "UAT-01",
+    "scene": "基础资料和期初库存",
+    "precondition": "基础数据已迁移；启用强制审核，关闭负库存",
+    "steps": "读取真实基础资料接口、查询SQL、在库存页面筛选仓库与物料",
+    "expected": "6个往来单位、6个物料；原料仓支架50件",
+    "actual": {
+      "partners": 6,
+      "materials": 6,
+      "raw_stock": "50.000000"
+    },
+    "status": "通过",
+    "evidence": [
+      "migration-result.json",
+      "stock-01-initial.png"
+    ],
+    "time": "2026-10-08T16:38:36.018031+08:00"
+  },
+  {
+    "id": "UAT-02",
+    "scene": "采购订单",
+    "precondition": "基础数据已迁移；启用强制审核，关闭负库存",
+    "steps": "采购账号保存采购订单120件并审核",
+    "expected": "订单审核后不改变库存",
+    "actual": {
+      "order": [
+        {
+          "id": 277,
+          "number": "FP-UAT-20261008-PO",
+          "type": "其它",
+          "sub_type": "采购订单",
+          "status": "1",
+          "purchase_status": "0",
+          "creator": 147,
+          "link_number": "",
+          "total_price": "-8160.000000"
+        }
+      ],
+      "stock": "50.000000"
+    },
+    "status": "通过",
+    "evidence": [
+      "business-api.json"
+    ],
+    "time": "2026-10-08T16:38:37.885370+08:00"
+  },
+  {
+    "id": "UAT-03",
+    "scene": "采购入库与审核",
+    "precondition": "基础数据已迁移；启用强制审核，关闭负库存",
+    "steps": "按采购订单关联保存采购入库，审核，在页面和SQL核实",
+    "expected": "草稿不计库存；审核后50+120=170",
+    "actual": {
+      "pending_stock": "50.000000",
+      "approved_stock": "170.000000",
+      "document": [
+        {
+          "id": 278,
+          "number": "FP-UAT-20261008-PI",
+          "type": "入库",
+          "sub_type": "采购",
+          "status": "1",
+          "purchase_status": "0",
+          "creator": 147,
+          "link_number": "FP-UAT-20261008-PO",
+          "total_price": "-8160.000000"
+        }
+      ],
+      "browser_cells": [
+        "1",
+        "流水分布",
+        "FP-MAT-001",
+        "FlowPilot制动支架",
+        "BRK-01",
+        "",
+        "",
+        "",
+        "",
+        "件",
+        "68",
+        "50",
+        "170",
+        "11560",
+        "0"
+      ]
+    },
+    "status": "通过",
+    "evidence": [
+      "stock-02-purchase-approved.png",
+      "business-stock-snapshots.json"
+    ],
+    "time": "2026-10-08T16:38:43.101099+08:00"
+  },
+  {
+    "id": "UAT-04",
+    "scene": "销售订单与出库",
+    "precondition": "基础数据已迁移；启用强制审核，关闭负库存",
+    "steps": "销售账号保存销售订单30件并审核，关联出库并审核，页面和SQL核实",
+    "expected": "170-30=140件；单据关联完整",
+    "actual": {
+      "stock": "140.000000",
+      "order": [
+        {
+          "id": 279,
+          "number": "FP-UAT-20261008-SO",
+          "type": "其它",
+          "sub_type": "销售订单",
+          "status": "2",
+          "purchase_status": "0",
+          "creator": 149,
+          "link_number": "",
+          "total_price": "2850.000000"
+        }
+      ],
+      "outbound": [
+        {
+          "id": 280,
+          "number": "FP-UAT-20261008-SI",
+          "type": "出库",
+          "sub_type": "销售",
+          "status": "1",
+          "purchase_status": "0",
+          "creator": 149,
+          "link_number": "FP-UAT-20261008-SO",
+          "total_price": "2850.000000"
+        }
+      ],
+      "browser_cells": [
+        "1",
+        "流水分布",
+        "FP-MAT-001",
+        "FlowPilot制动支架",
+        "BRK-01",
+        "",
+        "",
+        "",
+        "",
+        "件",
+        "68",
+        "50",
+        "140",
+        "9520",
+        "0"
+      ]
+    },
+    "status": "通过",
+    "evidence": [
+      "stock-03-sales-approved.png",
+      "business-api.json"
+    ],
+    "time": "2026-10-08T16:38:50.032220+08:00"
+  },
+  {
+    "id": "UAT-05",
+    "scene": "库存不足",
+    "precondition": "基础数据已迁移；启用强制审核，关闭负库存",
+    "steps": "销售账号尝试141件出库，SQL查询头表和库存",
+    "expected": "141件出库被拒绝；整单事务回滚，库存仍140",
+    "actual": {
+      "response": {
+        "code": 8000004,
+        "data": {
+          "message": "商品:FlowPilot制动支架-FP-MAT-001库存不足"
+        }
+      },
+      "bill_count": 0,
+      "stock": "140.000000"
+    },
+    "status": "通过",
+    "evidence": [
+      "business-api.json"
+    ],
+    "time": "2026-10-08T16:38:50.107741+08:00"
+  },
+  {
+    "id": "UAT-06",
+    "scene": "同号重复提交",
+    "precondition": "基础数据已迁移；启用强制审核，关闭负库存",
+    "steps": "重放已成功采购入库的相同请求",
+    "expected": "拒绝同号单据，仅1个采购入库头、库存保持140",
+    "actual": {
+      "response": {
+        "code": 8500022,
+        "data": {
+          "message": "抱歉，单据编号已经存在"
+        }
+      },
+      "count": 1,
+      "stock": "140.000000"
+    },
+    "status": "通过",
+    "evidence": [
+      "business-api.json"
+    ],
+    "time": "2026-10-08T16:38:52.283282+08:00"
+  },
+  {
+    "id": "UAT-07",
+    "scene": "必填仓库校验",
+    "precondition": "基础数据已迁移；启用强制审核，关闭负库存",
+    "steps": "用原生接口提交缺少仓库的销售出库",
+    "expected": "缺少仓库被拒绝，头表回滚",
+    "actual": {
+      "response": {
+        "code": 8500004,
+        "data": {
+          "message": "仓库不能为空"
+        }
+      },
+      "bill_count": 0
+    },
+    "status": "通过",
+    "evidence": [
+      "business-api.json"
+    ],
+    "time": "2026-10-08T16:38:52.377154+08:00"
+  },
+  {
+    "id": "UAT-08",
+    "scene": "接口负数量校验",
+    "precondition": "基础数据已迁移；启用强制审核，关闭负库存",
+    "steps": "提交-1件的未审核测试单；如果原生接口接受，保留证据并仅清理该测试草稿",
+    "expected": "出库数量必须大于0；服务端拒绝负数",
+    "actual": {
+      "response": {
+        "msg": "操作成功",
+        "code": 200
+      },
+      "created_draft": [
+        {
+          "id": 283,
+          "number": "FP-UAT-20261008-NEGATIVE",
+          "type": "出库",
+          "sub_type": "销售",
+          "status": "0",
+          "purchase_status": "0",
+          "creator": 149,
+          "link_number": "",
+          "total_price": "-95.000000"
+        }
+      ],
+      "cleanup": {
+        "code": 200,
+        "data": {
+          "message": "成功"
+        }
+      },
+      "stock": "140.000000"
+    },
+    "status": "失败",
+    "evidence": [
+      "business-api.json"
+    ],
+    "time": "2026-10-08T16:38:55.933544+08:00"
+  },
+  {
+    "id": "UAT-09",
+    "scene": "反审核与重新审核",
+    "precondition": "基础数据已迁移；启用强制审核，关闭负库存",
+    "steps": "通过原生batchSetStatus反审核销售出库，再审核",
+    "expected": "销售反审核库存恢复170，再审核回到140",
+    "actual": {
+      "unapprove": {
+        "code": 200,
+        "data": {
+          "message": "成功"
+        }
+      },
+      "stock_unapproved": "170.000000",
+      "reapprove": {
+        "code": 200,
+        "data": {
+          "message": "成功"
+        }
+      },
+      "stock_reapproved": "140.000000"
+    },
+    "status": "通过",
+    "evidence": [
+      "business-api.json"
+    ],
+    "time": "2026-10-08T16:38:59.399476+08:00"
+  },
+  {
+    "id": "UAT-10",
+    "scene": "单据和库存一致性",
+    "precondition": "基础数据已迁移；启用强制审核，关闭负库存",
+    "steps": "SQL核对头表、行表、状态、关联单号、库存",
+    "expected": "4张有效主业务单据，订单完成，采购120销售30，原料仓140",
+    "actual": {
+      "ledger": [
+        {
+          "number": "FP-UAT-20261008-PO",
+          "type": "其它",
+          "sub_type": "采购订单",
+          "status": "2",
+          "creator": 147,
+          "link_number": "",
+          "oper_number": "120.000000",
+          "basic_number": "120.000000",
+          "depot_id": null,
+          "link_id": null
+        },
+        {
+          "number": "FP-UAT-20261008-PI",
+          "type": "入库",
+          "sub_type": "采购",
+          "status": "1",
+          "creator": 147,
+          "link_number": "FP-UAT-20261008-PO",
+          "oper_number": "120.000000",
+          "basic_number": "120.000000",
+          "depot_id": 19,
+          "link_id": 334
+        },
+        {
+          "number": "FP-UAT-20261008-SO",
+          "type": "其它",
+          "sub_type": "销售订单",
+          "status": "2",
+          "creator": 149,
+          "link_number": "",
+          "oper_number": "30.000000",
+          "basic_number": "30.000000",
+          "depot_id": null,
+          "link_id": null
+        },
+        {
+          "number": "FP-UAT-20261008-SI",
+          "type": "出库",
+          "sub_type": "销售",
+          "status": "1",
+          "creator": 149,
+          "link_number": "FP-UAT-20261008-SO",
+          "oper_number": "30.000000",
+          "basic_number": "30.000000",
+          "depot_id": 19,
+          "link_id": 336
+        }
+      ],
+      "final_stock": "140.000000"
+    },
+    "status": "通过",
+    "evidence": [
+      "business-ledger.json"
+    ],
+    "time": "2026-10-08T16:38:59.461661+08:00"
+  }
+]

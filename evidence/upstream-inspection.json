@@ -1,0 +1,39 @@
+{
+  "time": "2026-10-08T17:17:30.499532+08:00",
+  "commit": "8f28e7c2fe54d54de3621a414f5df1833dc5a55f",
+  "tag": "v3.6",
+  "files": [
+    {
+      "file": "README.md",
+      "sha256": "662faaf10d4a9d5d495ea0b84dda9f3df516503eada2f4d58527615e9882ab74"
+    },
+    {
+      "file": "LICENSE",
+      "sha256": "1eb85fc97224598dad1852b5d6483bbcf0aa8608790dcc657a5a2a761ae9c8c6"
+    },
+    {
+      "file": "jshERP-boot/pom.xml",
+      "sha256": "cb04a07e878883ae82c2f941c2cb3dfec566ae08b4f60271bca51024fbb7eb15"
+    },
+    {
+      "file": "jshERP-web/package.json",
+      "sha256": "a6ba7d4fae5d3ca55cc760727803531a22894191cdaa38322c903ea0dd25423e"
+    },
+    {
+      "file": "jshERP-boot/docs/jsh_erp.sql",
+      "sha256": "c4b61d9a069fe139db880f7751bfa7737732cb76473a954ea54e2497d36adfe3"
+    }
+  ],
+  "backend_version": "3.6-SNAPSHOT",
+  "spring_boot_version": "2.0.0.RELEASE",
+  "java_version": "1.8",
+  "frontend_package_version": "3.5.0",
+  "vue_dependency": "^2.7.16",
+  "ant_design_vue": "1.5.2",
+  "builds": {
+    "backend": "mvn package with Central mirror",
+    "frontend": "vue-cli-service build"
+  },
+  "upstream_docker_paths": [],
+  "shell_syntax": "compose.sh and mysql/02-security.sh parsed by Git bash -n; no deployment executed"
+}

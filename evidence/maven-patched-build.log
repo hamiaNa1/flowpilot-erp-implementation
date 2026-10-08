@@ -1,0 +1,50 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------------------< com.jsh:jshERP-boot >-------------------------
+[INFO] Building jshERP-boot 3.6-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[WARNING] The artifact mysql:mysql-connector-java:jar:8.0.33 has been relocated to com.mysql:mysql-connector-j:jar:8.0.33: MySQL Connector/J artifacts moved to reverse-DNS compliant Maven 2+ coordinates.
+[WARNING] The artifact org.apache.commons:commons-io:jar:1.3.2 has been relocated to commons-io:commons-io:jar:1.3.2: https://issues.sonatype.org/browse/MVNCENTRAL-244
+[INFO] 
+[INFO] --- spring-boot:2.0.3.RELEASE:build-info (build-info) @ jshERP-boot ---
+[INFO] 
+[INFO] --- resources:3.0.1:resources (default-resources) @ jshERP-boot ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 1 resource
+[INFO] Copying 60 resources
+[INFO] 
+[INFO] --- compiler:3.7.0:compile (default-compile) @ jshERP-boot ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 262 source files to D:\7800\flowpilot-erp\upstream\jshERP-boot\target\classes
+[INFO] /D:/7800/flowpilot-erp/upstream/jshERP-boot/src/main/java/com/jsh/erp/utils/QueryUtils.java: D:\7800\flowpilot-erp\upstream\jshERP-boot\src\main\java\com\jsh\erp\utils\QueryUtils.javaʹ�û򸲸����ѹ�ʱ�� API��
+[INFO] /D:/7800/flowpilot-erp/upstream/jshERP-boot/src/main/java/com/jsh/erp/utils/QueryUtils.java: �й���ϸ��Ϣ, ��ʹ�� -Xlint:deprecation ���±��롣
+[INFO] /D:/7800/flowpilot-erp/upstream/jshERP-boot/src/main/java/com/jsh/erp/utils/Tools.java: ĳЩ�����ļ�ʹ����δ�����򲻰�ȫ�Ĳ�����
+[INFO] /D:/7800/flowpilot-erp/upstream/jshERP-boot/src/main/java/com/jsh/erp/utils/Tools.java: �й���ϸ��Ϣ, ��ʹ�� -Xlint:unchecked ���±��롣
+[INFO] 
+[INFO] --- resources:3.0.1:testResources (default-testResources) @ jshERP-boot ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 1 resource
+[INFO] 
+[INFO] --- compiler:3.7.0:testCompile (default-testCompile) @ jshERP-boot ---
+[INFO] Not compiling test sources
+[INFO] 
+[INFO] --- surefire:2.20.1:test (default-test) @ jshERP-boot ---
+[INFO] 
+[INFO] --- jar:3.0.2:jar (default-jar) @ jshERP-boot ---
+[INFO] Building jar: D:\7800\flowpilot-erp\upstream\jshERP-boot\target\jshERP.jar
+[INFO] 
+[INFO] --- spring-boot:2.0.3.RELEASE:repackage (default) @ jshERP-boot ---
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  29.690 s
+[INFO] Finished at: 2026-10-08T16:18:35+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:2.0.3.RELEASE:repackage (default) on project jshERP-boot: Execution default of goal org.springframework.boot:spring-boot-maven-plugin:2.0.3.RELEASE:repackage failed: Unable to rename 'D:\7800\flowpilot-erp\upstream\jshERP-boot\target\jshERP.jar' to 'D:\7800\flowpilot-erp\upstream\jshERP-boot\target\jshERP.jar.original' -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/PluginExecutionException

@@ -1,0 +1,88 @@
+[
+  {
+    "id": "UAT-14",
+    "scene": "真实页面编辑中文供应商联系人",
+    "precondition": "fp_manager真实登录且拥有基础资料编辑按钮",
+    "steps": "供应商页面查询旧编码对应名称，点击编辑，修改联系人并保存，SQL核对",
+    "expected": "原记录联系人更新，ID和旧编码保留",
+    "actual": {
+      "before": {
+        "id": 90,
+        "supplier": "FlowPilot精密钢材供应商（虚构）",
+        "contacts": "供应联系人甲（页面验收）",
+        "description": "legacy-code:SUP-FP-001"
+      },
+      "after": {
+        "id": 90,
+        "supplier": "FlowPilot精密钢材供应商（虚构）",
+        "contacts": "供应联系人甲（页面验收）",
+        "description": "legacy-code:SUP-FP-001"
+      }
+    },
+    "status": "通过",
+    "evidence": [
+      "gui-vendor-edit-dialog.png",
+      "gui-vendor-edited.png",
+      "gui-operation-api.json"
+    ],
+    "time": "2026-10-08T16:53:12.916797+08:00"
+  },
+  {
+    "id": "UAT-15-0",
+    "scene": "页面销售出库反审核",
+    "precondition": "已保存真实销售出库30件",
+    "steps": "销售出库页面按单号查询，勾选，点击反审核并确认，SQL核对",
+    "expected": "状态0，原料仓170件",
+    "actual": {
+      "document": [
+        {
+          "id": 280,
+          "number": "FP-UAT-20261008-SI",
+          "type": "出库",
+          "sub_type": "销售",
+          "status": "0",
+          "purchase_status": "0",
+          "creator": 149,
+          "link_number": "FP-UAT-20261008-SO",
+          "total_price": "2850.000000"
+        }
+      ],
+      "stock": "170.000000"
+    },
+    "status": "通过",
+    "evidence": [
+      "gui-sale-status-0.png",
+      "gui-operation-api.json"
+    ],
+    "time": "2026-10-08T16:53:14.004899+08:00"
+  },
+  {
+    "id": "UAT-15-1",
+    "scene": "页面销售出库审核",
+    "precondition": "已保存真实销售出库30件",
+    "steps": "销售出库页面按单号查询，勾选，点击审核并确认，SQL核对",
+    "expected": "状态1，原料仓140件",
+    "actual": {
+      "document": [
+        {
+          "id": 280,
+          "number": "FP-UAT-20261008-SI",
+          "type": "出库",
+          "sub_type": "销售",
+          "status": "1",
+          "purchase_status": "0",
+          "creator": 149,
+          "link_number": "FP-UAT-20261008-SO",
+          "total_price": "2850.000000"
+        }
+      ],
+      "stock": "140.000000"
+    },
+    "status": "通过",
+    "evidence": [
+      "gui-sale-status-1.png",
+      "gui-operation-api.json"
+    ],
+    "time": "2026-10-08T16:54:14.567882+08:00"
+  }
+]

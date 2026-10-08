@@ -1,0 +1,635 @@
+{
+  "time": "2026-10-08T17:08:24.838579+08:00",
+  "requests": [
+    {
+      "time": "2026-10-08T17:08:24.515630+08:00",
+      "method": "POST",
+      "path": "/user/login",
+      "request": {
+        "json": {
+          "loginName": "fp_manager",
+          "password": "[MD5 REDACTED]",
+          "code": "[REDACTED]",
+          "uuid": "[REDACTED]"
+        }
+      },
+      "http_status": 200,
+      "response": {
+        "code": 200,
+        "data": {
+          "pwdSimple": false,
+          "user": {
+            "id": 146,
+            "username": "FlowPilot实施管理员",
+            "loginName": "fp_manager",
+            "password": "[REDACTED]",
+            "leaderFlag": "0",
+            "position": "FlowPilot实施管理员",
+            "department": null,
+            "email": null,
+            "phonenum": null,
+            "ismanager": 1,
+            "isystem": 0,
+            "status": 0,
+            "description": null,
+            "remark": null,
+            "weixinOpenId": null,
+            "tenantId": 63,
+            "deleteFlag": "0"
+          },
+          "msgTip": "user can login",
+          "token": "[REDACTED]"
+        }
+      },
+      "authenticated_user_before": null
+    },
+    {
+      "time": "2026-10-08T17:08:24.553519+08:00",
+      "method": "GET",
+      "path": "/supplier/list",
+      "request": {
+        "params": {
+          "currentPage": 1,
+          "pageSize": 100,
+          "search": "{\"type\": \"供应商\", \"supplier\": \"FlowPilot\"}"
+        }
+      },
+      "http_status": 200,
+      "response": {
+        "code": 200,
+        "data": {
+          "total": 3,
+          "rows": [
+            {
+              "id": 92,
+              "supplier": "FlowPilot包装材料供应商（虚构）",
+              "contacts": "供应联系人丙",
+              "phoneNum": "",
+              "email": "",
+              "description": "legacy-code:SUP-FP-003",
+              "isystem": null,
+              "type": "供应商",
+              "enabled": true,
+              "advanceIn": 0.0,
+              "beginNeedGet": 0.0,
+              "beginNeedPay": 0.0,
+              "allNeedGet": null,
+              "allNeedPay": 0,
+              "fax": "",
+              "telephone": "",
+              "address": "常州演示工业园",
+              "taxNum": "",
+              "bankName": "",
+              "accountNumber": "",
+              "taxRate": 13.0,
+              "sort": "10",
+              "creator": 63,
+              "tenantId": 63,
+              "deleteFlag": "0"
+            },
+            {
+              "id": 91,
+              "supplier": "FlowPilot标准件供应商（虚构）",
+              "contacts": "供应联系人乙",
+              "phoneNum": "",
+              "email": "",
+              "description": "legacy-code:SUP-FP-002",
+              "isystem": null,
+              "type": "供应商",
+              "enabled": true,
+              "advanceIn": 0.0,
+              "beginNeedGet": 0.0,
+              "beginNeedPay": 0.0,
+              "allNeedGet": null,
+              "allNeedPay": 0,
+              "fax": "",
+              "telephone": "",
+              "address": "无锡演示工业园",
+              "taxNum": "",
+              "bankName": "",
+              "accountNumber": "",
+              "taxRate": 13.0,
+              "sort": "10",
+              "creator": 63,
+              "tenantId": 63,
+              "deleteFlag": "0"
+            },
+            {
+              "id": 90,
+              "supplier": "FlowPilot精密钢材供应商（虚构）",
+              "contacts": "供应联系人甲（页面验收）",
+              "phoneNum": "",
+              "email": "",
+              "description": "legacy-code:SUP-FP-001",
+              "isystem": null,
+              "type": "供应商",
+              "enabled": true,
+              "advanceIn": 0.0,
+              "beginNeedGet": 0.0,
+              "beginNeedPay": 0.0,
+              "allNeedGet": null,
+              "allNeedPay": 0,
+              "fax": "",
+              "telephone": "",
+              "address": "苏州演示工业园",
+              "taxNum": "",
+              "bankName": "",
+              "accountNumber": "",
+              "taxRate": 13.0,
+              "sort": "10",
+              "creator": 63,
+              "tenantId": 63,
+              "deleteFlag": "0"
+            }
+          ]
+        }
+      },
+      "authenticated_user_before": "146"
+    },
+    {
+      "time": "2026-10-08T17:08:24.603472+08:00",
+      "method": "GET",
+      "path": "/supplier/list",
+      "request": {
+        "params": {
+          "currentPage": 1,
+          "pageSize": 100,
+          "search": "{\"type\": \"客户\", \"supplier\": \"FlowPilot\"}"
+        }
+      },
+      "http_status": 200,
+      "response": {
+        "code": 200,
+        "data": {
+          "total": 3,
+          "rows": [
+            {
+              "id": 95,
+              "supplier": "FlowPilot底盘系统客户（虚构）",
+              "contacts": "客户联系人丙",
+              "phoneNum": "",
+              "email": "",
+              "description": "legacy-code:CUS-FP-003",
+              "isystem": null,
+              "type": "客户",
+              "enabled": true,
+              "advanceIn": 0.0,
+              "beginNeedGet": 0.0,
+              "beginNeedPay": 0.0,
+              "allNeedGet": 0,
+              "allNeedPay": null,
+              "fax": "",
+              "telephone": "",
+              "address": "合肥演示工业园",
+              "taxNum": "",
+              "bankName": "",
+              "accountNumber": "",
+              "taxRate": 13.0,
+              "sort": "10",
+              "creator": 63,
+              "tenantId": 63,
+              "deleteFlag": "0"
+            },
+            {
+              "id": 94,
+              "supplier": "FlowPilot售后配件客户（虚构）",
+              "contacts": "客户联系人乙",
+              "phoneNum": "",
+              "email": "",
+              "description": "legacy-code:CUS-FP-002",
+              "isystem": null,
+              "type": "客户",
+              "enabled": true,
+              "advanceIn": 0.0,
+              "beginNeedGet": 0.0,
+              "beginNeedPay": 0.0,
+              "allNeedGet": 0,
+              "allNeedPay": null,
+              "fax": "",
+              "telephone": "",
+              "address": "南京演示工业园",
+              "taxNum": "",
+              "bankName": "",
+              "accountNumber": "",
+              "taxRate": 13.0,
+              "sort": "10",
+              "creator": 63,
+              "tenantId": 63,
+              "deleteFlag": "0"
+            },
+            {
+              "id": 93,
+              "supplier": "FlowPilot汽车总装客户（虚构）",
+              "contacts": "客户联系人甲",
+              "phoneNum": "",
+              "email": "",
+              "description": "legacy-code:CUS-FP-001",
+              "isystem": null,
+              "type": "客户",
+              "enabled": true,
+              "advanceIn": 0.0,
+              "beginNeedGet": 0.0,
+              "beginNeedPay": 0.0,
+              "allNeedGet": 0,
+              "allNeedPay": null,
+              "fax": "",
+              "telephone": "",
+              "address": "上海演示工业园",
+              "taxNum": "",
+              "bankName": "",
+              "accountNumber": "",
+              "taxRate": 13.0,
+              "sort": "10",
+              "creator": 63,
+              "tenantId": 63,
+              "deleteFlag": "0"
+            }
+          ]
+        }
+      },
+      "authenticated_user_before": "146"
+    },
+    {
+      "time": "2026-10-08T17:08:24.638153+08:00",
+      "method": "GET",
+      "path": "/depotHead/getDetailByNumber",
+      "request": {
+        "params": {
+          "number": "FP-UAT-20261008-PI"
+        }
+      },
+      "http_status": 200,
+      "response": {
+        "code": 200,
+        "data": {
+          "id": 278,
+          "type": "入库",
+          "subType": "采购",
+          "defaultNumber": "FP-UAT-20261008-PI",
+          "number": "FP-UAT-20261008-PI",
+          "createTime": "2026-10-08T08:38:40.000+0000",
+          "operTime": "2026-10-08T08:38:37.000+0000",
+          "organId": 90,
+          "creator": 147,
+          "accountId": 24,
+          "changeAmount": 8160.0,
+          "backAmount": 0,
+          "totalPrice": 8160.0,
+          "payType": "现付",
+          "billType": null,
+          "remark": "FlowPilot虚构企业实施UAT，非生产业务",
+          "fileName": null,
+          "salesMan": null,
+          "accountIdList": null,
+          "accountMoneyList": null,
+          "discount": 0.0,
+          "discountMoney": 0.0,
+          "discountLastMoney": 8160.0,
+          "otherMoney": 0.0,
+          "deposit": 0.0,
+          "status": "1",
+          "purchaseStatus": "0",
+          "source": "0",
+          "linkNumber": "FP-UAT-20261008-PO",
+          "linkApply": null,
+          "tenantId": 63,
+          "deleteFlag": "0",
+          "projectName": null,
+          "organName": "FlowPilot精密钢材供应商（虚构）",
+          "userName": null,
+          "accountName": "FlowPilot演示结算账户",
+          "allocationProjectName": null,
+          "materialsList": "FlowPilot制动支架 BRK-01  ",
+          "salesManStr": null,
+          "operTimeStr": "2026-10-08 16:38:37",
+          "finishDebt": null,
+          "depotHeadType": "采购入库",
+          "creatorName": "FlowPilot采购员",
+          "contacts": "供应联系人甲（页面验收）",
+          "telephone": "",
+          "address": "苏州演示工业园",
+          "finishDeposit": null,
+          "needDebt": null,
+          "debt": 0.0,
+          "materialCount": 120.0,
+          "hasFinancialFlag": false,
+          "hasBackFlag": false,
+          "realNeedDebt": null,
+          "bankName": "",
+          "accountNumber": "",
+          "taxNum": "",
+          "phoneNum": ""
+        }
+      },
+      "authenticated_user_before": "146"
+    },
+    {
+      "time": "2026-10-08T17:08:24.663539+08:00",
+      "method": "GET",
+      "path": "/depotHead/getDetailByNumber",
+      "request": {
+        "params": {
+          "number": "FP-UAT-20261008-SI"
+        }
+      },
+      "http_status": 200,
+      "response": {
+        "code": 200,
+        "data": {
+          "id": 280,
+          "type": "出库",
+          "subType": "销售",
+          "defaultNumber": "FP-UAT-20261008-SI",
+          "number": "FP-UAT-20261008-SI",
+          "createTime": "2026-10-08T08:38:47.000+0000",
+          "operTime": "2026-10-08T08:38:44.000+0000",
+          "organId": 93,
+          "creator": 149,
+          "accountId": 24,
+          "changeAmount": 2850.0,
+          "backAmount": 0,
+          "totalPrice": 2850.0,
+          "payType": "现付",
+          "billType": null,
+          "remark": "FlowPilot虚构企业实施UAT，非生产业务",
+          "fileName": null,
+          "salesMan": null,
+          "accountIdList": null,
+          "accountMoneyList": null,
+          "discount": 0.0,
+          "discountMoney": 0.0,
+          "discountLastMoney": 2850.0,
+          "otherMoney": 0.0,
+          "deposit": 0.0,
+          "status": "1",
+          "purchaseStatus": "0",
+          "source": "0",
+          "linkNumber": "FP-UAT-20261008-SO",
+          "linkApply": null,
+          "tenantId": 63,
+          "deleteFlag": "0",
+          "projectName": null,
+          "organName": "FlowPilot汽车总装客户（虚构）",
+          "userName": null,
+          "accountName": "FlowPilot演示结算账户",
+          "allocationProjectName": null,
+          "materialsList": "FlowPilot制动支架 BRK-01  ",
+          "salesManStr": null,
+          "operTimeStr": "2026-10-08 16:38:44",
+          "finishDebt": null,
+          "depotHeadType": "销售出库",
+          "creatorName": "FlowPilot销售员",
+          "contacts": "客户联系人甲",
+          "telephone": "",
+          "address": "上海演示工业园",
+          "finishDeposit": null,
+          "needDebt": null,
+          "debt": 0.0,
+          "materialCount": 30.0,
+          "hasFinancialFlag": false,
+          "hasBackFlag": false,
+          "realNeedDebt": null,
+          "bankName": "",
+          "accountNumber": "",
+          "taxNum": "",
+          "phoneNum": ""
+        }
+      },
+      "authenticated_user_before": "146"
+    },
+    {
+      "time": "2026-10-08T17:08:24.703543+08:00",
+      "method": "GET",
+      "path": "/material/getListWithStock",
+      "request": {
+        "params": {
+          "currentPage": 1,
+          "pageSize": 10,
+          "depotIds": "19",
+          "materialParam": "FP-MAT-001",
+          "zeroStock": 0
+        }
+      },
+      "http_status": 200,
+      "response": {
+        "code": 200,
+        "data": {
+          "currentStockPrice": 9520.0,
+          "total": 1,
+          "currentWeight": 0.0,
+          "currentStock": 140.0,
+          "rows": [
+            {
+              "id": 620,
+              "categoryId": null,
+              "name": "FlowPilot制动支架",
+              "mfrs": "FlowPilot虚构制造商",
+              "model": "",
+              "standard": "BRK-01",
+              "brand": "FlowPilot",
+              "mnemonic": null,
+              "color": "",
+              "unit": null,
+              "remark": null,
+              "imgName": null,
+              "unitId": null,
+              "expiryNum": null,
+              "weight": null,
+              "enabled": null,
+              "otherField1": null,
+              "otherField2": null,
+              "otherField3": null,
+              "enableSerialNumber": null,
+              "enableBatchNumber": null,
+              "position": null,
+              "attribute": null,
+              "tenantId": null,
+              "deleteFlag": null,
+              "unitName": "件",
+              "ratio": null,
+              "categoryName": null,
+              "materialOther": null,
+              "stock": null,
+              "purchaseDecimal": 68.0,
+              "commodityDecimal": null,
+              "wholesaleDecimal": null,
+              "lowDecimal": null,
+              "billPrice": null,
+              "mBarCode": "FP-MAT-001",
+              "commodityUnit": null,
+              "meId": null,
+              "initialStock": 50.0,
+              "currentUnitPrice": 68.0,
+              "currentStock": 140.0,
+              "currentStockPrice": 9520.0,
+              "currentStockMovePrice": 9520.0,
+              "currentWeight": 0.0,
+              "sku": null,
+              "depotId": null,
+              "bigUnitStock": "",
+              "bigUnitInitialStock": null,
+              "imgSmall": null,
+              "imgLarge": null
+            }
+          ]
+        }
+      },
+      "authenticated_user_before": "146"
+    },
+    {
+      "time": "2026-10-08T17:08:24.784590+08:00",
+      "method": "GET",
+      "path": "/depotItem/getDetailList",
+      "request": {
+        "params": {
+          "headerId": 277,
+          "mpList": ""
+        }
+      },
+      "http_status": 200,
+      "response": {
+        "code": 200,
+        "data": {
+          "total": 1,
+          "rows": [
+            {
+              "standard": "BRK-01",
+              "materialExtendId": 40,
+              "anotherDepotName": "",
+              "color": "",
+              "preNumber": 120.0,
+              "depotId": "",
+              "remark": "实施验收",
+              "purchaseDecimal": 68.0,
+              "imgName": null,
+              "operNumber": 120.0,
+              "anotherDepotId": "",
+              "basicNumber": 120.0,
+              "model": "",
+              "id": 334,
+              "enableSerialNumber": "0",
+              "stock": 150.0,
+              "sku": null,
+              "brand": "FlowPilot",
+              "finishNumber": 120.0,
+              "batchNumber": null,
+              "expirationDate": "",
+              "enableBatchNumber": "0",
+              "op": 1,
+              "otherField1": null,
+              "depotName": "",
+              "mfrs": "FlowPilot虚构制造商",
+              "weight": 0,
+              "otherField3": null,
+              "otherField2": null,
+              "imgSmall": "",
+              "barCode": "FP-MAT-001",
+              "mType": null,
+              "unit": "件",
+              "linkId": null,
+              "snList": null,
+              "name": "FlowPilot制动支架",
+              "imgLarge": "",
+              "position": null
+            }
+          ]
+        }
+      },
+      "authenticated_user_before": "146"
+    },
+    {
+      "time": "2026-10-08T17:08:24.838579+08:00",
+      "method": "GET",
+      "path": "/depotItem/getDetailList",
+      "request": {
+        "params": {
+          "headerId": 279,
+          "mpList": ""
+        }
+      },
+      "http_status": 200,
+      "response": {
+        "code": 200,
+        "data": {
+          "total": 1,
+          "rows": [
+            {
+              "standard": "BRK-01",
+              "materialExtendId": 40,
+              "anotherDepotName": "",
+              "color": "",
+              "preNumber": 30.0,
+              "depotId": "",
+              "remark": "实施验收",
+              "purchaseDecimal": 68.0,
+              "imgName": null,
+              "operNumber": 30.0,
+              "anotherDepotId": "",
+              "basicNumber": 30.0,
+              "model": "",
+              "id": 336,
+              "enableSerialNumber": "0",
+              "stock": 150.0,
+              "sku": null,
+              "brand": "FlowPilot",
+              "finishNumber": 30.0,
+              "batchNumber": null,
+              "expirationDate": "",
+              "enableBatchNumber": "0",
+              "op": 1,
+              "otherField1": null,
+              "depotName": "",
+              "mfrs": "FlowPilot虚构制造商",
+              "weight": 0,
+              "otherField3": null,
+              "otherField2": null,
+              "imgSmall": "",
+              "barCode": "FP-MAT-001",
+              "mType": null,
+              "unit": "件",
+              "linkId": null,
+              "snList": null,
+              "name": "FlowPilot制动支架",
+              "imgLarge": "",
+              "position": null
+            }
+          ]
+        }
+      },
+      "authenticated_user_before": "146"
+    }
+  ],
+  "sql_partners": [
+    {
+      "id": 90,
+      "supplier": "FlowPilot精密钢材供应商（虚构）",
+      "type": "供应商"
+    },
+    {
+      "id": 91,
+      "supplier": "FlowPilot标准件供应商（虚构）",
+      "type": "供应商"
+    },
+    {
+      "id": 92,
+      "supplier": "FlowPilot包装材料供应商（虚构）",
+      "type": "供应商"
+    },
+    {
+      "id": 93,
+      "supplier": "FlowPilot汽车总装客户（虚构）",
+      "type": "客户"
+    },
+    {
+      "id": 94,
+      "supplier": "FlowPilot售后配件客户（虚构）",
+      "type": "客户"
+    },
+    {
+      "id": 95,
+      "supplier": "FlowPilot底盘系统客户（虚构）",
+      "type": "客户"
+    }
+  ],
+  "all_verified": true
+}

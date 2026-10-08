@@ -1,0 +1,13 @@
+.git
+.env
+.venv
+tools
+runtime
+backups
+evidence
+docs
+upstream/.git
+upstream/jshERP-web/node_modules
+upstream/jshERP-web/dist
+upstream/jshERP-boot/target
+upstream/jshERP-boot/dist

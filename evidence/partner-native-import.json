@@ -1,0 +1,224 @@
+{
+  "time": "2026-10-08T16:51:26.669355+08:00",
+  "rounds": [
+    [
+      {
+        "kind": "suppliers",
+        "endpoint": "/supplier/importVendor",
+        "before": [
+          {
+            "id": 90,
+            "supplier": "FlowPilot精密钢材供应商（虚构）",
+            "description": "legacy-code:SUP-FP-001"
+          },
+          {
+            "id": 91,
+            "supplier": "FlowPilot标准件供应商（虚构）",
+            "description": "legacy-code:SUP-FP-002"
+          },
+          {
+            "id": 92,
+            "supplier": "FlowPilot包装材料供应商（虚构）",
+            "description": "legacy-code:SUP-FP-003"
+          }
+        ],
+        "after": [
+          {
+            "id": 90,
+            "supplier": "FlowPilot精密钢材供应商（虚构）",
+            "contacts": "供应联系人甲",
+            "address": "苏州演示工业园",
+            "description": "legacy-code:SUP-FP-001",
+            "enabled": "b'\\x01'"
+          },
+          {
+            "id": 91,
+            "supplier": "FlowPilot标准件供应商（虚构）",
+            "contacts": "供应联系人乙",
+            "address": "无锡演示工业园",
+            "description": "legacy-code:SUP-FP-002",
+            "enabled": "b'\\x01'"
+          },
+          {
+            "id": 92,
+            "supplier": "FlowPilot包装材料供应商（虚构）",
+            "contacts": "供应联系人丙",
+            "address": "常州演示工业园",
+            "description": "legacy-code:SUP-FP-003",
+            "enabled": "b'\\x01'"
+          }
+        ],
+        "response": {
+          "code": 200,
+          "data": "导入成功"
+        },
+        "stable_ids": true,
+        "verified": true
+      },
+      {
+        "kind": "customers",
+        "endpoint": "/supplier/importCustomer",
+        "before": [
+          {
+            "id": 93,
+            "supplier": "FlowPilot汽车总装客户（虚构）",
+            "description": "legacy-code:CUS-FP-001"
+          },
+          {
+            "id": 94,
+            "supplier": "FlowPilot售后配件客户（虚构）",
+            "description": "legacy-code:CUS-FP-002"
+          },
+          {
+            "id": 95,
+            "supplier": "FlowPilot底盘系统客户（虚构）",
+            "description": "legacy-code:CUS-FP-003"
+          }
+        ],
+        "after": [
+          {
+            "id": 93,
+            "supplier": "FlowPilot汽车总装客户（虚构）",
+            "contacts": "客户联系人甲",
+            "address": "上海演示工业园",
+            "description": "legacy-code:CUS-FP-001",
+            "enabled": "b'\\x01'"
+          },
+          {
+            "id": 94,
+            "supplier": "FlowPilot售后配件客户（虚构）",
+            "contacts": "客户联系人乙",
+            "address": "南京演示工业园",
+            "description": "legacy-code:CUS-FP-002",
+            "enabled": "b'\\x01'"
+          },
+          {
+            "id": 95,
+            "supplier": "FlowPilot底盘系统客户（虚构）",
+            "contacts": "客户联系人丙",
+            "address": "合肥演示工业园",
+            "description": "legacy-code:CUS-FP-003",
+            "enabled": "b'\\x01'"
+          }
+        ],
+        "response": {
+          "code": 200,
+          "data": "导入成功"
+        },
+        "stable_ids": true,
+        "verified": true
+      }
+    ],
+    [
+      {
+        "kind": "suppliers",
+        "endpoint": "/supplier/importVendor",
+        "before": [
+          {
+            "id": 90,
+            "supplier": "FlowPilot精密钢材供应商（虚构）",
+            "description": "legacy-code:SUP-FP-001"
+          },
+          {
+            "id": 91,
+            "supplier": "FlowPilot标准件供应商（虚构）",
+            "description": "legacy-code:SUP-FP-002"
+          },
+          {
+            "id": 92,
+            "supplier": "FlowPilot包装材料供应商（虚构）",
+            "description": "legacy-code:SUP-FP-003"
+          }
+        ],
+        "after": [
+          {
+            "id": 90,
+            "supplier": "FlowPilot精密钢材供应商（虚构）",
+            "contacts": "供应联系人甲",
+            "address": "苏州演示工业园",
+            "description": "legacy-code:SUP-FP-001",
+            "enabled": "b'\\x01'"
+          },
+          {
+            "id": 91,
+            "supplier": "FlowPilot标准件供应商（虚构）",
+            "contacts": "供应联系人乙",
+            "address": "无锡演示工业园",
+            "description": "legacy-code:SUP-FP-002",
+            "enabled": "b'\\x01'"
+          },
+          {
+            "id": 92,
+            "supplier": "FlowPilot包装材料供应商（虚构）",
+            "contacts": "供应联系人丙",
+            "address": "常州演示工业园",
+            "description": "legacy-code:SUP-FP-003",
+            "enabled": "b'\\x01'"
+          }
+        ],
+        "response": {
+          "code": 200,
+          "data": "导入成功"
+        },
+        "stable_ids": true,
+        "verified": true
+      },
+      {
+        "kind": "customers",
+        "endpoint": "/supplier/importCustomer",
+        "before": [
+          {
+            "id": 93,
+            "supplier": "FlowPilot汽车总装客户（虚构）",
+            "description": "legacy-code:CUS-FP-001"
+          },
+          {
+            "id": 94,
+            "supplier": "FlowPilot售后配件客户（虚构）",
+            "description": "legacy-code:CUS-FP-002"
+          },
+          {
+            "id": 95,
+            "supplier": "FlowPilot底盘系统客户（虚构）",
+            "description": "legacy-code:CUS-FP-003"
+          }
+        ],
+        "after": [
+          {
+            "id": 93,
+            "supplier": "FlowPilot汽车总装客户（虚构）",
+            "contacts": "客户联系人甲",
+            "address": "上海演示工业园",
+            "description": "legacy-code:CUS-FP-001",
+            "enabled": "b'\\x01'"
+          },
+          {
+            "id": 94,
+            "supplier": "FlowPilot售后配件客户（虚构）",
+            "contacts": "客户联系人乙",
+            "address": "南京演示工业园",
+            "description": "legacy-code:CUS-FP-002",
+            "enabled": "b'\\x01'"
+          },
+          {
+            "id": 95,
+            "supplier": "FlowPilot底盘系统客户（虚构）",
+            "contacts": "客户联系人丙",
+            "address": "合肥演示工业园",
+            "description": "legacy-code:CUS-FP-003",
+            "enabled": "b'\\x01'"
+          }
+        ],
+        "response": {
+          "code": 200,
+          "data": "导入成功"
+        },
+        "stable_ids": true,
+        "verified": true
+      }
+    ]
+  ],
+  "stock_before": "140.000000",
+  "stock_after": "140.000000",
+  "note": "Existing API-created partners re-imported via native XLS twice; names/IDs/counts stable"
+}

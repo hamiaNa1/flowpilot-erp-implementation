@@ -1,0 +1,26 @@
+[
+  {
+    "file": "build.ps1",
+    "errors": []
+  },
+  {
+    "file": "compose.ps1",
+    "errors": []
+  },
+  {
+    "file": "environment.ps1",
+    "errors": []
+  },
+  {
+    "file": "setup.ps1",
+    "errors": []
+  },
+  {
+    "file": "start.ps1",
+    "errors": []
+  },
+  {
+    "file": "stop.ps1",
+    "errors": []
+  }
+]

@@ -1,0 +1,36 @@
+{
+  "checkedAt": "2026-10-08T16:41:47.1171221+08:00",
+  "os": "Microsoft Windows 10.0.26300",
+  "powershell": "7.6.5",
+  "source": "https://github.com/jishenghua/jshERP.git",
+  "commit": "8f28e7c2fe54d54de3621a414f5df1833dc5a55f",
+  "tag": "v3.6",
+  "dockerInstalled": false,
+  "ports": [
+    {
+      "LocalAddress": "127.0.0.1",
+      "LocalPort": 9999
+    },
+    {
+      "LocalAddress": "127.0.0.1",
+      "LocalPort": 8088
+    },
+    {
+      "LocalAddress": "127.0.0.1",
+      "LocalPort": 6388
+    },
+    {
+      "LocalAddress": "127.0.0.1",
+      "LocalPort": 3308
+    }
+  ],
+  "diskD": {
+    "Used": 294863544320,
+    "Free": 56369565696
+  },
+  "java": "openjdk version \"1.8.0_504\"\r\nOpenJDK Runtime Environment (Zulu 8.96.0.205-CA-win64) (build 1.8.0_504-b01)\r\nOpenJDK 64-Bit Server VM (Zulu 8.96.0.205-CA-win64) (build 25.504-b01, mixed mode)",
+  "node": "v20.17.0",
+  "mysql": "D:\\7800\\flowpilot-erp\\tools\\mysql-8.0.44-winx64\\bin\\mysql.exe  Ver 8.0.44 for Win64 on x86_64 (MySQL Community Server - GPL)",
+  "redis": "Redis server v=3.0.504 sha=00000000:0 malloc=jemalloc-3.6.0 bits=64 build=a4f7a6e86f2d60b3",
+  "nginx": "nginx version: nginx/1.28.0"
+}
